@@ -8,6 +8,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color: rgba(255, 255, 255, 0.5);
+  transition: 2s background-color ease;
+}
+
+.navbar-wagon-white {
+  background-color: white;
 }
 
 /* Logo */
@@ -41,7 +47,7 @@
   font-size: 14px;
 }
 .navbar-wagon-link:hover {
-  color: #da552f;
+  color: $footinvest-green;
   text-decoration: none;
 }
 
