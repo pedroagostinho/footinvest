@@ -13,23 +13,23 @@
 
       <!-- Links when logged in -->
 
-      <%= link_to "Market", players_path, class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "My Players", my_players_path, class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "My Bookings", bookings_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to root_path, players_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to root_path, my_players_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to root_path, bookings_path, class: "navbar-wagon-item navbar-wagon-link" %>
 
 
       <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">
         <div class="dropdown">
-          <%#= cl_image_tag current_club.photo, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+          <%= cl_image_tag current_club.photo, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
             <li>
-              <%#= link_to edit_club_registration_path do %>
+              <%= link_to edit_club_registration_path do %>
                 <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
               <% end %>
             </li>
             <li>
-              <%#= link_to destroy_club_session_path, method: :delete do %>
+              <%= link_to destroy_club_session_path, method: :delete do %>
                 <i class="fas fa-sign-out-alt"></i>  <%= t(".sign_out", default: "Log out") %>
               <% end %>
             </li>
@@ -39,7 +39,7 @@
     <% else %>
       <!-- Login link (when logged out) -->
 
-      <%= link_to t(".sign_in", default: "Sign In"), new_club_session_path, class: "btn-primary2 navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to t(".sign_in", default: "Sign In"), root_path, class: "btn-primary2 navbar-wagon-item navbar-wagon-link" %>
     <% end %>
   </div>
 
@@ -55,5 +55,3 @@
     </div>
   </div>
 </div>
-
-
