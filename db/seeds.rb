@@ -1,11 +1,12 @@
 require 'csv'
+require 'byebug'
 
 User.destroy_all
+Player.destroy_all
 Club.destroy_all
 Competition.destroy_all
-Market_value.destroy_all
+MarketValue.destroy_all
 New.destroy_all
-Player.destroy_all
 Result.destroy_all
 Stat.destroy_all
 Token.destroy_all
@@ -66,10 +67,10 @@ CSV.foreach('./db/results.csv', CSV_OPTIONS) do |row|
   result = Result.new(
     date_time: row[0],
     competition_id: row[1],
-    home_club_goals: row[2]
+    home_club_goals: row[2],
     away_club_goals: row[3],
     home_club_id: row[4].to_i,
-    home_club_id: row[5].to_i
+    away_club_id: row[5].to_i
     )
   result.save
 end
@@ -77,7 +78,7 @@ end
 CSV.foreach('./db/stats.csv', CSV_OPTIONS) do |row|
   stat = Stat.new(
     player_id: row[0],
-    competition: row[1],
+    competition_id: row[1],
     games: row[2],
     goals: row[3],
     assists: row[4],
@@ -94,27 +95,31 @@ CSV.foreach('./db/news.csv', CSV_OPTIONS) do |row|
     summary: row[3],
     content: row[4],
     club: Club.find(row[5].to_i),
-    player: Player.find(ow[6].to_i)
+    player: Player.find(row[6].to_i)
     )
   noticia.save
 end
 
 CSV.foreach('./db/market_values.csv', CSV_OPTIONS) do |row|
-  market_value = MarketValue.new(
+  market = MarketValue.new(
     player_id: row[0],
     date_time: row[1],
     market_value: row[2]
     )
-  market_value.save
+  market.save
 end
 
 CSV.foreach('./db/tokens.csv', CSV_OPTIONS) do |row|
+
   token = Token.new(
-    on_sale?: row[0],
+    on_sale: row[0] == "TRUE",
     last_price: row[1],
     player_id: row[2],
     owner: row[3]
     )
+  # puts "-- #{token}"
+  # puts "INV #{token.errors.messages}" unless token.valid?
+
   token.save
 end
 

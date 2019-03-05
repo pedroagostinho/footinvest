@@ -12,5 +12,4 @@ class PagesController < ApplicationController
 
   def my_players
   end
-
 end
