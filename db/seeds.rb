@@ -82,7 +82,10 @@ CSV.foreach('./db/stats.csv', CSV_OPTIONS) do |row|
     games: row[2],
     goals: row[3],
     assists: row[4],
-    form: row[5]
+    form: row[5],
+    minutes_played: row[6],
+    yellow_card: row[7],
+    red_card: row[8]
     )
   stat.save
 end
