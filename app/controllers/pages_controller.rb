@@ -5,7 +5,6 @@ class PagesController < ApplicationController
   end
 
   def feed
-
     @clubs = Club.all
 
     @results1 = Result.where(competition_id: 1).order(date_time: :desc).take(10)
@@ -13,6 +12,7 @@ class PagesController < ApplicationController
     @results3 = Result.where(competition_id: 3).order(date_time: :desc).take(10)
 
     @news = New.order(date_time: :desc).take(5)
+
     @players = Player.all
   end
 
@@ -21,7 +21,4 @@ class PagesController < ApplicationController
 
   def my_players
   end
-
-
-
 end
