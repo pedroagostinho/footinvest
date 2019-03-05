@@ -1,0 +1,68 @@
+.banner h3 {
+  position: absolute;
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+  font-size: 40px;
+  letter-spacing: -0.08em;
+  color: #3F3D56;
+  top: 13px;
+  left: 200px;
+}
+
+.banner h1 {
+  position: absolute;
+  top: 343px;
+  left: 200px;
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: bold;
+  line-height: normal;
+  font-size: 60px;
+  letter-spacing: -0.04em;
+  color: #3F3D56;
+}
+
+.banner p {
+  position: absolute;
+  width: 633px;
+  height: 92px;
+  left: 200px;
+  top: 467px;
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  font-size: 24px;
+  color: #3F3D56;
+  mix-blend-mode: normal;
+}
+
+.main-image {
+  position: absolute;
+  height: 967.87px;
+  right: 10;
+  right: 10px;
+  background: url(image.png);
+  -webkit-transform: rotate(-78.8deg);
+  transform: rotate(-78.8deg);
+}
+
+.litle-image11 {
+  position: absolute;
+  top: 50px;
+  right: 550px;
+}
+
+.litle-image111 {
+  position: absolute;
+  bottom: 50px;
+  left: 450px;
+}
+
+.litle-image1111 {
+  position: absolute;
+  bottom: 100px;
+  left: 50px;
+}

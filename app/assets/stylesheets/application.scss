@@ -13,3 +13,14 @@
 @import "layouts/index";
 @import "components/index";
 @import "pages/index";
+
+body{
+  padding: 70px 0 0 0;
+  font-family: $footinvest-font;
+}
+
+a {
+  &:hover {
+    text-decoration: none;
+  }
+}
