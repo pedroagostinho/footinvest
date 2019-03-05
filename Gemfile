@@ -7,6 +7,7 @@ gem 'cloudinary', '~> 1.9.1'
 gem 'carrierwave', '~> 1.2'
 gem 'pundit'
 gem 'pg_search'
+gem 'football__data', '~> 0.2.3'
 
 gem 'bootsnap', require: false
 gem 'devise'
