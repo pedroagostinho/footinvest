@@ -31,6 +31,15 @@ CSV.foreach('./db/users.csv', CSV_OPTIONS) do |row|
   user.save
 end
 
+CSV.foreach('./db/clubs.csv', CSV_OPTIONS) do |row|
+  club = Club.new(
+    name: row[0],
+    logo: row[1],
+    city: row[2]
+    )
+  club.save
+end
+
 CSV.foreach('./db/players.csv', CSV_OPTIONS) do |row|
   player = Player.new(
     name: row[0],
@@ -45,6 +54,26 @@ CSV.foreach('./db/players.csv', CSV_OPTIONS) do |row|
   player.save
 end
 
+CSV.foreach('./db/competitions.csv', CSV_OPTIONS) do |row|
+  competition = Competition.new(
+    name: row[0],
+    logo: row[1]
+    )
+  competition.save
+end
+
+CSV.foreach('./db/results.csv', CSV_OPTIONS) do |row|
+  result = Result.new(
+    date_time: row[0],
+    competition_id: row[1],
+    home_club_goals: row[2]
+    away_club_goals: row[3],
+    home_club_id: row[4].to_i,
+    home_club_id: row[5].to_i
+    )
+  result.save
+end
+
 CSV.foreach('./db/stats.csv', CSV_OPTIONS) do |row|
   stat = Stat.new(
     player_id: row[0],
@@ -55,6 +84,19 @@ CSV.foreach('./db/stats.csv', CSV_OPTIONS) do |row|
     form: row[5]
     )
   stat.save
+end
+
+CSV.foreach('./db/news.csv', CSV_OPTIONS) do |row|
+  noticia = New.new(
+    date_time: row[0],
+    tag: row[1],
+    title: row[2],
+    summary: row[3],
+    content: row[4],
+    club: Club.find(row[5].to_i),
+    player: Player.find(ow[6].to_i)
+    )
+  noticia.save
 end
 
 CSV.foreach('./db/market_values.csv', CSV_OPTIONS) do |row|
