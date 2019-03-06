@@ -16,5 +16,8 @@ class Player < ApplicationRecord
   has_many :news
   has_many :market_values
 
+
+  has_many :transactions, through: :tokens
+
   validates :name, :nationality, :position, :social_url, :age, :height, presence: true
 end
