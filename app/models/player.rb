@@ -2,6 +2,7 @@ class Player < ApplicationRecord
   belongs_to :club
   has_many :stats
   has_many :tokens
+  has_many :transactions, through: :tokens
   has_many :news
   has_many :market_values
 

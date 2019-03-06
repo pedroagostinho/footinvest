@@ -1,1 +1,78 @@
 <h1>this is my_players page</h1>
+
+<% @my_tokens.each do |token| %>
+  <%= image_tag(token.player.photo, height: '32', width: '32', crop: :fill) %> |
+  <%= token.player.name %> <%= token.player.id %> |
+  <%= token.player.position %> |
+
+  <% form = [] %>
+  <% goals = [] %>
+  <% assists = [] %>
+
+  <% token.player.stats.each do |stat| %>
+    <% form << stat.form.downcase %>
+    <% goals << stat.goals %>
+    <% assists << stat.assists %>
+  <% end %>
+
+  <% if form.include?('high') %>
+    <% form = 'HGH' %>
+  <% elsif form.include?('medium') %>
+    <% form = 'AVG' %>
+  <% elsif form.include?('low') %>
+    <% form = 'LOW' %>
+  <% else %>
+    <% form = '-' %>
+  <% end %>
+
+  form: <%= form %> |
+  goals: <%= goals.inject(0){|sum,x| sum + x } %> |
+  assists: <%= assists.inject(0){|sum,x| sum + x } %> |
+
+  <% prices = [] %>
+  <% min = [] %>
+  <% max = [] %>
+
+  <% @transactions.each do |transaction| %>
+    <% prices << transaction.price if transaction.player_id == token.player_id %>
+  <% end %>
+
+  <% @transactions.each do |transaction| %>
+    <% min << transaction.price if transaction.player_id == token.player_id %>
+  <% end %>
+
+  <% @transactions.each do |transaction| %>
+    <% max << transaction.price if transaction.player_id == token.player_id %>
+  <% end %>
+
+  last price: <%= prices.first %> |
+  min: <%= min.min %> |
+  max: <%= max.max %> |
+
+  <% variation = [] %>
+  <% min_var = [] %>
+  <% max_var = [] %>
+
+  <% @transactions.each do |transaction| %>
+    <% variation << (transaction.price if transaction.player_id == token.player_id %>
+  <% end %>
+
+  <% @transactions.each do |transaction| %>
+    <% min_var << transaction.price if transaction.player_id == token.player_id %>
+  <% end %>
+
+  <% @transactions.each do |transaction| %>
+    <% max_var << transaction.price if transaction.player_id == token.player_id %>
+  <% end %>
+
+  variation: <%= variation %> |
+  min_var: <%= min_var %> |
+  max_var: <%= max_var %> |
+
+  <br>
+
+<% end %>
+
+<% @transactions.each do |transaction| %>
+  <%= transaction.date_time %> <%= transaction.player.name %> <%= transaction.price %> <br>
+<% end %>
