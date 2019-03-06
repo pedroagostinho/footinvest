@@ -32,11 +32,33 @@ class PagesController < ApplicationController
   end
 
   def my_players
-    @my_tokens = Token.where(owner: current_user)
+    # @my_tokens = Token.where(owner: current_user)
+    @transactions = Token.joins(:transactions)
+                         .select('tokens.id,
+                                  tokens.player_id,
+                                  transactions.date_time,
+                                  transactions.price')
+                         .order('transactions.date_time DESC,
+                                 tokens.player_id DESC')
 
-    @transactions = Token.joins(:transactions).select('tokens.id, tokens.player_id, transactions.date_time, transactions.price').order('transactions.date_time DESC, tokens.player_id DESC')
+    @my_players = Player.joins(:tokens)
+                        .where(tokens: { owner: current_user })
 
-    @my_transactions = Transaction.where(token_id: @my_tokens)
+    @my_players2 = Player.joins(:tokens)
+                         .where(tokens: { owner: current_user })
+                         .select('tokens.id,
+                                  tokens.on_sale,
+                                  tokens.last_price,
+                                  tokens.player_id,
+                                  tokens.owner,
+                                  players.name,
+                                  players.photo,
+                                  players.age,
+                                  players.height,
+                                  players.nationality,
+                                  players.position,
+                                  players.social_url,
+                                  players.club_id')
   end
 
 end
