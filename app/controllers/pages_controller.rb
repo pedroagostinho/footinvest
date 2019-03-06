@@ -25,6 +25,6 @@ class PagesController < ApplicationController
 
     @transactions = Token.joins(:transactions).select('tokens.id, tokens.player_id, transactions.date_time, transactions.price').order('transactions.date_time DESC, tokens.player_id DESC')
 
-    # @transactions = Transaction.where(token_id: @my_tokens)
+    @my_transactions = Transaction.where(token_id: @my_tokens)
   end
 end
