@@ -30,49 +30,35 @@
   assists: <%= assists.inject(0){|sum,x| sum + x } %> |
 
   <% prices = [] %>
-  <% min = [] %>
-  <% max = [] %>
 
   <% @transactions.each do |transaction| %>
     <% prices << transaction.price if transaction.player_id == token.player_id %>
   <% end %>
 
-  <% @transactions.each do |transaction| %>
-    <% min << transaction.price if transaction.player_id == token.player_id %>
-  <% end %>
+  last price: <%= prices.first %> € |
+  min price: <%= prices.min %> € |
+  max price: <%= prices.max %> € |
+
+  <% variations = [] %>
 
   <% @transactions.each do |transaction| %>
-    <% max << transaction.price if transaction.player_id == token.player_id %>
+    <% variations << transaction.price if transaction.player_id == token.player_id %>
   <% end %>
 
-  last price: <%= prices.first %> |
-  min: <%= min.min %> |
-  max: <%= max.max %> |
-
-  <% variation = [] %>
-  <% min_var = [] %>
-  <% max_var = [] %>
-
-  <% @transactions.each do |transaction| %>
-    <% variation << (transaction.price if transaction.player_id == token.player_id %>
-  <% end %>
-
-  <% @transactions.each do |transaction| %>
-    <% min_var << transaction.price if transaction.player_id == token.player_id %>
-  <% end %>
-
-  <% @transactions.each do |transaction| %>
-    <% max_var << transaction.price if transaction.player_id == token.player_id %>
-  <% end %>
-
-  variation: <%= variation %> |
-  min_var: <%= min_var %> |
-  max_var: <%= max_var %> |
+  last variation: <%= variations.first %> % |
+  min variation: <%= variations.min %> % |
+  max variation: <%= variations.max %> % |
 
   <br>
 
 <% end %>
 
 <% @transactions.each do |transaction| %>
+  <%= transaction.date_time %> <%= transaction.player.name %> <%= transaction.price %> <br>
+<% end %>
+
+<br>
+
+<% @my_transactions.each do |transaction| %>
   <%= transaction.date_time %> <%= transaction.player.name %> <%= transaction.price %> <br>
 <% end %>
