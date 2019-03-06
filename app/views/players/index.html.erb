@@ -4,14 +4,17 @@
 
 <%= @players.last.name %>
 
+
+
 <div class="container">
-  <%= form_tag players_path, method: :get do %>
-    <%= text_field_tag :query,
+  <%#= form_tag players_path, remote: true, method: :get do %>
+    <%#= text_field_tag :query,
       params[:query],
       class: "form-control",
       placeholder: "Find a player"
     %>
-  <% end %>
+  <%# end %>
+  <%= render 'form', players: @players %>
   <div class="row">
     <% @players.each do |player| %>
       <div class="col-xs-12 col-sm-6 col-md-4">
@@ -19,10 +22,11 @@
             <div class="card-trip">
               <%#= cl_image_tag(player.photo)%>
               <div class="card-trip-infos">
-                <div>
+                <div id="player">
                   <h2><%= player.name %></h2>
                   <p><%= player.club.name %></p>
                   <p><%= player.age %></p>
+                  <p><%= player.nationality %></p>
                   <p><em><%= player.position %></em></p>
                 </div>
               </div>
