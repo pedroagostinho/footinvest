@@ -8,8 +8,6 @@ class PagesController < ApplicationController
   end
 
   def feed
-    @clubs = Club.all
-
     @results = Result.where(competition_id: 1).order(date_time: :desc).take(10)
     @results2 = Result.where(competition_id: 2).order(date_time: :desc).take(10)
     @results3 = Result.where(competition_id: 3).order(date_time: :desc).take(10)
@@ -23,6 +21,10 @@ class PagesController < ApplicationController
   end
 
   def my_players
+    @my_tokens = Token.where(owner: current_user)
 
+    @transactions = Token.joins(:transactions).select('tokens.id, tokens.player_id, transactions.date_time, transactions.price').order('transactions.date_time DESC, tokens.player_id DESC')
+
+    # @transactions = Transaction.where(token_id: @my_tokens)
   end
 end
