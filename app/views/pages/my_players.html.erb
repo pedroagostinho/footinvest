@@ -1,15 +1,15 @@
 <h1>this is my_players page</h1>
 
-<% @my_tokens.each do |token| %>
-  <%= image_tag(token.player.photo, height: '32', width: '32', crop: :fill) %> |
-  <%= token.player.name %> <%= token.player.id %> |
-  <%= token.player.position %> |
+<% @my_players.each do |player| %>
+  <%= image_tag(player.photo, height: '32', width: '32', crop: :fill) %> |
+  <%= player.name %> <%= player.id %> |
+  <%= player.position %> |
 
   <% form = [] %>
   <% goals = [] %>
   <% assists = [] %>
 
-  <% token.player.stats.each do |stat| %>
+  <% player.stats.each do |stat| %>
     <% form << stat.form.downcase %>
     <% goals << stat.goals %>
     <% assists << stat.assists %>
@@ -32,7 +32,7 @@
   <% prices = [] %>
 
   <% @transactions.each do |transaction| %>
-    <% prices << transaction.price if transaction.player_id == token.player_id %>
+    <% prices << transaction.price if transaction.player_id == player.id %>
   <% end %>
 
   last price: <%= prices.first %> € |
@@ -42,7 +42,7 @@
   <% variations = [] %>
 
   <% @transactions.each do |transaction| %>
-    <% variations << transaction.price if transaction.player_id == token.player_id %>
+    <% variations << transaction.price if transaction.player_id == player.id %>
   <% end %>
 
   last variation: <%= variations.first %> % |
@@ -54,11 +54,12 @@
 <% end %>
 
 <% @transactions.each do |transaction| %>
-  <%= transaction.date_time %> <%= transaction.player.name %> <%= transaction.price %> <br>
+  <%= transaction.date_time %> <%= transaction.player.name %> <%= transaction.price %> <%= transaction.player.id %> <br>
 <% end %>
 
 <br>
+<br>
 
-<% @my_transactions.each do |transaction| %>
-  <%= transaction.date_time %> <%= transaction.player.name %> <%= transaction.price %> <br>
+<% @my_players2.each do |player| %>
+  <%= player.id %> | <%= player.owner %> | <%= player.last_price %> | <%= player.name %> <br>
 <% end %>
