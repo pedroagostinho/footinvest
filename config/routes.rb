@@ -6,4 +6,10 @@ Rails.application.routes.draw do
   get 'dashboard', to: "pages#dashboard"
   get 'my_players', to: "pages#my_players"
 
+  resources :players, only: [:index, :show] do
+    # member do
+    #   post ...
+    # end
+  end
+
 end

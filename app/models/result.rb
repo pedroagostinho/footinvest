@@ -5,4 +5,12 @@ class Result < ApplicationRecord
 
   validates :home_club_goals, presence: true
   validates :away_club_goals, presence: true
+
+  def away_club_name
+    self.away_club.name
+  end
+
+  def home_club_name
+    self.home_club.name
+  end
 end
