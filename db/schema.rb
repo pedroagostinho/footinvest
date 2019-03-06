@@ -99,7 +99,7 @@ ActiveRecord::Schema.define(version: 2019_03_05_190417) do
   end
 
   create_table "tokens", force: :cascade do |t|
-    t.boolean "on_sale"
+    t.string "status"
     t.integer "last_price"
     t.bigint "player_id"
     t.datetime "created_at", null: false
