@@ -20,3 +20,6 @@
 <br>
 <br>
 
+Top winners: <%= @variation.values.sort.reverse.take(5) %> <br>
+Top losers: <%= @variation.values.sort.take(5) %>
+
