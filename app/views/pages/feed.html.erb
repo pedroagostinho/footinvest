@@ -2,8 +2,6 @@
 
 <div>
   <% @results.each do |result| %>
-<!--     <#% home_club_name = @clubs.where(id: result.home_club_id)[0].name %>
-    <#% away_club_name = @clubs.where(id: result.away_club_id)[0].name %> -->
     <%= result.competition_id %>
     <%= result.home_club_name %> <%= result.home_club_goals %> - <%=result.away_club_goals %> <%= result.away_club_name %>  <%= result.date_time %>
     <br>
@@ -21,3 +19,4 @@
 <br>
 <br>
 <br>
+

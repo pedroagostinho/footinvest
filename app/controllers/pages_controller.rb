@@ -8,21 +8,30 @@ class PagesController < ApplicationController
   end
 
   def feed
-    @clubs = Club.all
-
     @results = Result.where(competition_id: 1).order(date_time: :desc).take(10)
     @results2 = Result.where(competition_id: 2).order(date_time: :desc).take(10)
     @results3 = Result.where(competition_id: 3).order(date_time: :desc).take(10)
-
     @news = New.order(date_time: :desc).take(5)
-
     @players = Player.all
+
+    sorted = Token.joins(:transactions).select('tokens.id, tokens.player_id, transactions.date_time, transactions.price').order('transactions.date_time DESC, tokens.player_id ASC')
+    last_player_id = sorted[0].player_id
+    last_prices = []
+    variation = []
+    count = sorted.uniq(&:player_id).count
+
+    my = Hash.new()
+
+  sorted.uniq(&:player_id).each do |t|
+    player_tokens = sorted.where(player_id: t.player_id)
+    my[t.player_id] = (((player_tokens.first.price - player_tokens.second.price) / player_tokens.second.price.to_f) * 100).round(2)
+  end
   end
 
   def dashboard
   end
 
   def my_players
-
   end
+
 end
