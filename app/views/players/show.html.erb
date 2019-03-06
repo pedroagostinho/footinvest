@@ -1,0 +1,67 @@
+<h1>Players#show</h1>
+
+<%= @player.name %> <br>
+<%= image_tag(@player.photo, height: '32', width: '32', crop: :fill) %>
+<%= @player.position %>
+<%= @player.nationality %>
+<%= @player.age %>
+<%= @player.height %>
+<%= @player.social_url %>
+<%= @player.club.name %>
+
+
+<br><br>
+
+<table>
+<% @player.stats.each do |stat| %>
+  <tr>
+    <th>COMPETITION</th>
+    <th>GAMES PLAYED</th>
+    <th>GOALS</th>
+    <th>ASSISTS</th>
+    <th>MINUTES PLAYED</th>
+    <th>YELLOW CARDS</th>
+    <th>RED CARDS</th>
+  </tr>
+  <tr>
+    <td><%= stat.competition.name %></td>
+    <td><%= stat.games %></td>
+    <td><%= stat.goals %></td>
+    <td><%= stat.assists %></td>
+    <td><%= stat.minutes_played %></td>
+    <td><%= stat.yellow_card %></td>
+    <td><%= stat.red_card %> <br></td>
+  </tr>
+<% end %>
+</table>
+
+<br><br>
+
+<table>
+<% @player.stats.each do |stat| %>
+
+  <tr>
+    <th>LAST 3 GAMES GOALS | ASSISTS</th>
+    <th>CURRENT FORM</th>
+  </tr>
+  <tr>
+    <td>
+      <th>Benfica</th>
+      <th>Bologna</th>
+      <th>At-Madrid</th>
+    </td>
+    <td>
+      <th>AVG</th>
+    </td>
+    <tr>
+      <td>0 | 1</td>
+      <td>0 | 1</td>
+      <td>2 | 0</td>
+      <td>2 goals | 2 assists</td>
+    </tr>
+  </tr>
+<% end %>
+
+</table>
+
+

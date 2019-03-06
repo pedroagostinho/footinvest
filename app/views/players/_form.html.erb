@@ -1,0 +1,7 @@
+<%= simple_form_for players_path, remote: true do |f| %>
+  <%= f.input :name %>
+  <%= f.input :position, collection: [ "Goalkeeper", "Defender", "Midfielder", "Forward"] %>
+  <%= f.input :nationality %>
+  <%= f.input :age %>
+  <%= f.button :submit, 'Spot a Star' %>
+<% end %>
