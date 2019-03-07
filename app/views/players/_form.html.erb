@@ -3,6 +3,6 @@
   <%#= f.input :position, collection: [ "Goalkeeper", "Defender", "Midfielder", "Forward"] %>
   <%#= f.input :nationality %>
   <%#= f.input :age %>
-  <%= f.input :tokens, as: :range, input_html: { tokens: 'tokens', min: '0', max: '10', step: '1'  } %>
+  <%= f.input :tokens, as: :range, input_html: { name: 'tokens', min: '0', max: '10', step: '1'  } %>
   <%= f.button :submit, 'Spot a Star' %>
 <% end %>

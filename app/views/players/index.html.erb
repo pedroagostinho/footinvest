@@ -1,12 +1,7 @@
 <h1>Players#index</h1>
 <p>Find me in app/views/players/index.html.erb</p>
 
-<% alltoken = Token.where(owner: nil) %>
-<ul>
-  <% alltoken.each do |t| %>
-    <li><%= t.id %> <%= t.owner %> </li>
-  <% end %>
-</ul>
+
 
 
 <div class="container">
