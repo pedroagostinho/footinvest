@@ -1,8 +1,18 @@
 <h1>this is the feed page</h1>
 
 <div>
-  <% @results.each do |result| %>
-    <%= result.competition_id %>
+  <%= @results1[0].competition.name %> <br>
+  <% @results1.each do |result| %>
+    <%= result.home_club_name %> <%= result.home_club_goals %> - <%=result.away_club_goals %> <%= result.away_club_name %>  <%= result.date_time %>
+    <br>
+  <% end %>
+  <%= @results2[0].competition.name %> <br>
+  <% @results1.each do |result| %>
+    <%= result.home_club_name %> <%= result.home_club_goals %> - <%=result.away_club_goals %> <%= result.away_club_name %>  <%= result.date_time %>
+    <br>
+  <% end %>
+  <%= @results3[0].competition.name %> <br>
+  <% @results1.each do |result| %>
     <%= result.home_club_name %> <%= result.home_club_goals %> - <%=result.away_club_goals %> <%= result.away_club_name %>  <%= result.date_time %>
     <br>
   <% end %>
@@ -19,7 +29,22 @@
 <br>
 <br>
 <br>
+top Winners
+<div>
+  <% @top_winners.each do |key, value| %>
+      <%= @players.where(id: key)[0].name %> - <%= value %><br>
+    <% end %>
+</div>
+<br>
+<br>
+<br>
+top Losers
+<div>
+<% @top_losers.each do |key, value| %>
+      <%= @players.where(id: key)[0].name %> - <%= value %><br>
+    <% end %>
+</div>
 
-Top winners: <%= @variation.values.sort.reverse.take(5) %> <br>
-Top losers: <%= @variation.values.sort.take(5) %>
+
+
 
