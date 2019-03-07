@@ -1,7 +1,8 @@
 <div class="navbar-wagon">
   <!-- Logo -->
   <%= link_to root_path, class: "navbar-wagon-brand" do %>
-    <h3>footinvest</h3>
+<!--     <h3>footinvest</h3> -->
+<%= image_tag "logo3.png", class: "navbar-wagon-brand" %>
   <% end %>
 
   <!-- Right Navigation -->
@@ -18,7 +19,7 @@
       <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">
         <div class="dropdown">
-          <%= image_tag "http://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+          <%= image_tag "undraw_profile_pic_ic5t", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
             <li>
               <%= link_to "#" do %>
@@ -41,10 +42,10 @@
     <% else %>
       <!-- Login link (when logged out) -->
       <div class="btn-landing-blue">
-        <%= link_to t(".sign_up", default: "Create Account"), new_user_registration_path%>
+        <%= link_to t(".sign_up", default: "create account"), new_user_registration_path%>
       </div>
       <div class="btn-landing-white">
-        <%= link_to t(".sign_in", default: "Sign In"), new_user_session_path%>
+        <%= link_to t(".sign_in", default: "sign in"), new_user_session_path%>
       </div>
     <% end %>
   </div>

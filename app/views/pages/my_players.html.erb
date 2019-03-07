@@ -1,10 +1,17 @@
 <h1>this is my_players page</h1>
 
 <% @my_players.each do |player| %>
+
+  <!-- photo -->
   <%= image_tag(player.photo, height: '32', width: '32', crop: :fill) %> |
+
+  <!-- name -->
   <%= player.name %> <%= player.id %> |
+
+  <!-- position -->
   <%= player.position %> |
 
+  <!-- form, goals and assists -->
   <% form = [] %>
   <% goals = [] %>
   <% assists = [] %>
@@ -29,6 +36,7 @@
   goals: <%= goals.inject(0){|sum,x| sum + x } %> |
   assists: <%= assists.inject(0){|sum,x| sum + x } %> |
 
+  <!-- last price, minimum price and max price -->
   <% prices = [] %>
 
   <% @transactions.each do |transaction| %>
@@ -39,27 +47,22 @@
   min price: <%= prices.min %> € |
   max price: <%= prices.max %> € |
 
-  <% variations = [] %>
+  <!-- last variation -->
+  price variation:
+  <% @variation.each do |player_id, variation| %>
+    <%= variation if player_id == player.id %>
+  <% end %> % |
 
-  <% @transactions.each do |transaction| %>
-    <% variations << transaction.price if transaction.player_id == player.id %>
-  <% end %>
+  <!-- tokens total value, total amount and average value -->
+  <% tokens_total_value = player.tokens.where(owner: current_user).sum(:last_price) %>
+  total value of tokens: <%= tokens_total_value %> € |
 
-  last variation: <%= variations.first %> % |
-  min variation: <%= variations.min %> % |
-  max variation: <%= variations.max %> % |
+  <% token_total_amount = player.tokens.where(owner: current_user).count %>
+  total tokens owned: <%= token_total_amount %> |
+
+  <% token_average_value = tokens_total_value / token_total_amount %>
+  average value of tokens: <%= token_average_value %> €
 
   <br>
 
-<% end %>
-
-<% @transactions.each do |transaction| %>
-  <%= transaction.date_time %> <%= transaction.player.name %> <%= transaction.price %> <%= transaction.player.id %> <br>
-<% end %>
-
-<br>
-<br>
-
-<% @my_players2.each do |player| %>
-  <%= player.id %> | <%= player.owner %> | <%= player.last_price %> | <%= player.name %> <br>
 <% end %>
