@@ -13,6 +13,7 @@
 /* Logo */
 .navbar-wagon-brand {
   font-family: $footinvest-font;
+  color: #333333;
 }
 
 .navbar-wagon-brand img {
@@ -45,7 +46,7 @@
   font-size: 14px;
 }
 .navbar-wagon-link:hover {
-  color: #da552f;
+  color: $footinvest-main;
   text-decoration: none;
 }
 
