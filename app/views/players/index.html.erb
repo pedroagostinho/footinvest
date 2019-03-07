@@ -1,10 +1,4 @@
-<h1>Players#index</h1>
-<p>Find me in app/views/players/index.html.erb</p>
-
-
-
-
-<div class="container">
+<div class="container-market">
   <%#= form_tag players_path, remote: true, method: :get do %>
     <%#= text_field_tag :query,
       params[:query],
@@ -12,9 +6,14 @@
       placeholder: "Find a player"
     %>
   <%# end %>
-  <%= render 'form' %>
+  <h1>Search</h1>
+  <div class="search-bar">
+    <%= render 'form' %>
+  </div>
   <div class="players">
     <%= render 'market' %>
   </div>
+  <br>
+  <br>
 </div>
 
