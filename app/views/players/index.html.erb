@@ -1,9 +1,12 @@
 <h1>Players#index</h1>
 <p>Find me in app/views/players/index.html.erb</p>
 
-
-<%= @players.last.name %>
-
+<% alltoken = Token.where(owner: nil) %>
+<ul>
+  <% alltoken.each do |t| %>
+    <li><%= t.id %> <%= t.owner %> </li>
+  <% end %>
+</ul>
 
 
 <div class="container">
@@ -14,27 +17,9 @@
       placeholder: "Find a player"
     %>
   <%# end %>
-  <%= render 'form', players: @players %>
-  <div class="row">
-    <% @players.each do |player| %>
-      <div class="col-xs-12 col-sm-6 col-md-4">
-          <%= link_to player_path(player) do %>
-            <div class="card-trip">
-              <%#= cl_image_tag(player.photo)%>
-              <div class="card-trip-infos">
-                <div id="player">
-                  <h2><%= player.name %></h2>
-                  <p><%= player.club.name %></p>
-                  <p><%= player.age %></p>
-                  <p><%= player.nationality %></p>
-                  <p><em><%= player.position %></em></p>
-                </div>
-              </div>
-            </div>
-          <% end %>
-<br>
-<br>
-      </div>
-    <% end %>
+  <%= render 'form' %>
+  <div class="players">
+    <%= render 'market' %>
   </div>
 </div>
+

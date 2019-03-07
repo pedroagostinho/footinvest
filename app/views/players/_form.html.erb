@@ -1,7 +1,8 @@
-<%= simple_form_for players_path, remote: true do |f| %>
-  <%= f.input :name %>
-  <%= f.input :position, collection: [ "Goalkeeper", "Defender", "Midfielder", "Forward"] %>
-  <%= f.input :nationality %>
-  <%= f.input :age %>
+<%= simple_form_for players_path, method: :get, remote: true do |f| %>
+  <%= f.input :name, input_html: { name: 'name' }%>
+  <%#= f.input :position, collection: [ "Goalkeeper", "Defender", "Midfielder", "Forward"] %>
+  <%#= f.input :nationality %>
+  <%#= f.input :age %>
+  <%= f.input :tokens, as: :range, input_html: { tokens: 'tokens', min: '0', max: '10', step: '1'  } %>
   <%= f.button :submit, 'Spot a Star' %>
 <% end %>

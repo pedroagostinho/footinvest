@@ -1,18 +1,15 @@
 // app/views/players/index.js.erb
 // Here you generate *JavaScript* that would be executed in the browser
 function refreshForm(innerHTML) {
-  const playerForm = document.getElementById('player');
-  playerForm.innerHTML = innerHTML;
+  const playersDiv = document.getElementsByClassName('players')[0];
+  playersDiv.innerHTML = innerHTML;
 }
 
-function addPlayer(playerHTML) {
-  const reviews = document.getElementById('player');
-  reviews.insertAdjacentHTML('beforeend', reviewHTML);
-}
 
-<% if @review.errors.any? %>
-  refreshForm('<%= j render "players/form", restaurant: @restaurant, review: @review %>');
-<% else %>
-  addReview('<%= j render "players/show", review: @review %>');
-  refreshForm('<%= j render "players/form", restaurant: @restaurant, review: Review.new %>');
-<% end %>
+// PRIMEIRO STEP RE-RENDER DO PARTIAL ou apagar HTML
+
+// Por HTML com search
+
+
+refreshForm('<%= j render "players/market" %>');
+
