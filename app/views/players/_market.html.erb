@@ -11,6 +11,7 @@
                   <p><%= player.club.name %></p>
                   <p><%= player.age %></p>
                   <p><%= player.nationality %></p>
+                  <p>Avilable tokens: <%= player.tokens.where(on_sale: true).count %> </p>
                   <p><em><%= player.position %></em></p>
                 </div>
               </div>
