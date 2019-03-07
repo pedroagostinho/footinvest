@@ -1,0 +1,68 @@
+.player-row {
+  display: grid;
+  grid-template-columns: 1fr 2fr 2fr 2fr 1fr 2fr;
+  grid-template-rows: 100%;
+  grid-gap: 10px;
+  align-items: center;
+  overflow: hidden;
+  width: 90%;
+  height: 66px;
+  padding: 10px;
+  margin: auto;
+  margin-bottom: 25px;
+  background: rgb(245, 245, 245);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+  border-radius: 15px;
+  img {
+    border: 1px solid rgb(200, 200, 200);
+    border-radius: 50%;
+    align-content: center;
+  }
+}
+
+.photo {
+  display: flex;
+  justify-content: center;
+}
+
+.player {
+  h5 {
+    margin: 0 0;
+    color: $footinvest-main;
+  }
+  p {
+    margin-bottom: 0px;
+  }
+}
+
+.sport-stats {
+  text-align: center;
+}
+
+.red {
+  margin-bottom: 0px;
+  color: #FF006B;
+}
+
+.yellow {
+  margin-bottom: 0px;
+  color: #F2C94C;
+}
+
+.green {
+  margin-bottom: 0px;
+  color: #21CD9A;
+}
+
+.prices {
+  text-align: center;
+}
+
+.variations {
+  text-align: center;
+}
+
+.tokens {
+  text-align: center;
+}
+

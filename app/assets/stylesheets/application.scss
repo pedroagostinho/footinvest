@@ -13,10 +13,12 @@
 @import "layouts/index";
 @import "components/index";
 @import "pages/index";
+@import "pages/my_players";
 
 body{
   padding: 0px 0 0 0;
   font-family: $footinvest-font;
+  background-color: white;
 }
 
 a {
