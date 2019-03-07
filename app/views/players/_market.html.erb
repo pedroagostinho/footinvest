@@ -3,16 +3,19 @@
     <% @players.each do |player| %>
       <div class="col-xs-12 col-sm-6 col-md-4">
           <%= link_to player_path(player) do %>
-            <div class="card-trip">
-              <%= image_tag(player.photo, height: '60', width: '60', crop: :fill)%>
-              <div class="card-trip-infos">
+            <div class="market-product">
+              <div class="market-avatar">
+                <%= image_tag(player.photo, crop: :fill, height: 150, width: 150)%>
+              </div>
+              <br>
+              <div >
                 <div id="player">
-                  <h2><%= player.name %></h2>
-                  <p><%= player.club.name %></p>
-                  <p><%= player.age %></p>
-                  <p><%= player.nationality %></p>
-                  <p>Avilable tokens: <%= player.tokens.where(on_sale: true).count %> </p>
-                  <p><em><%= player.position %></em></p>
+                    <h4><%= player.name %></h4>
+                    <p><%= player.club.name %></p>
+                    <p><%= player.age %></p>
+                    <p><%= player.nationality %></p>
+                    <p>Avilable tokens: <%= player.tokens.where(on_sale: true).count %> </p>
+                    <p><em><%= player.position %></em></p>
                 </div>
               </div>
             </div>
