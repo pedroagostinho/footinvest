@@ -51,7 +51,7 @@ CSV.foreach('./db/players.csv', CSV_OPTIONS) do |row|
     age: row[2],
     height: row[3],
     nationality: row[4],
-    club_id: find_club,
+    club_id: row[5],
     position: row[6],
     social_url: row[7]
     )
