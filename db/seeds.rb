@@ -98,7 +98,8 @@ CSV.foreach('./db/news.csv', CSV_OPTIONS) do |row|
     summary: row[3],
     content: row[4],
     club: Club.find(row[5].to_i),
-    player: Player.find(row[6].to_i)
+    player: Player.find(row[6].to_i),
+    photo: row[7]
     )
   noticia.save
 end
