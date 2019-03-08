@@ -1,0 +1,88 @@
+.container {
+  padding-top: 30px;
+  padding-bottom: 100px;
+}
+
+.card {
+  height: 175px;
+  width:200px;
+  box-shadow: 0px 2px 2px rgba(33, 205, 154, 0.4);
+  background-size: cover !important;
+  background-position: center;
+  color: rgb(100, 100, 100);
+  position: relative;
+  margin: 10px;
+  border: 1px solid $footinvest-main;
+}
+
+.card-category {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 15px;
+  font-weight: lighter;
+}
+
+.card-user {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 80px;
+  border: 1px solid $footinvest-main;
+  border-radius: 50%;
+}
+
+.card-description {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+    h2 {
+      font-size: 18px;
+    }
+    p {
+      font-size: 14px;
+      opacity: 0.9;
+      font-weight: lighter;
+    }
+    a {
+      color: $footinvest-main;
+      &:hover {
+        text-decoration: none;
+        color: $footinvest-main;
+      }
+    }
+}
+
+.card-info {
+  position: absolute;
+  bottom: 1px;
+  right: 10px;
+}
+
+.club {
+  margin-bottom: 5px;
+}
+
+.logo-team {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  border: 1px solid #a0a0a0;
+}
+
+.logos-card {
+  height: 20px;
+  width: 20px;
+}
+
+.card-trip-left {
+  position: absolute;
+  top: 15px;
+  left: 30px;
+}
+
+.card-trip-right {
+  position: absolute;
+  top: 40px;
+  left: 30px;
+}

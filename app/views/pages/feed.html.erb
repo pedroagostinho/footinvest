@@ -1,25 +1,81 @@
-<h1>this is the feed page</h1>
 
-<div>
-  <% @results.each do |result| %>
-    <%= result.competition_id %>
-    <%= result.home_club_name %> <%= result.home_club_goals %> - <%=result.away_club_goals %> <%= result.away_club_name %>  <%= result.date_time %>
+
+<!-- ****************RESULTS****************++ -->
+
+<div class="all">
+  <div class ="info results">
+
+    <h3 class="title">RESULTS</h3>
+    <h4 class="title"><%= @results1[0].competition.name %></h4>  <br>
+    <% @results1.each do |result| %>
+      <div class = "match">
+        <p class="home club-name"><%= result.home_club_name %></p>
+        <p class= "result"><%= result.home_club_goals %> - <%=result.away_club_goals %> </p>
+        <p class="away club-name"><%= result.away_club_name %></p>
+      </div>
+      <br>
+    <% end %>
+    <h4 class="title"><%= @results2[0].competition.name %></h4>  <br>
+    <% @results2.each do |result| %>
+      <div class = "match">
+        <p class="home club-name"><%= result.home_club_name %></p>
+        <p class= "result"><%= result.home_club_goals %> - <%=result.away_club_goals %> </p>
+        <p class="away club-name"><%= result.away_club_name %></p>
+      </div>
+      <br>
+    <% end %>
+    <h4 class="title"><%= @results3[0].competition.name %></h4>  <br>
+    <% @results3.each do |result| %>
+      <div class = "match">
+        <p class="home club-name"><%= result.home_club_name %></p>
+        <p class= "result"><%= result.home_club_goals %> - <%=result.away_club_goals %> </p>
+        <p class="away club-name"><%= result.away_club_name %></p>
+      </div>
+      <br>
+    <% end %>
+  </div>
+  <br>
+  <br>
+  <br>
+
+  <!-- ****************+NEWS****************++ -->
+
+    <div class ="info">
+      <h3 class="title">NEWS</h3>
+     <div>
+      <% @news.each do |new| %>
+        <div class = "news">
+          <%= image_tag(new.photo, height: '80', width: '100', crop: :fill)%>
+          <%= new.tag %> <br>
+          <%= new. title %> <br>
+          <%= new.summary %> All the breaking news and latest views from today's eight Premier League manager news conferences.
+          <br>
+        </div>
+      <% end %>
+    </div>
+    </div>
+
+    <!-- ****************TOP PLAYERS****************++ -->
+  <div class ="info">
+    <div>
+      <h4 class="title">TOP WINNERS</h4>
+        <% @top_winners.each do |key, value| %>
+        <div class = "card">
+        <%= image_tag(@players.where(id: key)[0].photo, height: '80', width: '100', crop: :fill)%>
+         <p class="card.user"><%= @players.where(id: key)[0].name %></p> <p class = "card-description"><%= value %></p> <br>
+        </div>
+      <% end %>
+
+
+    </div>
     <br>
-  <% end %>
+    <br>
+    <br>
+    <div>
+    <h4>TOP LOSERS</h4>
+      <% @top_losers.each do |key, value| %>
+        <%= @players.where(id: key)[0].name %> - <%= value %><br>
+      <% end %>
+    </div>
+  </div>
 </div>
-<br>
-<br>
-<br>
-<div>
- <% @news.each do |new| %>
-    <%= new.tag %> - <%= new. title %> <%= new.date_time %><br>
-    <%= new.summary %> <br>
-  <% end %>
-</div>
-<br>
-<br>
-<br>
-
-Top winners: <%= @variation.values.sort.reverse.take(5) %> <br>
-Top losers: <%= @variation.values.sort.take(5) %>
-

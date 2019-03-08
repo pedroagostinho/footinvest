@@ -1,7 +1,7 @@
 class Player < ApplicationRecord
   include PgSearch
   pg_search_scope :global_search,
-  against: [:name, :position],
+  against: [:name, :position, :age],
   associated_against: {
       club: [:name, :city]
     },

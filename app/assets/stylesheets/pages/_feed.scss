@@ -1,0 +1,51 @@
+// geral
+.all {
+  display: flex;
+  justify-content: space-around;
+}
+.info {
+  margin:30px;
+}
+
+// resultados
+
+.match {
+  display: flex;
+  justify-content: space-around;
+  display: grid;
+  grid-template-columns: 2fr 1fr 2fr;
+}
+.club-name{
+  margin-left: 5px;
+  margin-right: 5px
+}
+.home{
+  text-align:right;
+}
+
+.results{
+  border: 5px solid #E5E5E5;
+
+}
+.result{
+ border: 1px solid $footinvest-main;
+ width:50px;
+ justify-content: space-around;
+ text-align: center;
+ color: white;
+ background-color: $footinvest-main;
+
+}
+
+.title{
+  text-align:center;
+  background-color: #E5E5E5 ;
+}
+
+// NEWS
+
+.news{
+  display: flex;
+  margin-bottom: 30px;
+
+}
