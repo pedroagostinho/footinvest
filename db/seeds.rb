@@ -79,8 +79,6 @@ CSV.foreach('./db/results.csv', CSV_OPTIONS) do |row|
 end
 
 CSV.foreach('./db/stats.csv', CSV_OPTIONS) do |row|
-  jf = User.find_by(name: row[0])
-
   stat = Stat.new(
     player_id: row[0],
     competition_id: row[1],
