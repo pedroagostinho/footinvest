@@ -5,6 +5,7 @@
 
 .players {
   margin: 0px;
+  display: block;
 }
 .player-row {
   display: grid;
@@ -24,7 +25,7 @@
   border-bottom: 0.5px dotted rgb(222, 222, 222);
   font-size: 14px;
   img {
-    border: 1px solid $footinvest-main;
+    border: 1px solid rgb(222, 222, 222);
     border-radius: 50%;
     align-content: center;
   }
@@ -38,14 +39,13 @@
 .player {
   h5 {
     margin: 0 0;
-    color: $footinvest-main;
     font-size: 14px;
   }
   p {
     margin-bottom: 0px;
   }
   a {
-    color: $footinvest-main;
+    color: $footinvest-black;
     &:hover {
       background: $footinvest-main;
       color: white;
@@ -84,3 +84,11 @@
   text-align: center;
 }
 
+#dashboard {
+  width: 100%;
+  flex: 0 0 450px;
+  height: 100vh;
+  position: sticky !important;
+  top: 0 !important;
+  overflow: hidden;
+}
