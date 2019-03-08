@@ -8,17 +8,31 @@
   margin:30px;
 }
 
+.title{
+  text-align:center;
+  border-bottom: 1px dotted #E5E5E5;
+}
+
 // resultados
+.competition{
+  text-align:center;
+  background-color:#E5E5E5;
+  border-bottom: 1px dotted #E5E5E5;
+  margin-left:10px;
+  margin-right:10px;
+}
 
 .match {
   display: flex;
   justify-content: space-around;
   display: grid;
   grid-template-columns: 2fr 1fr 2fr;
+  border-bottom: 1px dotted #E5E5E5;
 }
 .club-name{
   margin-left: 5px;
-  margin-right: 5px
+  margin-right: 5px;
+  font-size:14px;
 }
 .home{
   text-align:right;
@@ -26,6 +40,7 @@
 
 .results{
   border: 5px solid #E5E5E5;
+  width: 200px;
 
 }
 .result{
@@ -35,12 +50,8 @@
  text-align: center;
  color: white;
  background-color: $footinvest-main;
+ font-size:14px;
 
-}
-
-.title{
-  text-align:center;
-  background-color: #E5E5E5 ;
 }
 
 // NEWS
@@ -89,14 +100,14 @@
 .news-product .news-product-infos {
   margin-top: 25px;
   padding: 16px;
-  width: 540px;
+  width: 400px;
 }
 
 // ******************CARDS*****************
 
 .playersfeed{
   display: flex;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
   position:relative;
 
 }
@@ -104,6 +115,7 @@
 .playersfeed-product {
   overflow: hidden;
   height: 100px;
+  width: 150px;
   background: white;
   // box-shadow: 0 0 15px rgba(0,0,0,0.2);
   display: flex;
@@ -112,7 +124,7 @@
 
 .playersfeed-product img {
   height: 100%;
-  width: 120px;
+  width: 70px;
   object-fit: cover;
 }
 
@@ -146,19 +158,10 @@
   margin-top: 8px;
 }
 
-
-
-
-
-
-
 .playersfeed-product .playersfeed-product-infos {
   margin-top: 25px;
   padding: 10px;
 }
-
-
-
 
 
 
