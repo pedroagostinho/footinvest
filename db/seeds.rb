@@ -1,5 +1,4 @@
 require 'csv'
-require 'byebug'
 
 User.destroy_all
 Player.destroy_all
