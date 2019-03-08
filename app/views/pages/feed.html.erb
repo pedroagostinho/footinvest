@@ -62,9 +62,12 @@
     <div>
       <h4 class="title">TOP WINNERS</h4>
         <% @top_winners.each do |key, value| %>
-        <div class = "card-winner">
+        <div class = "playersfeed playersfeed-product">
         <%= image_tag(@players.where(id: key)[0].photo, height: '80', width: '100', crop: :fill)%>
-        <p><%= @players.where(id: key)[0].name %></p> <p class = "card-description"><%= value %>%</p> <br>
+          <div class="playersfeed-product-infos">
+          <h3><%= @players.where(id: key)[0].name %></h3>
+          <p><%= value %>%</p>
+          </div>
         </div>
       <% end %>
     </div>
@@ -74,9 +77,12 @@
     <div>
       <h4 class="title">TOP LOSERS</h4>
         <% @top_losers.each do |key, value| %>
-        <div class = "card-winner">
+        <div class = "playersfeed playersfeed-product">
         <%= image_tag(@players.where(id: key)[0].photo, height: '80', width: '100', crop: :fill)%>
-        <p><%= @players.where(id: key)[0].name %></p> <p class = "card-description"><%= value %>%</p> <br>
+          <div class="playersfeed-product-infos">
+          <h3><%= @players.where(id: key)[0].name %></h3>
+          <h6><%= value %>%</h6>
+          </div>
         </div>
       <% end %>
     </div>

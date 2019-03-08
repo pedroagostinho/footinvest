@@ -94,24 +94,68 @@
 
 // ******************CARDS*****************
 
-.card-winner {
-  height: 130px;
-  width:200px;
-  box-shadow: 0px 2px 2px rgba(33, 205, 154, 0.4);
-  background-size: cover !important;
-  background-position: center;
-  color: rgb(100, 100, 100);
-  position: relative;
-  margin: 10px;
-  border: 1px solid $footinvest-main;
+.playersfeed{
+  display: flex;
+  margin-bottom: 30px;
+  position:relative;
+
 }
 
-.card-winner img {
+.playersfeed-product {
+  overflow: hidden;
+  height: 100px;
+  background: white;
+  // box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+}
+
+.playersfeed-product img {
   height: 100%;
   width: 120px;
   object-fit: cover;
 }
 
+.playersfeed-product h2 {
+
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+.playersfeed-product h3 {
+
+  font-size: 14px;
+  margin: 0;
+}
+
+.playersfeed-product p {
+  font-size: 12px;
+  line-height: 1.4;
+  color:#25C588;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
+}
+
+.playersfeed-product h6 {
+  font-size: 12px;
+  line-height: 1.4;
+  color:red;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
+}
+
+
+
+
+
+
+
+.playersfeed-product .playersfeed-product-infos {
+  margin-top: 25px;
+  padding: 10px;
+}
 
 
 
