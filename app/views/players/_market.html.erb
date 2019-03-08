@@ -1,28 +1,38 @@
 
 <div class="row">
-    <% @players.each do |player| %>
-      <div class="col-xs-12 col-sm-6 col-md-4">
-          <%= link_to player_path(player) do %>
-            <div class="market-product">
-              <div class="market-avatar">
-                <%= image_tag(player.photo, crop: :fill, height: 150, width: 150)%>
-              </div>
-              <br>
-              <div >
-                <div id="player">
-                    <h4><%= player.name %></h4>
-                    <p><%= player.club.name %></p>
-                    <p><%= player.age %></p>
-                    <p><%= player.nationality %></p>
-                    <p>Avilable tokens: <%= player.tokens.where(on_sale: true).count %> </p>
-                    <p><em><%= player.position %></em></p>
+  <% @players.each do |player| %>
+    <div class="col-xs-12 col-sm-6 col-md-4">
+      <%= link_to player_path(player) do %>
+          <div class="card-trip">
+            <%= image_tag(player.photo)%>
+            <div class="car-trip-infos">
+              <div id="player">
+                <div>
+                  <div>
+                    <h3> <em><%= player.name %></em> </h3>
+                  </div>
+                  <table style="width:100%">
+                    <tr>
+                      <td><p><%= player.club.name %></p></td>
+                      <td><p>Avilable tokens: <%= player.tokens.where(on_sale: true).count %> </p></td>
+                    </tr>
+                    <tr>
+                      <td><p><%= player.age %></p></td>
+                      <td><p><%= player.nationality %></p></td>
+                    </tr>
+                    <tr>
+                      <td><p><em><%= player.position %></em></p></td>
+                    </tr>
+                  </table>
                 </div>
+
               </div>
             </div>
-          <% end %>
+          </div>
+      <% end %>
 <br>
 <br>
-      </div>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
+</div>
 
