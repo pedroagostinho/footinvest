@@ -1,65 +1,97 @@
-<h1>this is my_players page</h1>
+<h3>this is my_players page</h3>
 
 <% @my_players.each do |player| %>
-  <%= image_tag(player.photo, height: '32', width: '32', crop: :fill) %> |
-  <%= player.name %> <%= player.id %> |
-  <%= player.position %> |
+<div class="player-row">
 
-  <% form = [] %>
-  <% goals = [] %>
-  <% assists = [] %>
+  <div class="photo">
+    <!-- photo -->
+    <%= image_tag(player.photo, height: '55', width: '55', crop: :fill) %>
+  </div>
 
-  <% player.stats.each do |stat| %>
-    <% form << stat.form.downcase %>
-    <% goals << stat.goals %>
-    <% assists << stat.assists %>
-  <% end %>
+  <div class="player">
+    <!-- name -->
+    <h5> <strong> <%= player.name %> </strong> </h5>
 
-  <% if form.include?('high') %>
-    <% form = 'HGH' %>
-  <% elsif form.include?('medium') %>
-    <% form = 'AVG' %>
-  <% elsif form.include?('low') %>
-    <% form = 'LOW' %>
-  <% else %>
-    <% form = '-' %>
-  <% end %>
+    <!-- position -->
+    <p> <%= player.position %> </p>
+  </div>
 
-  form: <%= form %> |
-  goals: <%= goals.inject(0){|sum,x| sum + x } %> |
-  assists: <%= assists.inject(0){|sum,x| sum + x } %> |
+  <div class="sport-stats">
+    <!-- form, goals and assists -->
+    <% form = [] %>
+    <% goals = [] %>
+    <% assists = [] %>
 
-  <% prices = [] %>
+    <% player.stats.each do |stat| %>
+      <% form << stat.form.downcase %>
+      <% goals << stat.goals %>
+      <% assists << stat.assists %>
+    <% end %>
 
-  <% @transactions.each do |transaction| %>
-    <% prices << transaction.price if transaction.player_id == player.id %>
-  <% end %>
+    <% if form.include?('high') %>
+      <% form = 'HGH' %>
+      <% cl = "red" %>
+      <% icon = "fas fa-arrow-alt-circle-up" %>
+    <% elsif form.include?('medium') %>
+      <% form = 'AVG' %>
+      <% cl = "yellow" %>
+      <% icon = "fas fa-arrow-alt-circle-right" %>
+    <% elsif form.include?('low') %>
+      <% form = 'LOW' %>
+      <% cl = "green" %>
+      <% icon = "fas fa-arrow-alt-circle-down" %>
+    <% else %>
+      <% form = '-' %>
+    <% end %>
+    <p class=<%= cl %>> <strong> <%= form %> </strong> <i class=<%= icon %>></i> </p>
+    <%= goals.inject(0){|sum,x| sum + x } %> goals |
+    <%= assists.inject(0){|sum,x| sum + x } %> assists
+  </div>
 
-  last price: <%= prices.first %> € |
-  min price: <%= prices.min %> € |
-  max price: <%= prices.max %> € |
+  <div class="prices">
+    <!-- last price, minimum price and max price -->
+    <% prices = [] %>
 
-  <% variations = [] %>
+    <% @transactions.each do |transaction| %>
+      <% prices << transaction.price if transaction.player_id == player.id %>
+    <% end %>
 
-  <% @transactions.each do |transaction| %>
-    <% variations << transaction.price if transaction.player_id == player.id %>
-  <% end %>
+    <strong> <%= prices.first %> € </strong> <br>
+    <%= prices.min %> € |
+    <%= prices.max %> €
+  </div>
 
-  last variation: <%= variations.first %> % |
-  min variation: <%= variations.min %> % |
-  max variation: <%= variations.max %> % |
+  <div class="variations">
+    <!-- last variation -->
+    <% last_variation = 0 %>
+    <% @variation.each do |player_id, variation| %>
+      <strong> <% last_variation = variation if player_id == player.id %> </strong>
+    <% end %>
+    <% if last_variation < 0 %>
+      <% cl = "red" %>
+    <% elsif last_variation > 0 %>
+      <% cl = "green" %>
+    <% end %>
+    <p class=<%= cl %>> <strong> <%= last_variation %> % </strong> </p>
+  </div>
+
+  <div class="tokens">
+    <!-- tokens total value, total amount and average value -->
+    <% tokens_total_value = player.tokens.where(owner: current_user).sum(:last_price) %>
+    <strong> <%= tokens_total_value %> € </strong> |
+
+    <% token_total_amount = player.tokens.where(owner: current_user).count %>
+    <% if token_total_amount == 1 %>
+      <% quantity = "token" %>
+    <% else %>
+      <% quantity = "tokens" %>
+    <% end %>
+    <strong> <%= token_total_amount %> <%= quantity %> </strong> <br>
+
+    <% token_average_value = tokens_total_value / token_total_amount %>
+    average price of <%= token_average_value %> €
+  </div>
 
   <br>
-
-<% end %>
-
-<% @transactions.each do |transaction| %>
-  <%= transaction.date_time %> <%= transaction.player.name %> <%= transaction.price %> <%= transaction.player.id %> <br>
-<% end %>
-
-<br>
-<br>
-
-<% @my_players2.each do |player| %>
-  <%= player.id %> | <%= player.owner %> | <%= player.last_price %> | <%= player.name %> <br>
+</div>
 <% end %>
