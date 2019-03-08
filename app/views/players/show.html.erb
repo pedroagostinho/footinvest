@@ -31,51 +31,49 @@
 
   <div class="stats">
 
-    <% @player.stats.each do |stat| %>
+    <% @compet = @player.stats.first %>
 
     <div class="row">
       <div class="col">
         <div class="card-product-stats">
           <div class = "info">
             <h5>Competition</h5>
-            <p><%= stat.competition.name %></p>
+            <p><%= @compet.competition.name %></p>
           </div>
           <div class = "info">
             <h5>Games</h5>
-            <p><%= stat.games %></p>
+            <p><%= @compet.games %></p>
           </div>
           <div class = "info">
             <h5>Goals</h5>
-            <p><%= stat.goals %></p>
+            <p><%= @compet.goals %></p>
           </div>
-        </div>
 
-        <div class="card-product-stats">
           <div class = "info">
             <h5>Assists</h5>
-            <p><%= stat.assists %></p>
+            <p><%= @compet.assists %></p>
           </div>
           <div class = "info">
             <h5>Yellow Card</h5>
-            <p><%= stat.yellow_card %></p>
+            <p><%= @compet.yellow_card %></p>
           </div>
           <div class = "info">
             <h5>Red Card</h5>
-            <p><%= stat.red_card %></p>
+            <p><%= @compet.red_card %></p>
           </div>
         </div>
-    <% end %>
+
 
 
       </div>
       <div class="col">
         <div class="card-product-stats" style="height: 395px;">
             <div class="chart-market-value">
-              <%= line_chart @player.market_values.pluck(:date_time, :market_value), xtitle: "X’s", ytitle: "Y’s", colors: ["blue"] %>
+              <%= line_chart @player.market_values.pluck(:date_time, :market_value), xtitle: "Year", ytitle: "Market Value (in €)", colors: ["blue"] %>
             </div>
 
             <div class="chart-last-price">
-              <%= line_chart @player.transactions.pluck(:date_time, :price), xtitle: "X’s", ytitle: "Y’s", colors: ["red"] %>
+              <%= line_chart @player.transactions.pluck(:date_time, :price), xtitle: "Day", ytitle: "Token Price (in €)", colors: ["red"] %>
             </div>
         </div>
       </div>
