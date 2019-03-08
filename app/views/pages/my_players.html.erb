@@ -1,97 +1,104 @@
-<h3>this is my_players page</h3>
+<div class="contain">
+  <div class="players">
+    <% @my_players.each do |player| %>
+    <div class="player-row">
 
-<% @my_players.each do |player| %>
-<div class="player-row">
+      <div class="photo">
+        <!-- photo -->
+        <%= link_to image_tag(player.photo, height: '55', width: '55', crop: :fill), player_path(player), class: "" %>
+      </div>
 
-  <div class="photo">
-    <!-- photo -->
-    <%= image_tag(player.photo, height: '55', width: '55', crop: :fill) %>
+      <div class="player">
+        <!-- name -->
+        <h5> <strong> <%= link_to player.name, player_path(player), class: "" %> </strong> </h5>
+
+        <!-- position -->
+        <p> <%= player.position %> </p>
+      </div>
+
+      <div class="sport-stats">
+        <!-- form, goals and assists -->
+        <% form = [] %>
+        <% goals = [] %>
+        <% assists = [] %>
+
+        <% player.stats.each do |stat| %>
+          <% form << stat.form.downcase %>
+          <% goals << stat.goals %>
+          <% assists << stat.assists %>
+        <% end %>
+
+        <% if form.include?('high') %>
+          <% form = 'HGH' %>
+          <% cl = "green" %>
+          <% icon = "fas fa-arrow-alt-circle-up" %>
+        <% elsif form.include?('medium') %>
+          <% form = 'AVG' %>
+          <% cl = "yellow" %>
+          <% icon = "fas fa-arrow-alt-circle-right" %>
+        <% elsif form.include?('low') %>
+          <% form = 'LOW' %>
+          <% cl = "red" %>
+          <% icon = "fas fa-arrow-alt-circle-down" %>
+        <% else %>
+          <% form = '-' %>
+        <% end %>
+        <p class=<%= cl %>> <%= form %> <i class=<%= icon %>></i> </p>
+        <%= goals.inject(0){|sum,x| sum + x } %> goals |
+        <%= assists.inject(0){|sum,x| sum + x } %> assists
+      </div>
+
+      <div class="prices">
+        <!-- last price, minimum price and max price -->
+        <% prices = [] %>
+
+        <% @transactions.each do |transaction| %>
+          <% prices << transaction.price if transaction.player_id == player.id %>
+        <% end %>
+
+        last price: <%= prices.first %> € <br>
+        min: <%= prices.min %> € |
+        max: <%= prices.max %> €
+      </div>
+
+      <div class="variations">
+        <!-- last variation -->
+        <% last_variation = 0 %>
+        <% @variation.each do |player_id, variation| %>
+          <% last_variation = variation if player_id == player.id %>
+        <% end %>
+        <% if last_variation < 0 %>
+          <% cl = "red" %>
+        <% elsif last_variation > 0 %>
+          <% cl = "green" %>
+        <% end %>
+        <p class=<%= cl %>> <%= last_variation %> % </p>
+      </div>
+
+      <div class="tokens">
+        <!-- tokens total value, total amount and average value -->
+        <% tokens_total_value = player.tokens.where(owner: current_user).sum(:last_price) %>
+        <%= tokens_total_value %> € |
+
+        <% token_total_amount = player.tokens.where(owner: current_user).count %>
+        <% if token_total_amount == 1 %>
+          <% quantity = "token" %>
+        <% else %>
+          <% quantity = "tokens" %>
+        <% end %>
+        <%= token_total_amount %> <%= quantity %> <br>
+
+        <% token_average_value = tokens_total_value / token_total_amount %>
+        average price of <%= token_average_value %> €
+      </div>
+
+      <br>
+    </div>
+    <% end %>
   </div>
 
-  <div class="player">
-    <!-- name -->
-    <h5> <strong> <%= player.name %> </strong> </h5>
-
-    <!-- position -->
-    <p> <%= player.position %> </p>
+  <div id="dashboard">
+    <h2>Dashboard</h2>
   </div>
 
-  <div class="sport-stats">
-    <!-- form, goals and assists -->
-    <% form = [] %>
-    <% goals = [] %>
-    <% assists = [] %>
-
-    <% player.stats.each do |stat| %>
-      <% form << stat.form.downcase %>
-      <% goals << stat.goals %>
-      <% assists << stat.assists %>
-    <% end %>
-
-    <% if form.include?('high') %>
-      <% form = 'HGH' %>
-      <% cl = "red" %>
-      <% icon = "fas fa-arrow-alt-circle-up" %>
-    <% elsif form.include?('medium') %>
-      <% form = 'AVG' %>
-      <% cl = "yellow" %>
-      <% icon = "fas fa-arrow-alt-circle-right" %>
-    <% elsif form.include?('low') %>
-      <% form = 'LOW' %>
-      <% cl = "green" %>
-      <% icon = "fas fa-arrow-alt-circle-down" %>
-    <% else %>
-      <% form = '-' %>
-    <% end %>
-    <p class=<%= cl %>> <strong> <%= form %> </strong> <i class=<%= icon %>></i> </p>
-    <%= goals.inject(0){|sum,x| sum + x } %> goals |
-    <%= assists.inject(0){|sum,x| sum + x } %> assists
-  </div>
-
-  <div class="prices">
-    <!-- last price, minimum price and max price -->
-    <% prices = [] %>
-
-    <% @transactions.each do |transaction| %>
-      <% prices << transaction.price if transaction.player_id == player.id %>
-    <% end %>
-
-    <strong> <%= prices.first %> € </strong> <br>
-    min: <%= prices.min %> € |
-    max: <%= prices.max %> €
-  </div>
-
-  <div class="variations">
-    <!-- last variation -->
-    <% last_variation = 0 %>
-    <% @variation.each do |player_id, variation| %>
-      <strong> <% last_variation = variation if player_id == player.id %> </strong>
-    <% end %>
-    <% if last_variation < 0 %>
-      <% cl = "red" %>
-    <% elsif last_variation > 0 %>
-      <% cl = "green" %>
-    <% end %>
-    <p class=<%= cl %>> <strong> <%= last_variation %> % </strong> </p>
-  </div>
-
-  <div class="tokens">
-    <!-- tokens total value, total amount and average value -->
-    <% tokens_total_value = player.tokens.where(owner: current_user).sum(:last_price) %>
-    <strong> <%= tokens_total_value %> € </strong> |
-
-    <% token_total_amount = player.tokens.where(owner: current_user).count %>
-    <% if token_total_amount == 1 %>
-      <% quantity = "token" %>
-    <% else %>
-      <% quantity = "tokens" %>
-    <% end %>
-    <strong> <%= token_total_amount %> <%= quantity %> </strong> <br>
-
-    <% token_average_value = tokens_total_value / token_total_amount %>
-    average price of <%= token_average_value %> €
-  </div>
-
-  <br>
 </div>
-<% end %>
