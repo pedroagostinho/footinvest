@@ -6,7 +6,7 @@
   <div class ="info2 results">
 
     <h3 class="title">RESULTS</h3>
-    <h4 class="title"><%= @results1[0].competition.name %></h4>  <br>
+    <h4 class="competition"><%= @results1[0].competition.name %></h4>  <br>
     <% @results1.each do |result| %>
       <div class = "match">
         <p class="home club-name"><%= result.home_club_name %></p>
@@ -15,7 +15,7 @@
       </div>
       <br>
     <% end %>
-    <h4 class="title"><%= @results2[0].competition.name %></h4>  <br>
+    <h4 class="competition"><%= @results2[0].competition.name %></h4>  <br>
     <% @results2.each do |result| %>
       <div class = "match">
         <p class="home club-name"><%= result.home_club_name %></p>
@@ -24,7 +24,7 @@
       </div>
       <br>
     <% end %>
-    <h4 class="title"><%= @results3[0].competition.name %></h4>  <br>
+    <h4 class="competition"><%= @results3[0].competition.name %></h4>  <br>
     <% @results3.each do |result| %>
       <div class = "match">
         <p class="home club-name"><%= result.home_club_name %></p>
@@ -41,7 +41,7 @@
   <!-- ****************+NEWS****************++ -->
 
     <div class ="info2">
-      <h3 class="title">NEWS</h3>
+      <h3 class="title top">NEWS</h3>
      <div>
       <% @news.each do |new| %>
         <div class = "news news-product">
@@ -58,33 +58,35 @@
     </div>
 
     <!-- ****************TOP PLAYERS****************++ -->
-  <div class ="info2">
-    <div>
-      <h4 class="title">TOP WINNERS</h4>
-        <% @top_winners.each do |key, value| %>
-        <div class = "playersfeed playersfeed-product">
-        <%= image_tag(@players.where(id: key)[0].photo, height: '80', width: '100', crop: :fill)%>
-          <div class="playersfeed-product-infos">
-          <h3><%= @players.where(id: key)[0].name %></h3>
-          <p><%= value %>%</p>
+    <div class ="info2 top">
+      <div>
+        <h4 class="title">TOP WINNERS</h4>
+          <% @top_winners.each do |key, value| %>
+          <div class = "playersfeed playersfeed-product">
+          <%= image_tag(@players.where(id: key)[0].photo, height: '80', width: '100', crop: :fill)%>
+            <div class="playersfeed-product-infos">
+            <h3><%= @players.where(id: key)[0].name %></h3>
+            <p><%= value %>%</p>
+            </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>
     <br>
     <br>
     <br>
-    <div>
-      <h4 class="title">TOP LOSERS</h4>
-        <% @top_losers.each do |key, value| %>
-        <div class = "playersfeed playersfeed-product">
-        <%= image_tag(@players.where(id: key)[0].photo, height: '80', width: '100', crop: :fill)%>
-          <div class="playersfeed-product-infos">
-          <h3><%= @players.where(id: key)[0].name %></h3>
-          <h6><%= value %>%</h6>
+    <div class ="info2 top">
+      <div>
+        <h4 class="title">TOP LOSERS</h4>
+          <% @top_losers.each do |key, value| %>
+          <div class = "playersfeed playersfeed-product">
+          <%= image_tag(@players.where(id: key)[0].photo, height: '80', width: '100', crop: :fill)%>
+            <div class="playersfeed-product-infos">
+            <h3><%= @players.where(id: key)[0].name %></h3>
+            <h6><%= value %>%</h6>
+            </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>
-  </div>
 </div>
