@@ -3,7 +3,7 @@
 <!-- ****************RESULTS****************++ -->
 
 <div class="all">
-  <div class ="info results">
+  <div class ="info2 results">
 
     <h3 class="title">RESULTS</h3>
     <h4 class="title"><%= @results1[0].competition.name %></h4>  <br>
@@ -40,41 +40,44 @@
 
   <!-- ****************+NEWS****************++ -->
 
-    <div class ="info">
+    <div class ="info2">
       <h3 class="title">NEWS</h3>
      <div>
       <% @news.each do |new| %>
-        <div class = "news">
-          <%= image_tag(new.photo, height: '80', width: '100', crop: :fill)%>
-          <%= new.tag %> <br>
-          <%= new. title %> <br>
-          <%= new.summary %> All the breaking news and latest views from today's eight Premier League manager news conferences.
-          <br>
+        <div class = "news news-product">
+          <%= image_tag(new.photo, height: '70', width: '100', crop: :fill)%>
+          <div class="news-product-infos">
+            <h2> <%= new.tag %> </h2>  <br>
+            <h3><%= new. title %></h3>  <br>
+            <p><%= new.summary %> All the breaking news and latest views from today's eight Premier League manager news conferences.</p>
+            <br>
+          </div>
         </div>
       <% end %>
     </div>
     </div>
 
     <!-- ****************TOP PLAYERS****************++ -->
-  <div class ="info">
+  <div class ="info2">
     <div>
       <h4 class="title">TOP WINNERS</h4>
         <% @top_winners.each do |key, value| %>
-        <div class = "card">
+        <div class = "card-winner">
         <%= image_tag(@players.where(id: key)[0].photo, height: '80', width: '100', crop: :fill)%>
-         <p class="card.user"><%= @players.where(id: key)[0].name %></p> <p class = "card-description"><%= value %></p> <br>
+        <p><%= @players.where(id: key)[0].name %></p> <p class = "card-description"><%= value %>%</p> <br>
         </div>
       <% end %>
-
-
     </div>
     <br>
     <br>
     <br>
     <div>
-    <h4>TOP LOSERS</h4>
-      <% @top_losers.each do |key, value| %>
-        <%= @players.where(id: key)[0].name %> - <%= value %><br>
+      <h4 class="title">TOP LOSERS</h4>
+        <% @top_losers.each do |key, value| %>
+        <div class = "card-winner">
+        <%= image_tag(@players.where(id: key)[0].photo, height: '80', width: '100', crop: :fill)%>
+        <p><%= @players.where(id: key)[0].name %></p> <p class = "card-description"><%= value %>%</p> <br>
+        </div>
       <% end %>
     </div>
   </div>
