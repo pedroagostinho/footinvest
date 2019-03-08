@@ -1,15 +1,15 @@
 require 'csv'
 
-User.destroy_all
-Player.destroy_all
-Club.destroy_all
 Competition.destroy_all
 MarketValue.destroy_all
 New.destroy_all
 Result.destroy_all
 Stat.destroy_all
-Token.destroy_all
 Transaction.destroy_all
+Token.destroy_all
+User.destroy_all
+Player.destroy_all
+Club.destroy_all
 
 CSV_OPTIONS = {
   col_sep: ';',
