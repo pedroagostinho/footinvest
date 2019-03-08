@@ -1,3 +1,11 @@
+.contain {
+  display: flex;
+  justify-content: space-between;
+}
+
+.players {
+  margin: 0px;
+}
 .player-row {
   display: grid;
   grid-template-columns: 1fr 2fr 2fr 2fr 1fr 2fr;
@@ -5,17 +13,18 @@
   grid-gap: 10px;
   align-items: center;
   overflow: hidden;
-  width: 50%;
   height: 66px;
   padding: 10px;
-  margin: auto;
-  margin-bottom: 25px;
-  background: rgb(245, 245, 245);
-  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.4);
-  border-radius: 5px;
-  font-size: 12px;
+  // margin: auto;
+  margin: 30px;
+  margin-bottom: 5px;
+  // background: rgb(245, 245, 245);
+  // box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.4);
+  // border-radius: 5px;
+  border-bottom: 0.5px dotted rgb(222, 222, 222);
+  font-size: 14px;
   img {
-    border: 1px solid rgb(200, 200, 200);
+    border: 1px solid $footinvest-main;
     border-radius: 50%;
     align-content: center;
   }
@@ -30,10 +39,17 @@
   h5 {
     margin: 0 0;
     color: $footinvest-main;
-    font-size: 12px;
+    font-size: 14px;
   }
   p {
     margin-bottom: 0px;
+  }
+  a {
+    color: $footinvest-main;
+    &:hover {
+      background: $footinvest-main;
+      color: white;
+    }
   }
 }
 
