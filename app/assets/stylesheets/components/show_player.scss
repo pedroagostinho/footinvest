@@ -1,0 +1,179 @@
+.player-container {
+  margin: 100px;
+}
+
+.card-product {
+  overflow: hidden;
+  height: 200px;
+  background: white;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  border-radius: 15px;
+}
+
+.avatar img{
+  // border: 3px solid $footinvest-main;
+  box-sizing: border-box;
+  border-radius: 128px;
+  height: 130px;
+  width: 130px;
+  margin-left: 33px;
+}
+
+.card-product h2 {
+  font-size: 36px;
+  font-weight: bold;
+  margin-left:100px;
+  margin: 0;
+}
+
+.card-product p {
+  font-size: 16px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
+}
+
+.card-product .card-product-infos {
+  padding-left: 30px;
+  padding-right: 20px;
+  display: flex;
+}
+
+.info{
+  padding: 20px;
+  justify-content: space-around;
+  img {
+    height: 20px;
+    width: 30px;
+    margin-left: 0;
+    margin-top: -3px;
+  }
+}
+
+.info p{
+  text-align: center;
+  align-items: center;
+}
+
+.player-container h4 {
+  color: $footinvest-main;
+  margin-bottom: 0;
+
+}
+
+.player-container h3 {
+  color: #6B6F74;
+  font-weight: lighter;
+
+}
+
+.card-product-stats {
+  margin-top: 25px;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  border-radius: 15px;
+  height: 183px;
+  justify-content: space-around;
+}
+
+.card-product-stats p {
+  font-size: 35px;
+  color: #6B6F74;
+  font-weight: lighter;
+
+}
+
+.card-product-stats h5 {
+  color: $footinvest-main;
+}
+
+.stats img {
+  width:100%;
+  height: auto;
+  margin-bottom: 100px;
+}
+
+.margin-bottom {
+  margin-bottom: 100px;
+  margin-left: 25px;
+}
+
+.card-trip {
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 10px;
+}
+
+.card-trip:hover {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  animation-name: example;
+  animation-duration: 0.25s;
+  border-left: 8px solid $footinvest-main;
+  h1, h2, h3, p {
+    text-decoration: none;
+  }
+}
+
+.card-trip > img {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.card-trip h2 {
+  color: #717171;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card-trip h3 {
+  color: $footinvest-main;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card-trip p {
+  color: rgb(180, 180, 180);
+  font-size: 12px;
+  opacity: .7;
+  margin: 0;
+}
+
+.card-trip .card-trip-infos {
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+}
+
+.card-trip-infos .card-trip-user {
+  position: absolute;
+  right: 16px;
+  top: -20px;
+  width: 40px;
+}
+
+.book {
+  margin-right: 33px;
+}
+
+.booked {
+  color: #6B6F74;
+  font-weight: lighter;
+  text-align: center;
+  margin-right: 15px;
+  margin-top: 18px;
+}

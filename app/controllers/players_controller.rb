@@ -22,8 +22,6 @@ class PlayersController < ApplicationController
 
   def show
     @player = Player.find(params[:id])
-    @competition = Competition.find(params[:id])
-    @stat = Stat.find(params[:id])
   end
 
 end
