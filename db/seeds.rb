@@ -1,15 +1,18 @@
 require 'csv'
 
-User.destroy_all
-Player.destroy_all
-Club.destroy_all
 Competition.destroy_all
 MarketValue.destroy_all
 New.destroy_all
 Result.destroy_all
 Stat.destroy_all
-Token.destroy_all
 Transaction.destroy_all
+Token.destroy_all
+User.destroy_all
+Player.destroy_all
+Club.destroy_all
+
+
+
 
 CSV_OPTIONS = {
   col_sep: ';',
@@ -40,6 +43,7 @@ CSV.foreach('./db/clubs.csv', CSV_OPTIONS) do |row|
   club.save
 end
 
+
 CSV.foreach('./db/players.csv', CSV_OPTIONS) do |row|
   player = Player.new(
     name: row[0],
@@ -47,7 +51,7 @@ CSV.foreach('./db/players.csv', CSV_OPTIONS) do |row|
     age: row[2],
     height: row[3],
     nationality: row[4],
-    club_id: row[5],
+    club_id: find_club,
     position: row[6],
     social_url: row[7]
     )
@@ -75,6 +79,8 @@ CSV.foreach('./db/results.csv', CSV_OPTIONS) do |row|
 end
 
 CSV.foreach('./db/stats.csv', CSV_OPTIONS) do |row|
+  jf = User.find_by(name: row[0])
+
   stat = Stat.new(
     player_id: row[0],
     competition_id: row[1],
@@ -136,3 +142,11 @@ CSV.foreach('./db/transactions.csv', CSV_OPTIONS) do |row|
     )
   transaction.save
 end
+
+
+
+
+
+
+
+
