@@ -43,7 +43,7 @@
         <% else %>
           <% form = '-' %>
         <% end %>
-        <p class=<%= cl %>> <%= form %> <i class=<%= icon %>></i> </p>
+        <strong><p class=<%= cl %>> <%= form %> <i class=<%= icon %>></i> </p></strong>
         <%= goals.inject(0){|sum,x| sum + x } %> goals |
         <%= assists.inject(0){|sum,x| sum + x } %> assists
       </div>
