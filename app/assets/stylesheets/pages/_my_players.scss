@@ -87,6 +87,19 @@
   }
 }
 
+.on-sale {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: white;
+  padding: 10px;
+  border-radius: 10px;
+  h3 {
+    color: $footinvest-black;
+    font-size: 16px;
+  }
+}
+
 .index {
   position: absolute;
   top: 10px;

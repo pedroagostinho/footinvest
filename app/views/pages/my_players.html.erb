@@ -117,6 +117,13 @@
 
     <% token_average_value = tokens_total_value / token_total_amount %>
 
+    <!-- tokens on sale? -->
+    <% tokens_status = [] %>
+    <% player.tokens.each do |token| %>
+      <% tokens_status << token.on_sale %>
+    <% end %>
+    <% tokens_status %>
+
     <!-- last variation -->
     <% last_variation = 0 %>
     <% @variation.each do |player_id, variation| %>
@@ -133,6 +140,12 @@
       <%= link_to player_path(player) do %>
           <div class="card-trip">
             <%= image_tag(player.photo)%>
+              <% if tokens_status.include? true %>
+            <div class="on-sale">
+              <h3> On sale <i class="fas fa-dollar-sign"></i> </h3>
+            </div>
+              <% end %>
+
             <div class="index">
               <h3 id=<%= cl %>> <%= last_variation %> % </h3>
             </div>
@@ -165,8 +178,9 @@
       <% end %>
       <div class="buy-sell">
         <div class="btn-buy-green">
-          <%= link_to ("buy tokens")%>
+          <%= link_to "buy tokens", player_players_buy_path(player) %>
         </div> &nbsp;
+
 
         <div class="btn-sell-red">
           <%= link_to ("sell tokens")%>

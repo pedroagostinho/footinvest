@@ -43,4 +43,11 @@ class PlayersController < ApplicationController
     @player = Player.find(params[:id])
   end
 
+  def buy
+    @tokens = Token.where(player_id: params[:id])
+  end
+
+  def sell
+    @token = Token.find(params[:id])
+  end
 end
