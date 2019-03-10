@@ -142,7 +142,7 @@
             <%= image_tag(player.photo)%>
               <% if tokens_status.include? true %>
             <div class="on-sale">
-              <h3> On sale <i class="fas fa-dollar-sign"></i> </h3>
+              <h3> <i class="fas fa-dollar-sign"></i> </h3>
             </div>
               <% end %>
 
@@ -177,14 +177,11 @@
           </div>
       <% end %>
       <div class="buy-sell">
-        <div class="btn-buy-green">
-          <%= link_to "buy tokens", player_players_buy_path(player) %>
-        </div> &nbsp;
 
+          <%= link_to "buy coins", buy_player_path(player), class:"btn-buy-green" %>
 
-        <div class="btn-sell-red">
-          <%= link_to ("sell tokens")%>
-        </div>
+          <%= link_to "sell coins", sell_player_path(player), class: "btn-sell-red" %>
+
       </div>
 <br>
 <br>

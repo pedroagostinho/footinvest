@@ -1,0 +1,39 @@
+.tokens {
+  background: #9DF3DC;
+  height: calc(100vh - 70px);
+}
+
+.buy-info {
+  align-item: center;
+  width: 1000px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  margin-bottom: 30px;
+  display: inline-block;
+  margin-top: 100px;
+  padding: 0px;
+  h3 {
+    text-align: center;
+    color: $footinvest-main;
+    font-weight: bold;
+  }
+  p {
+    font-weight: lighter;
+  }
+  i {
+    position: absolute;
+    top: 10px;
+    left: 30px;
+  }
+  img {
+
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    align-content: center;
+    height: 350px;
+    width: 100%;
+    object-fit: cover;
+  }
+}

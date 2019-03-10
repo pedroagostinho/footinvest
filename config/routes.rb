@@ -7,11 +7,10 @@ Rails.application.routes.draw do
   get 'my_players', to: "pages#my_players"
 
   resources :players, only: [:index, :show] do
-    get 'players/buy'
-    get 'players/sell'
-    # member do
-    #   post ...
-    # end
+    member do
+      get 'buy'
+      get 'sell'
+    end
   end
 
 end

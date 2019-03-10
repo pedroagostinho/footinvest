@@ -44,7 +44,8 @@ class PlayersController < ApplicationController
   end
 
   def buy
-    @tokens = Token.where(player_id: params[:id])
+    @player = Player.find(params[:id])
+    @tokens = Token.where(player_id: params[:id], on_sale: true).order('last_price ASC')
   end
 
   def sell
