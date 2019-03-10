@@ -1,3 +1,53 @@
+.header {
+  height: calc(100vh - 70px);
+  background: #9DF3DC;
+}
+
+.header-info {
+  // display: flex;
+  // justify-content: center;
+  position: relative;
+}
+
+.info {
+  background: white;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  margin-bottom: 30px;
+  h1 {
+    text-align: center;
+    color: $footinvest-main;
+    font-weight: bold;
+  }
+  p {
+    font-weight: lighter;
+  }
+  i {
+    position: absolute;
+    top: 10px;
+    left: 30px;
+  }
+}
+
+.header-charts {
+  background: white;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  margin-bottom: 30px;
+  height: 400px;
+  h1 {
+    text-align: center;
+  }
+}
+
+#no-padding-top {
+  padding-top: 0px;
+}
+
+#no-padding-bottom {
+  padding-bottom: 0px;
+}
+
 .row {
   padding: 50px;
 }
@@ -50,11 +100,6 @@
 .contain {
   display: flex;
   justify-content: space-between;
-}
-
-.header {
-  height: 100vh;
-  background: #9DF3DC;
 }
 
 .players {
