@@ -42,3 +42,49 @@
     color: $footinvest-main;
   }
 }
+
+.btn-buy-green {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  background: $footinvest-main;
+  border-radius: 40px;
+  font-style: normal;
+  font-weight: bold;
+  line-height: normal;
+  font-size: 14px;
+  color: #F0F0F0;
+  padding: 14px 22px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  border: 1px solid $footinvest-main;
+  opacity: 0.9;
+  &:hover {
+    opacity: 1;
+  }
+  a {
+    color: white;
+  }
+}
+
+.btn-sell-red {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  background: #FF006B;
+  border-radius: 40px;
+  font-style: normal;
+  font-weight: bold;
+  line-height: normal;
+  font-size: 14px;
+  color: #F0F0F0;
+  padding: 14px 22px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  border: 1px solid #FF006B;
+  opacity: 0.9;
+  &:hover {
+    opacity: 1;
+  }
+  a {
+    color: white;
+  }
+}

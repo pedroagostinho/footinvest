@@ -2,10 +2,10 @@
 
 <!-- ****************RESULTS****************++ -->
 
-<div class="all">
-  <div class ="info2 results">
+<div class="row">
+  <div class="col-xs-2">
 
-    <h3 class="title">RESULTS</h3>
+    <h4 class="title">RESULTS</h4>
     <h4 class="competition"><%= @results1[0].competition.name %></h4>  <br>
     <% @results1.each do |result| %>
       <div class = "match">
@@ -15,6 +15,7 @@
       </div>
       <br>
     <% end %>
+
     <h4 class="competition"><%= @results2[0].competition.name %></h4>  <br>
     <% @results2.each do |result| %>
       <div class = "match">
@@ -24,6 +25,7 @@
       </div>
       <br>
     <% end %>
+
     <h4 class="competition"><%= @results3[0].competition.name %></h4>  <br>
     <% @results3.each do |result| %>
       <div class = "match">
@@ -34,59 +36,51 @@
       <br>
     <% end %>
   </div>
-  <br>
-  <br>
-  <br>
 
-  <!-- ****************+NEWS****************++ -->
 
-    <div class ="info2">
-      <h3 class="title top">NEWS</h3>
-     <div>
-      <% @news.each do |new| %>
-        <div class = "news news-product">
-          <%= image_tag(new.photo, height: '70', width: '100', crop: :fill)%>
-          <div class="news-product-infos">
-            <h2> <%= new.tag %> </h2>  <br>
-            <h3><%= new. title %></h3>  <br>
-            <p><%= new.summary %> All the breaking news and latest views from today's eight Premier League manager news conferences.</p>
-            <br>
+  <div class="col-xs-7">
+    <h4 class="title top">NEWS</h4>
+    <% @news.each do |new| %>
+      <div class = "news news-product">
+        <%= image_tag(new.photo, height: '70', width: '100', crop: :fill)%>
+        <div class="news-product-infos">
+          <h2> <%= new.tag %> </h2>  <br>
+          <h4><%= new. title %></h4>  <br>
+          <p><%= new.summary %> All the breaking news and latest views from today's eight Premier League manager news conferences.</p>
+          <br>
+        </div>
+    </div>
+    <% end %>
+  </div>
+
+
+  <div class="col-xs-1 bg-light">
+    <div>
+      <h4 class="title">TOP WINNERS</h4>
+      <% @top_winners.each do |key, value| %>
+        <div class = "playersfeed playersfeed-product">
+        <%= image_tag(@players.where(id: key)[0].photo, height: '80', width: '100', crop: :fill)%>
+          <div class="playersfeed-product-infos">
+            <h6><%= @players.where(id: key)[0].name %></h6>
+            <p><%= value %>%</p>
           </div>
         </div>
       <% end %>
     </div>
-    </div>
-
-    <!-- ****************TOP PLAYERS****************++ -->
-    <div class ="info2 top">
-      <div>
-        <h4 class="title">TOP WINNERS</h4>
-          <% @top_winners.each do |key, value| %>
-          <div class = "playersfeed playersfeed-product">
-          <%= image_tag(@players.where(id: key)[0].photo, height: '80', width: '100', crop: :fill)%>
-            <div class="playersfeed-product-infos">
-            <h3><%= @players.where(id: key)[0].name %></h3>
-            <p><%= value %>%</p>
-            </div>
-          </div>
-        <% end %>
+  </div>
+  <div class="col-xs-1 bg-light">
+    <div>
+      <h4 class="title">TOP LOSERS</h4>
+      <% @top_losers.each do |key, value| %>
+        <div class = "playersfeed playersfeed-product">
+        <%= image_tag(@players.where(id: key)[0].photo, height: '80', width: '100', crop: :fill)%>
+          <div class="playersfeed-product-infos">
+          <h6><%= @players.where(id: key)[0].name %></h6>
+          <p><%= value %>%</p>
+        </div>
       </div>
+    <% end %>
     </div>
-    <br>
-    <br>
-    <br>
-    <div class ="info2 top">
-      <div>
-        <h4 class="title">TOP LOSERS</h4>
-          <% @top_losers.each do |key, value| %>
-          <div class = "playersfeed playersfeed-product">
-          <%= image_tag(@players.where(id: key)[0].photo, height: '80', width: '100', crop: :fill)%>
-            <div class="playersfeed-product-infos">
-            <h3><%= @players.where(id: key)[0].name %></h3>
-            <h6><%= value %>%</h6>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    </div>
+  </div>
 </div>
+  <!-- ****************+NEWS****************++ -->
