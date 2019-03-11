@@ -26,8 +26,13 @@ class PagesController < ApplicationController
 
     @variation_sorted_by_value = @variation.sort_by {|_key, value| value}.to_h
 
-    @top_losers = @variation_sorted_by_value.first(5).to_h
+    @top_losers = @variation_sorted_by_value.first(3).to_h
     @vairation_reverse = @variation_sorted_by_value.to_a.reverse.to_h
+
+    @top_winners = @vairation_reverse.first(3).to_h
+
+    @img_array = FrontpageService.call
+
     @top_winners = @vairation_reverse.first(5).to_h
 
     @stock_ticker_down =[]

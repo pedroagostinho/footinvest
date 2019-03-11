@@ -7,8 +7,8 @@
 
 <!-- ****************RESULTS****************++ -->
 
-<div class="row">
-  <div class="col-xs-2">
+<div id="no-padding-top" class="row">
+  <div class="col-xs-3 left-cont">
 
     <h4 class="title">RESULTS</h4>
     <h4 class="competition"><%= @results1[0].competition.name %></h4>  <br>
@@ -42,50 +42,84 @@
     <% end %>
   </div>
 
+ <!-- ****************+NEWS****************++ -->
 
-  <div class="col-xs-7">
+<!--   <div class="col-xs-7">
     <h4 class="title top">NEWS</h4>
-    <% @news.each do |new| %>
+    <%# @news.each do |new| %>
       <div class = "news news-product">
-        <%= image_tag(new.photo, height: '70', width: '100', crop: :fill)%>
+        <%#= image_tag(new.photo, height: '70', width: '100', crop: :fill)%>
         <div class="news-product-infos">
-          <h2> <%= new.tag %> </h2>  <br>
-          <h4><%= new. title %></h4>  <br>
-          <p><%= new.summary %> All the breaking news and latest views from today's eight Premier League manager news conferences.</p>
+          <h2> <%#= new.tag %> </h2>  <br>
+          <h4><%#= new. title %></h4>  <br>
+          <p><%#= new.summary %> All the breaking news and latest views from today's eight Premier League manager news conferences.</p>
           <br>
         </div>
     </div>
-    <% end %>
-  </div>
+    <%# end %>
+  </div> -->
 
-
-  <div class="col-xs-1 bg-light">
-    <div>
-      <h4 class="title">TOP WINNERS</h4>
-      <% @top_winners.each do |key, value| %>
-        <div class = "playersfeed playersfeed-product">
-        <%= image_tag(@players.where(id: key)[0].photo, height: '80', width: '100', crop: :fill)%>
-          <div class="playersfeed-product-infos">
-            <h6><%= @players.where(id: key)[0].name %></h6>
-            <p><%= value %>%</p>
-          </div>
-        </div>
-      <% end %>
-    </div>
-  </div>
-  <div class="col-xs-1 bg-light">
-    <div>
-      <h4 class="title">TOP LOSERS</h4>
-      <% @top_losers.each do |key, value| %>
-        <div class = "playersfeed playersfeed-product">
-        <%= image_tag(@players.where(id: key)[0].photo, height: '80', width: '100', crop: :fill)%>
-          <div class="playersfeed-product-infos">
-          <h6><%= @players.where(id: key)[0].name %></h6>
-          <p><%= value %>%</p>
+ <!-- ****************+TOP WINNERS / LOSERS ****************++ -->
+    <div class="top">
+      <div class="col-xs-9">
+        <h4 class="title">TOP WINNERS</h4>
+        <div class="feed-cards">
+          <% @top_winners.each do |key, value| %>
+            <div class = "col-xs-4">
+              <div class="card-trip">
+                <%= image_tag(@players.where(id: key)[0].photo)%>
+                <div class="card-trip-infos">
+                  <h6><%= @players.where(id: key)[0].name %></h6>
+                  <p><%= value %>%</p>
+                </div>
+              </div>
+            </div>
+          <% end %>
         </div>
       </div>
-    <% end %>
+      <div class="col-xs-9">
+        <h4 class="title">TOP LOSERS</h4>
+        <div class="feed-cards">
+          <% @top_losers.each do |key, value| %>
+          <div class="col-xs-4">
+            <div class="card-trip">
+              <%= image_tag(@players.where(id: key)[0].photo, crop: :fill)%>
+              <div class="card-trip-infos">
+                <h6><%= @players.where(id: key)[0].name %></h6>
+                <p><%= value %>%</p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        </div>
+      </div>
+    </div>
+
+
+
+  <div class="col-xs-9">
+    <h4 class="title">NEWS</h4>
+    <div class="news">
+      <% @img_array.each do |i|  %>
+          <div class="news-trip">
+            <img src=" <%= i %> ">
+          </div>
+      <% end %>
+
+      <div class="col-xs-4">
+        <div class="news-trip">
+          <img src="https://cdn.record.pt/images/2019-03/img_467x599$2019_03_10_02_22_49_1515553.jpg" alt="Capa Record" height="300" width="280">
+        </div>
+      </div>
+      <div class="col-xs-4">
+        <div class="news-trip">
+          <img src="https://static.globalnoticias.pt/oj/image.aspx?brand=OJ&type=generate&guid=b10365be-8e08-42e5-b219-14dda3d4b829&w=390&h=492&t=20190310003153" alt="Capa O Jogo" height="300" width="280">
+        </div>
+      </div>
     </div>
   </div>
+
 </div>
-  <!-- ****************+NEWS****************++ -->
+
+<img src="<%= @img_array.first  %>" alt="">
+
