@@ -106,7 +106,7 @@
     <% end %>
 
     <!-- tokens total value, total amount and average value -->
-    <% tokens_total_value = player.tokens.where(owner: current_user).sum(:last_price) %>
+    <% tokens_total_value = player.transactions.where(buying_user_id: current_user).sum(:price) %>
 
     <% token_total_amount = player.tokens.where(owner: current_user).count %>
     <% if token_total_amount == 1 %>
