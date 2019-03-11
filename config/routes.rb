@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get 'dashboard', to: "pages#dashboard"
   get 'my_players', to: "pages#my_players"
 
+  get '/feed' => 'pages#feed', as: :user_root # creates user_root_path
+
   resources :players, only: [:index, :show] do
     member do
       get 'buy'
