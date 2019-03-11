@@ -1,87 +1,150 @@
-<div class="player-container">
-  <h3><%= @player.name %> </h3>
+<div class="header2">
+
+  <div id="no-padding-bottom" class="row">
+
+    <div class="header-info">
+
+    <% if @variation < 0 %>
+      <% cl = "red-big" %>
+    <% elsif @variation > 0 %>
+      <% @variation = "+#{@variation}" %>
+      <% cl = "green-big" %>
+    <% end %>
+
+    <% tokens_total_value = @player.tokens.where(owner: current_user).sum(:last_price) %>
+
+    <% token_total_amount = @player.tokens.where(owner: current_user).count %>
+    <% if token_total_amount == 1 %>
+      <% quantity = "coin" %>
+    <% else %>
+      <% quantity = "coins" %>
+    <% end %>
+
+    <% token_average_value = tokens_total_value / token_total_amount %>
+
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <div class="info">
+          <h1> <i class="fas fa-chart-line"></i> </h1>
+          <h1 id=<%= cl %>> <%= @variation %>% </h1>
+          <p> variation </p>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <div class="info">
+          <h1> <i class="far fa-gem"></i> </h1>
+          <h1> €<%= @player.market_values.last.market_value / 1000000 %>M</h1>
+          <p> market value <em>(in millions)</em> </p>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <div class="info">
+          <h1> <i class="fas fa-coins"></i> </h1>
+          <h1> <%= @tokens.count %></h1>
+          <p> coins available </p>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <div class="info">
+          <h1> <i class="fas fa-money-bill-alt"></i> </h1>
+          <h1>€<%= @token_last_price.last_price %></h1>
+          <p> coin value </p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
   <div class = "card-product">
 
     <div class="avatar">
-      <%= image_tag(@player.photo, height: "300", width: "300", crop: :fill) %>
+        <%= image_tag(@player.photo) %>
     </div>
-      <div class = "info">
+
+  </div>
+
+  <div class="player-name">
+    <h3><%= @player.name %> </h3>
+  </div>
+
+
+
+<div class="player-container">
+
+  <div class = "personal-details">
+
+      <div class = "">
         <h4>Nationality</h4>
         <p><%= @player.nationality %></p>
       </div>
-      <div class = "info">
+      <div class = "">
         <h4>Position</h4>
         <p><%= @player.position %> </p>
       </div>
-      <div class = "info">
+      <div class = "">
         <h4>Age</h2>
         <p><%= @player.age %></p>
       </div>
-      <div class = "info">
+      <div class = "">
         <h4>Club</h4>
         <p><%= @player.club.name%></p>
       </div>
-      <div class = "info">
+      <div class = "">
         <h4>Social</h4>
         <a href="<%= @player.social_url %>", target="_blank"> <p><i class="fab fa-instagram fa-lg"></i></p></a>
       </div>
-        <%#= link_to "Buy", new_player_booking_path(@player.id), class: "btn btn-primary book" %>
-        <%#= link_to "Sell", new_player_booking_path(@player.id), class: "btn btn-primary book" %>
-    </div>
 
-  <div class="stats">
+  </div>
+
+  <div class="personal-stats">
 
     <% @player.stats.each do |stat| %>
 
-    <div class="row">
-      <div class="col">
-        <div class="card-product-stats">
-          <div class = "info">
-            <h5>Competition</h5>
-            <p><%= stat.competition.name %></p>
-          </div>
-          <div class = "info">
-            <h5>Games</h5>
-            <p><%= stat.games %></p>
-          </div>
-          <div class = "info">
-            <h5>Goals</h5>
-            <p><%= stat.goals %></p>
-          </div>
-        </div>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Competition</th>
+          <th scope="col">Games</th>
+          <th scope="col">Goals</th>
+          <th scope="col">Assists</th>
+          <th scope="col">Yellow Card</th>
+          <th scope="col">Red Card</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row"></th>
+          <td><%= stat.competition.name %></td>
+          <td><%= stat.games %></td>
+          <td><%= stat.goals %></td>
+          <td><%= stat.assists %></td>
+          <td><%= stat.yellow_card %></td>
+          <td><%= stat.red_card %></td>
+        </tr>
+      </tbody>
+    </table>
 
-        <div class="card-product-stats">
-          <div class = "info">
-            <h5>Assists</h5>
-            <p><%= stat.assists %></p>
-          </div>
-          <div class = "info">
-            <h5>Yellow Card</h5>
-            <p><%= stat.yellow_card %></p>
-          </div>
-          <div class = "info">
-            <h5>Red Card</h5>
-            <p><%= stat.red_card %></p>
-          </div>
-        </div>
     <% end %>
 
-
-      </div>
-      <div class="col">
-        <div class="card-product-stats" style="height: 395px;">
-            <div class="chart-market-value">
-              <%= line_chart @player.market_values.pluck(:date_time, :market_value), xtitle: "X’s", ytitle: "Y’s", colors: ["blue"] %>
-            </div>
-
-            <div class="chart-last-price">
-              <%= line_chart @player.transactions.pluck(:date_time, :price), xtitle: "X’s", ytitle: "Y’s", colors: ["red"] %>
-            </div>
-        </div>
-      </div>
-    </div>
   </div>
 
+      </div>
+        <div class="col">
+          <div class="card-product-stats" style="height: 395px;">
+              <div class="chart-market-value">
+                <%= line_chart @player.market_values.pluck(:date_time, :market_value), xtitle: "X’s", ytitle: "Y’s", colors: ["blue"] %>
+              </div>
+
+              <div class="chart-last-price">
+                <%= line_chart @player.transactions.pluck(:date_time, :price), xtitle: "X’s", ytitle: "Y’s", colors: ["red"] %>
+              </div>
+          </div>
+      </div>
+    </div>
 
 </div>
 
