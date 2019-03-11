@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'players/index'
-  get 'players/show'
   devise_for :users
   root to: 'pages#home'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -11,9 +9,12 @@ Rails.application.routes.draw do
   get '/feed' => 'pages#feed', as: :user_root # creates user_root_path
 
   resources :players, only: [:index, :show] do
-    # member do
-    #   post ...
-    # end
+    member do
+      get 'buy'
+      get 'sell'
+      post 'purchase'
+      post 'selling'
+    end
   end
 
 end
