@@ -1,5 +1,7 @@
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:home, :about]
+  layout 'chart', only:[:my_players]
+
 
   def home
   end

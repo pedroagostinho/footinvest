@@ -1,7 +1,7 @@
 .player-container {
   margin: 100px;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
 }
 
 .card-product {
@@ -195,4 +195,22 @@
 .header2 {
   height: calc(70vh - 70px);
   background: #9DF3DC;
+}
+
+.green-row {
+  color: $footinvest-main;
+  font-family: Raleway;
+  font-weight: lighter;
+}
+
+.col-sm-3 img {
+  width: 100%;
+  transform: rotate(90deg);
+  opacity: 0.5;
+  margin-top: 43px;
+  margin-left: -44px;
+}
+
+.row {
+  padding: 0;
 }
