@@ -59,25 +59,25 @@ class PlayersController < ApplicationController
     total_amount = []
 
     @tokens_to_buy.each do |token|
-      token.on_sale = false
-      token.owner = current_user.id
+      # byebug
+
+      Transaction.new(date_time: DateTime.now,
+                      price: token.last_price,
+                      token_id: token.id,
+                      buying_user_id: current_user.id,
+                      selling_user_id: token.owner).save
+
+      token.update(on_sale: false)
+      token.update(owner: current_user.id)
+
       total_amount << token.last_price
     end
 
     total_amount = total_amount.inject(0) { |sum, x| sum + x }
 
-
     user = current_user
 
     user.balance = user.balance - total_amount
-
-
-    token.id
-    token.player_id
-    token.on_sale
-    token.owner
-    token.last_price
-
 
     # respond_to do |format|
     #   format.js  # <-- idem
