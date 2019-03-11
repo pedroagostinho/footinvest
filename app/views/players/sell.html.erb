@@ -1,0 +1,40 @@
+<div class="tokens">
+
+  <div class="sell-info">
+    <%= image_tag (@player.photo) %> <br>
+
+
+    <% if @tokens.count == 0 %>
+      <h3>You have no coins from <%= @player.name %> available to sell at this moment...</h3>
+    <% else %>
+      <h3>How many coins from <%= @player.name %> would you like to sell?</h3>
+
+      <%# sum = 0 %>
+      <%# @tokens.each_with_index do |token, index| %>
+        <%# sum = sum + token.last_price %>
+        <!-- <p> <%#= index  +1 %> &nbsp; <i class="fas fa-angle-right"></i> &nbsp; price: <%#= sum %> € </p> -->
+      <%# end %>
+
+      <div class="form">
+      <%= simple_form_for(@player, method: :post, remote: true, url: selling_player_path(@player)) do |f|%>
+        <div class="form-inputs">
+        <%= f.input :tokens, collection: 1..@tokens.count, label: false %>
+        <%= f.input :transactions, as: :integer, placeholder: '€', label: false %>
+        </div>
+
+        <div class="form-actions form">
+        <%= f.button :submit, "confirm", class: "btn btn-buy-green" %>
+        </div>
+      <% end %>
+      </div>
+      <br>
+
+    <% end %>
+
+
+
+    <br>
+
+  </div>
+
+</div>
