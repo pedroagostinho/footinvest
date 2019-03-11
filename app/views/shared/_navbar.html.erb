@@ -5,12 +5,14 @@
 <%= image_tag "logo3.png", class: "navbar-wagon-brand" %>
   <% end %>
 
+
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
 
     <% if user_signed_in? %>
 
       <!-- Links when logged in -->
+      <p class="navbar-wagon-link"> <%= @balance %> € </p>
       <%= link_to "feed", feed_path, class: "navbar-wagon-item navbar-wagon-link" %>
 <!--       <#%= link_to "dashboard", dashboard_path, class: "navbar-wagon-item navbar-wagon-link" %> -->
       <%= link_to "my players", my_players_path, class: "navbar-wagon-item navbar-wagon-link" %>
