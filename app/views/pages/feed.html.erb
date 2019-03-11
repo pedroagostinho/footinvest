@@ -90,21 +90,24 @@
       </div>
     </div>
 
+
+
   <div class="col-xs-9">
     <h4 class="title">NEWS</h4>
     <div class="news">
+      <% @img_array.each do |i|  %>
+          <div class="news-trip">
+            <img src=" <%= i %> ">
+          </div>
+      <% end %>
+
       <div class="col-xs-4">
-        <div class="card-trip">
-          <img src="https://www.abola.pt//wdom/wfotosdia/wdia_grande.jpg" alt="Capa A Bola" height="300" width="280">
-        </div>
-      </div>
-      <div class="col-xs-4">
-        <div class="card-trip">
+        <div class="news-trip">
           <img src="https://cdn.record.pt/images/2019-03/img_467x599$2019_03_10_02_22_49_1515553.jpg" alt="Capa Record" height="300" width="280">
         </div>
       </div>
       <div class="col-xs-4">
-        <div class="card-trip">
+        <div class="news-trip">
           <img src="https://static.globalnoticias.pt/oj/image.aspx?brand=OJ&type=generate&guid=b10365be-8e08-42e5-b219-14dda3d4b829&w=390&h=492&t=20190310003153" alt="Capa O Jogo" height="300" width="280">
         </div>
       </div>
@@ -112,4 +115,6 @@
   </div>
 
 </div>
+
+<img src="<%= @img_array.first  %>" alt="">
 

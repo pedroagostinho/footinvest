@@ -29,6 +29,8 @@ class PagesController < ApplicationController
     @top_losers = @variation_sorted_by_value.first(3).to_h
     @vairation_reverse = @variation_sorted_by_value.to_a.reverse.to_h
     @top_winners = @vairation_reverse.first(3).to_h
+
+    @img_array = FrontpageService.call
   end
 
   def dashboard
