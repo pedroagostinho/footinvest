@@ -1,9 +1,11 @@
 import "bootstrap";
 import { ticker } from '../plugins/stocks';
 const feed = document.querySelector('.pages.feed');
-if (feed) {
-ticker();
+const my_player = document.querySelector('.pages.my_players');
+if (feed || my_player ) {
+  ticker();
 }
+
 // import Chartkick from "chartkick";
 // window.Chartkick = Chartkick;
 
