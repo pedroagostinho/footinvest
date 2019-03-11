@@ -29,7 +29,26 @@ class PagesController < ApplicationController
     @top_losers = @variation_sorted_by_value.first(5).to_h
     @vairation_reverse = @variation_sorted_by_value.to_a.reverse.to_h
     @top_winners = @vairation_reverse.first(5).to_h
-  end
+
+    @stock_ticker_down =[]
+    @stock_ticker_up =[]
+
+    @variation_sorted_by_value.each do |key, value|
+      if value > 0
+        @stock_ticker_up << @players.where(id: key)[0].name
+        @stock_ticker_up << value
+        @stock_ticker_up << "%"
+      else
+        @stock_ticker_down << @players.where(id: key)[0].name
+        @stock_ticker_down << value
+        @stock_ticker_down << "%"
+      end
+    end
+
+    @up = @stock_ticker_up.join(" ")
+    @down = @stock_ticker_down.join(" ")
+
+   end
 
   def dashboard
   end
