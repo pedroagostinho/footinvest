@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     member do
       get 'buy'
       get 'sell'
+      post 'purchase'
     end
   end
 

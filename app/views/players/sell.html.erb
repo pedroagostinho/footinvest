@@ -1,0 +1,51 @@
+<div class="tokens">
+
+  <div class="sell-info">
+    <%= image_tag (@player.photo) %> <br>
+
+
+    <% if @tokens.count == 0 %>
+      <h3>You have no coins from <%= @player.name %> available to sell at this moment...</h3>
+    <% else %>
+      <h3>How many coins from <%= @player.name %> would you like to sell?</h3>
+      <%#= number_field_tag 'coins[]' %>
+      <!-- min = 1 | max = @tokens.count -->
+    <% end %>
+
+    <%= token_amount = @tokens.count %> <br>
+
+    <% @tokens.each do |token| %>
+      <%= token.id %> |
+      <%= token.player_id %> |
+      <%= token.on_sale %> |
+      <%= token.owner %> |
+      <%= token.last_price %> <br>
+    <% end %>
+
+    <% input = 1 %>
+
+    <% @tokens_to_buy = @tokens.first(input) %>
+
+    <br>
+
+    <%= @tokens_to_buy.count %>
+
+    <br>
+
+    <% @tokens_to_buy.each do |token| %>
+      <%= token.id %> |
+      <%= token.player_id %> |
+      <%= token.on_sale %> |
+      <%= token.owner %> |
+      <%= token.last_price %> <br>
+    <% end %>
+
+    <%# @tokens_to_buy.each do |token| %>
+      <%# token.on_sale = false %>
+      <%# token.owner = current_user.id %>
+    <%# end %>
+
+  </div>
+
+</div>
+

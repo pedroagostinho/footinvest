@@ -11,6 +11,7 @@
     <% if user_signed_in? %>
 
       <!-- Links when logged in -->
+      <%= User.find(current_user.id).balance %>
       <%= link_to "feed", feed_path, class: "navbar-wagon-item navbar-wagon-link" %>
 <!--       <#%= link_to "dashboard", dashboard_path, class: "navbar-wagon-item navbar-wagon-link" %> -->
       <%= link_to "my players", my_players_path, class: "navbar-wagon-item navbar-wagon-link" %>

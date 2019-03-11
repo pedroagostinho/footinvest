@@ -1,4 +1,5 @@
 class PlayersController < ApplicationController
+  before_action :set_player, only: [:sell, :purchase, :buy, :show]
 
   def index
     @players = []
@@ -40,15 +41,63 @@ class PlayersController < ApplicationController
   end
 
   def show
-    @player = Player.find(params[:id])
   end
 
   def buy
-    @player = Player.find(params[:id])
-    @tokens = Token.where(player_id: params[:id], on_sale: true).order('last_price ASC')
+    tokens_with_own = Token.where(player_id: params[:id], on_sale: true).order('last_price ASC')
+    @tokens = tokens_with_own.reject { |token| token.owner == current_user.id }
+  end
+
+  def purchase
+    nr_tokens = params[:player][:tokens].to_i
+
+    tokens_with_own = Token.where(player_id: params[:id], on_sale: true).order('last_price ASC')
+    @tokens = tokens_with_own.reject { |token| token.owner == current_user.id }
+
+    @tokens_to_buy = @tokens.first(nr_tokens)
+
+    total_amount = []
+
+    @tokens_to_buy.each do |token|
+      token.on_sale = false
+      token.owner = current_user.id
+      total_amount << token.last_price
+    end
+
+    total_amount = total_amount.inject(0) { |sum, x| sum + x }
+
+
+    user = current_user
+
+    user.balance = user.balance - total_amount
+
+
+    token.id
+    token.player_id
+    token.on_sale
+    token.owner
+    token.last_price
+
+
+    # respond_to do |format|
+    #   format.js  # <-- idem
+    # end
+
+    # if Transaction.new.save
+    #   redirect_to player_path(@player)
+    # else
+    #   render :buy
+    # end
+
   end
 
   def sell
-    @token = Token.find(params[:id])
+    @tokens = Token.where(player_id: params[:id], on_sale: false, owner: current_user.id)
+  end
+
+
+  def set_player
+    @player = Player.find(params[:id])
+
   end
 end

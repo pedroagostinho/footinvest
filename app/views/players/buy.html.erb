@@ -8,7 +8,6 @@
       <h3>There are no coins from <%= @player.name %> available to buy at this moment... Check again later</h3>
     <% else %>
       <h3>How many coins from <%= @player.name %> would you like to buy?</h3>
-      <%#= number_field_tag 'coins[]' %>
     <% end %>
 
     <%= token_amount = @tokens.count %> <br>
@@ -21,7 +20,16 @@
       <%= token.last_price %> <br>
     <% end %>
 
+
+    <%= simple_form_for(@player, method: :post, remote: true, url: purchase_player_path(@player)) do |f|%>
+
+      <%= f.input :tokens, collection: 1..@tokens.count, prompt: "Select your tokens" %>
+      <%= f.button :submit, "BUY", class: "btn btn-primary" %>
+    <% end %>
+
   </div>
 
 </div>
+
+
 
