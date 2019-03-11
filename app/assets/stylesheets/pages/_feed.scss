@@ -58,8 +58,20 @@
 .news{
   display: flex;
   margin-bottom: 30px;
-  position:relative;
-
+  margin-top: 0px;
+  position: relative;
+  justify-content: space-around;
+}
+.news-trip {
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 10px;
+}
+.news-trip > img {
+  height: 300px;
+  width: 100%;
+  object-fit: cover;
 }
 
 .news-product {
@@ -105,16 +117,21 @@
 
 // ******************CARDS*****************
 
+.feed-cards {
+  display: flex;
+  justify-content: space-around;
+}
+
 .playersfeed{
   display: flex;
   margin-bottom: 15px;
   position:relative;
 
   img  {
-    border-radius: 50%;
+    border-radius: 5%;
     object-fit: cover;
-    width: 30px;
-    height: 30px;
+    width: 50%;
+    height: 20px;
   }
 
 }
@@ -161,12 +178,20 @@
 .playersfeed-product .playersfeed-product-infos {
   padding: 10px;
 }
+.left-cont {
+  border: 1px solid $footinvest-main;
+  border-radius: 5px;
+}
 
+.stock_up{
+  color:white;
+  background-color:#8EF4D3;
+}
 
-
-
-
-
+.stock_down{
+  color:white;
+  background-color:#FED9DA;
+}
 
 
 

@@ -1,4 +1,5 @@
 class PlayersController < ApplicationController
+  before_action :set_player, only: [:sell, :purchase, :buy, :show]
 
   def index
     @players = []
@@ -50,6 +51,92 @@ class PlayersController < ApplicationController
     @tokens = tokens_with_own.reject { |token| token.owner == current_user.id }
 
     @token_last_price = tokens_with_own.order(last_price: :DESC).last
+  end
+
+  def buy
+    tokens_with_own = Token.where(player_id: params[:id], on_sale: true).order('last_price ASC')
+    @tokens = tokens_with_own.reject { |token| token.owner == current_user.id }
+  end
+
+  def purchase
+    nr_tokens = params[:player][:tokens].to_i
+
+    tokens_with_own = Token.where(player_id: params[:id], on_sale: true).order('last_price ASC')
+    @tokens = tokens_with_own.reject { |token| token.owner == current_user.id }
+
+    @tokens_to_buy = @tokens.first(nr_tokens)
+
+    total_amount = []
+
+    @tokens_to_buy.each do |token|
+
+      transaction = Transaction.new(date_time: DateTime.now,
+                      price: token.last_price,
+                      token_id: token.id,
+                      buying_user_id: current_user.id,
+                      selling_user_id: token.owner)
+      # byebug
+      transaction.save
+
+      token.update(on_sale: false)
+      token.update(owner: current_user.id)
+
+      total_amount << token.last_price
+    end
+
+    total_amount = total_amount.inject(0) { |sum, x| sum + x }
+
+    current_user.balance = @balance - total_amount
+
+    redirect_to my_players_path
+
+    # if Transaction.new.save
+    #   redirect_to player_path(@player)
+    # else
+    #   render :buy
+    # end
+
+  end
+
+  def sell
+    @tokens = Token.where(player_id: params[:id], on_sale: false, owner: current_user.id)
+  end
+
+  def selling
+    nr_tokens = params[:player][:tokens].to_i
+    price = params[:player][:transactions].to_i
+
+    @tokens = Token.where(player_id: params[:id], on_sale: false, owner: current_user.id)
+
+    @tokens_to_sell = @tokens.first(nr_tokens)
+
+    total_amount = []
+
+    @tokens_to_buy.each do |token|
+
+      transaction = Transaction.new(date_time: DateTime.now,
+                      price: token.last_price,
+                      token_id: token.id,
+                      buying_user_id: current_user.id,
+                      selling_user_id: token.owner)
+      # byebug
+      transaction.save
+
+      token.update(on_sale: false)
+      token.update(owner: current_user.id)
+
+      total_amount << token.last_price
+    end
+
+    total_amount = total_amount.inject(0) { |sum, x| sum + x }
+
+    current_user.balance = @balance - total_amount
+
+    redirect_to my_players_path
+  end
+
+  def set_player
+    @player = Player.find(params[:id])
   end
 end
 
