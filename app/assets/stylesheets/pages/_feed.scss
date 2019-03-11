@@ -69,7 +69,7 @@
   border-radius: 10px;
 }
 .news-trip > img {
-  height: 300px;
+  height: 200px;
   width: 100%;
   object-fit: cover;
 }
@@ -84,8 +84,8 @@
 }
 
 .news-product img {
-  height: 100%;
-  width: 120px;
+  height: 200px;
+  width: 100%;
   object-fit: cover;
 }
 
@@ -116,11 +116,6 @@
 }
 
 // ******************CARDS*****************
-
-.feed-cards {
-  display: flex;
-  justify-content: space-around;
-}
 
 .playersfeed{
   display: flex;
@@ -192,7 +187,33 @@
   color:white;
   background-color:#FED9DA;
 }
+.cont-height {
+  height: 10px;
+}
+.right-side {
+  margin: 0px;
+}
 
+
+.main-container {
+  display: flex;
+}
+
+#results {
+  height: 100vh;
+}
+
+.tops {
+  flex-grow: 1;
+}
+.feed-cards {
+  justify-content: space-between;
+  // display: flex;
+  width: auto;
+  margin-bottom: 30px;
+  display: inline;
+
+}
 
 
 
