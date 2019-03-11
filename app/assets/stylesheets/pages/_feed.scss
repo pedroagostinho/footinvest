@@ -58,8 +58,9 @@
 .news{
   display: flex;
   margin-bottom: 30px;
-  position:relative;
-
+  margin-top: 30px;
+  position: relative;
+  justify-content: space-around;
 }
 
 .news-product {
@@ -105,16 +106,21 @@
 
 // ******************CARDS*****************
 
+.feed-cards {
+  display: flex;
+  justify-content: space-around;
+}
+
 .playersfeed{
   display: flex;
   margin-bottom: 15px;
   position:relative;
 
   img  {
-    border-radius: 50%;
+    border-radius: 5%;
     object-fit: cover;
-    width: 30px;
-    height: 30px;
+    width: 50%;
+    height: 20px;
   }
 
 }
