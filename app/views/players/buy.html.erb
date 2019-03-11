@@ -8,28 +8,32 @@
       <h3>There are no coins from <%= @player.name %> available to buy at this moment... Check again later</h3>
     <% else %>
       <h3>How many coins from <%= @player.name %> would you like to buy?</h3>
+
+      <% sum = 0 %>
+      <% @tokens.each_with_index do |token, index| %>
+        <% sum = sum + token.last_price %>
+        <p> <%= index  +1 %> &nbsp; <i class="fas fa-angle-right"></i> &nbsp; price: <%= sum %> € </p>
+      <% end %>
+
+      <div class="form">
+      <%= simple_form_for(@player, method: :post, remote: true, url: purchase_player_path(@player)) do |f|%>
+        <div class="form-inputs">
+        <%= f.input :tokens, collection: 1..@tokens.count, prompt: "Select your coins", label: false %>
+        </div>
+
+        <div class="form-actions form">
+        <%= f.button :submit, "confirm", class: "btn btn-buy-green" %>
+        </div>
+      <% end %>
+      </div>
+      <br>
+
     <% end %>
 
-    <%= token_amount = @tokens.count %> <br>
-
-    <% @tokens.each do |token| %>
-      <%= token.id %> |
-      <%= token.player_id %> |
-      <%= token.on_sale %> |
-      <%= token.owner %> |
-      <%= token.last_price %> <br>
-    <% end %>
 
 
-    <%= simple_form_for(@player, method: :post, remote: true, url: purchase_player_path(@player)) do |f|%>
-
-      <%= f.input :tokens, collection: 1..@tokens.count, prompt: "Select your tokens" %>
-      <%= f.button :submit, "BUY", class: "btn btn-primary" %>
-    <% end %>
+    <br>
 
   </div>
 
 </div>
-
-
-

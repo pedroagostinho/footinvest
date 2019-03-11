@@ -59,13 +59,14 @@ class PlayersController < ApplicationController
     total_amount = []
 
     @tokens_to_buy.each do |token|
-      # byebug
 
-      Transaction.new(date_time: DateTime.now,
+      transaction = Transaction.new(date_time: DateTime.now,
                       price: token.last_price,
                       token_id: token.id,
                       buying_user_id: current_user.id,
-                      selling_user_id: token.owner).save
+                      selling_user_id: token.owner)
+      # byebug
+      transaction.save
 
       token.update(on_sale: false)
       token.update(owner: current_user.id)
@@ -75,13 +76,9 @@ class PlayersController < ApplicationController
 
     total_amount = total_amount.inject(0) { |sum, x| sum + x }
 
-    user = current_user
+    current_user.balance = @balance - total_amount
 
-    user.balance = user.balance - total_amount
-
-    # respond_to do |format|
-    #   format.js  # <-- idem
-    # end
+    redirect_to my_players_path
 
     # if Transaction.new.save
     #   redirect_to player_path(@player)
@@ -95,6 +92,38 @@ class PlayersController < ApplicationController
     @tokens = Token.where(player_id: params[:id], on_sale: false, owner: current_user.id)
   end
 
+  def selling
+    nr_tokens = params[:player][:tokens].to_i
+    price = params[:player][:transactions].to_i
+
+    @tokens = Token.where(player_id: params[:id], on_sale: false, owner: current_user.id)
+
+    @tokens_to_sell = @tokens.first(nr_tokens)
+
+    total_amount = []
+
+    @tokens_to_buy.each do |token|
+
+      transaction = Transaction.new(date_time: DateTime.now,
+                      price: token.last_price,
+                      token_id: token.id,
+                      buying_user_id: current_user.id,
+                      selling_user_id: token.owner)
+      # byebug
+      transaction.save
+
+      token.update(on_sale: false)
+      token.update(owner: current_user.id)
+
+      total_amount << token.last_price
+    end
+
+    total_amount = total_amount.inject(0) { |sum, x| sum + x }
+
+    current_user.balance = @balance - total_amount
+
+    redirect_to my_players_path
+  end
 
   def set_player
     @player = Player.find(params[:id])

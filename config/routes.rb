@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       get 'buy'
       get 'sell'
       post 'purchase'
+      post 'selling'
     end
   end
 
