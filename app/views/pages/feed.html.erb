@@ -113,14 +113,17 @@
 
       <div class="row">
       <h4 class="title">NEWS</h4>
-
-        <% @img_array.each do |i|  %>
-          <div class="col-xs-12 col-sm-6 col-md-4">
-            <div class="news-trip">
-              <img src=" <%= i %> ">
+        <div class="feed-cards">
+          <% @img_array.each do |i|  %>
+            <div class="col-xs-12 col-sm-6 col-md-4">
+              <div class="news-trip">
+                <img src=" <%= i %> ">
+              </div>
+              <br>
             </div>
-          </div>
-        <% end %>
+          <% end %>
+
+        </div>
 
       </div>
 
