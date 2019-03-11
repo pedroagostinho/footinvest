@@ -1,5 +1,6 @@
 class PlayersController < ApplicationController
   before_action :set_player, only: [:sell, :purchase, :buy, :show]
+  layout 'chart', only:[:show]
 
   def index
     @players = []
