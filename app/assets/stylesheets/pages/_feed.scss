@@ -15,19 +15,26 @@
 
 // resultados
 .competition{
-  text-align:center;
-  background-color:#E5E5E5;
+  text-align: center;
+  background-color: #E5E5E5;
   border-bottom: 1px dotted #E5E5E5;
-  margin-left:10px;
-  margin-right:10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 5px;
+  border-radius: 5px;
 }
 
 .match {
-  display: flex;
   justify-content: space-around;
   display: grid;
   grid-template-columns: 2fr 1fr 2fr;
-  border-bottom: 1px dotted #E5E5E5;
+  border-radius: 8px;
+  padding: 5px;
+  margin: 5px;
+  border: 1px solid #E5E5E5;
+  p {
+    margin: 1.5px;
+  }
 }
 .club-name{
   margin-left: 5px;
@@ -44,14 +51,14 @@
 
 }
 .result{
- border: 1px solid $footinvest-main;
- width:50px;
- justify-content: space-around;
- text-align: center;
- color: white;
- background-color: $footinvest-main;
- font-size:14px;
-
+  border: 1px solid $footinvest-main;
+  border-radius: 5px;
+  width: 50px;
+  justify-content: space-around;
+  text-align: center;
+  color: white;
+  background-color: $footinvest-main;
+  font-size: 14px;
 }
 
 // NEWS
@@ -201,11 +208,16 @@
 
 #results {
   height: 100vh;
-  position: relative;
+  position: fixed;
+  width: 215px;
+  margin-top: 45px;
+  overflow: scroll;
 }
 
 .tops {
   flex-grow: 1;
+  margin-left: 220px;
+  margin-top: 45px;
 }
 .feed-cards {
   display: flex;
@@ -213,6 +225,10 @@
   flex-wrap: wrap;
   .card-trip {
     width: 18%;
+    max-height: 30%;
+  }
+  img {
+    height: 125px;
   }
 }
 @media screen and (max-width: 800px) {
@@ -224,6 +240,8 @@
 }
 .fixed-coins {
   position: fixed;
+  z-index:10;
+  background: white;
 }
 .newspaper {
   padding-bottom: 20px;
