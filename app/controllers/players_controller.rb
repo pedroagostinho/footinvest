@@ -4,6 +4,27 @@ class PlayersController < ApplicationController
 
   def index
     @players = []
+
+    @transactions = Token.joins(:transactions)
+                         .select('tokens.id,
+                                  tokens.player_id,
+                                  tokens.on_sale,
+                                  tokens.owner,
+                                  tokens.last_price,
+                                  transactions.date_time,
+                                  transactions.buying_user_id,
+                                  transactions.price')
+                         .order('transactions.date_time DESC,
+                                 tokens.player_id DESC')
+    sorted = Token.joins(:transactions).select('tokens.id, tokens.player_id, transactions.date_time, transactions.price').order('transactions.date_time DESC, tokens.player_id ASC')
+
+    @variation = Hash.new()
+
+    sorted.uniq(&:player_id).each do |t|
+      player_tokens = sorted.where(player_id: t.player_id)
+      @variation[t.player_id] = (((player_tokens.first.price - player_tokens.second.price) / player_tokens.second.price.to_f) * 100).round(2)
+    end
+
     if params[:query].present? and params[:tokens].present?
       @list = Player.global_search(params[:query])
       @list.each do |pl|
@@ -11,7 +32,7 @@ class PlayersController < ApplicationController
       end
       respond_to do |format|
         format.html { redirect_to players_path }
-        format.js  # <-- will render `app/views/players/index.js.erb#.where.not(club_id: current_club.id)
+        format.js # <-- will render `app/views/players/index.js.erb#.where.not(club_id: current_club.id)
       end
 
     elsif params[:query].present?
@@ -19,7 +40,7 @@ class PlayersController < ApplicationController
       #@players = Player.where("name ILIKE ?", "%#{params[:name]}%")
       respond_to do |format|
         format.html { redirect_to players_path }
-        format.js  # <-- will render `app/views/players/index.js.erb#.where.not(club_id: current_club.id)
+        format.js # <-- will render `app/views/players/index.js.erb#.where.not(club_id: current_club.id)
       end
 
     elsif params[:tokens].present?
@@ -29,13 +50,13 @@ class PlayersController < ApplicationController
 
       respond_to do |format|
         format.html { redirect_to players_path }
-        format.js  # <-- will render `app/views/players/index.js.erb#.where.not(club_id: current_club.id)
+        format.js # <-- will render `app/views/players/index.js.erb#.where.not(club_id: current_club.id)
       end
     else
       @players = Player.all #= Player.where.not(club_id: current_club.id, availability: false)
       respond_to do |format|
-        format.html { render 'players/index' }
-        format.js  # <-- idem
+        format.html { render 'players/_index' }
+        format.js # <-- idem
       end
     end
   end
