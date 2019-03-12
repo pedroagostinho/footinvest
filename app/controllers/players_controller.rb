@@ -16,6 +16,9 @@ class PlayersController < ApplicationController
                                   transactions.price')
                          .order('transactions.date_time DESC,
                                  tokens.player_id DESC')
+
+    @tokens = Token.all
+
     sorted = Token.joins(:transactions).select('tokens.id, tokens.player_id, transactions.date_time, transactions.price').order('transactions.date_time DESC, tokens.player_id ASC')
 
     @variation = Hash.new()
