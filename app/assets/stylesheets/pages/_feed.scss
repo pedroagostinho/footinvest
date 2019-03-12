@@ -69,17 +69,7 @@
   position: relative;
   justify-content: space-around;
 }
-.news-trip {
-  overflow: hidden;
-  background: white;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  border-radius: 10px;
-}
-.news-trip > img {
-  height: 200px;
-  width: 100%;
-  object-fit: cover;
-}
+
 
 .news-product {
   overflow: hidden;
@@ -223,18 +213,33 @@
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+
   .card-trip {
     width: 18%;
-    max-height: 30%;
+    max-height: 50%;
+    h3 {
+      font-size: 18px;
+    }
+    p {
+      font-size: 13px;
+    }
   }
   img {
     height: 125px;
   }
+
 }
 @media screen and (max-width: 800px) {
   .feed-cards {
+    justify-content: space-around;
     .card-trip {
-    width: 100%;
+      width: 100%;
+      h3 {
+        font-size: 18px;
+      }
+      p {
+        font-size: 13px;
+      }
     }
   }
 }
@@ -246,6 +251,17 @@
 .newspaper {
   padding-bottom: 20px;
 }
-
+.news-trip {
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 10px;
+  width: 18%;
+}
+.news-trip > img {
+  height: 300px;
+  width: 100%;
+  object-fit: cover;
+}
 
 
