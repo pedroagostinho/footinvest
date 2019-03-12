@@ -5,6 +5,17 @@
 .players {
   margin: auto;
 }
+
+.header-search {
+  background: #4B4962;
+  color: white;
+  height: 100px;
+  position: sticky;
+  top: 70px;
+  z-index: 1;
+  border: 0.5px solid #4B4962;
+}
+
 .search-bar {
   margin-left: 200px;
   margin-right: 200px;
@@ -47,4 +58,8 @@
 
 .btnn {
   margin-top: 26px;
+}
+
+.align {
+  margin-top: 27px;
 }
