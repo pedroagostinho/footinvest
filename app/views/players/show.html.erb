@@ -11,16 +11,8 @@
       <% cl = "green-big" %>
     <% end %>
 
-    <% tokens_total_value = @player.tokens.where(owner: current_user).sum(:last_price) %>
 
-    <% token_total_amount = @player.tokens.where(owner: current_user).count %>
-    <% if token_total_amount == 1 %>
-      <% quantity = "coin" %>
-    <% else %>
-      <% quantity = "coins" %>
-    <% end %>
 
-    <% token_average_value = tokens_total_value / token_total_amount %>
 
       <div class="col-xs-12 col-sm-6 col-md-3">
         <div class="info">
@@ -42,7 +34,11 @@
         <div class="info">
           <h1> <i class="fas fa-coins"></i> </h1>
           <h1> <%= @tokens.count %></h1>
-          <p> coins available </p>
+          <% if @tokens.count > 1 %>
+            <p> coins available </p>
+          <% else %>
+            <p> coin available </p>
+          <% end %>
         </div>
       </div>
 
@@ -76,7 +72,7 @@
 
   <div class="row">
 
-    <div class="col-xs-6 col-sm-3">
+    <div class="col-xs-2">
       <div class = "">
         <h4>Age</h2>
         <p><%= @player.age %></p>
@@ -99,11 +95,21 @@
       </div>
     </div>
 
-  <div class="col-xs-6 col-sm-3">
-    <%= image_tag('http://cdn.onlinewebfonts.com/svg/img_22782.png') %>
+  <div class="col-xs-3">
+    <div class="field">
+      <% if @player.position == "Forward"  %>
+        <%= image_tag('field_ataque.png') %>
+      <% elsif @player.position == "Goalkeeper"%>
+        <%= image_tag('field_guarda_redes.png') %>
+      <% elsif @player.position == "Midfielder" %>
+        <%= image_tag('field_meio.png') %>
+      <% elsif @player.position == "Defender"%>
+        <%= image_tag('field_defesa.png') %>
+      <% end %>
+    </div>
   </div>
 
-  <div class="col-xs-6">
+  <div class="col-xs-7">
     <% @player.stats.each do |stat| %>
     <table class="table table-striped">
       <thead>

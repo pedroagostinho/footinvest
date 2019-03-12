@@ -1,5 +1,5 @@
 .player-container {
-  margin: 100px;
+  margin: auto;
   display: flex;
   justify-content: center;
 }
@@ -203,12 +203,9 @@
   font-weight: lighter;
 }
 
-.col-sm-3 img {
-  width: 100%;
-  transform: rotate(90deg);
+.field img {
+  width: 77%;
   opacity: 0.5;
-  margin-top: 43px;
-  margin-left: -44px;
 }
 
 .row {
