@@ -10,9 +10,10 @@ class PagesController < ApplicationController
   end
 
   def feed
-    @results1 = Result.where(competition_id: 1).order(date_time: :desc).take(10)
-    @results2 = Result.where(competition_id: 2).order(date_time: :desc).take(10)
-    @results3 = Result.where(competition_id: 3).order(date_time: :desc).take(10)
+
+    @results1 = Competition.first.latest_results
+    @results2 = Competition.second.latest_results
+    @results3 = Competition.third.latest_results
 
     @news = New.order(date_time: :desc).take(5)
     @players = Player.all
