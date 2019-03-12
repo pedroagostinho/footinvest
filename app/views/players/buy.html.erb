@@ -16,7 +16,7 @@
       <% end %>
 
       <div class="form">
-      <%= simple_form_for(@player, method: :post, remote: true, url: purchase_player_path(@player)) do |f|%>
+      <%= simple_form_for(@player, method: :post, url: purchase_player_path(@player)) do |f|%>
         <div class="form-inputs">
         <%= f.input :tokens, collection: 1..@tokens.count, prompt: "Select your coins", label: false %>
         </div>
