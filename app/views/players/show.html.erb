@@ -139,11 +139,11 @@
         <div class="col">
           <div class="card-product-stats" style="height: 395px;">
               <div class="chart-market-value">
-                <%= line_chart @player.market_values.pluck(:date_time, :market_value), xtitle: "X’s", ytitle: "Y’s", colors: ["blue"] %>
+                <%= line_chart @player.market_values.pluck(:date_time, :market_value), xtitle: "X’s", ytitle: "Y’s", colors: ["$footinvest-main"] %>
               </div>
 
               <div class="chart-last-price">
-                <%= line_chart @player.transactions.pluck(:date_time, :price), xtitle: "X’s", ytitle: "Y’s", colors: ["red"] %>
+                <%= line_chart @player.transactions.pluck(:date_time, :price), xtitle: "X’s", ytitle: "Y’s", colors: ["$footinvest-main"] %>
               </div>
           </div>
       </div>
