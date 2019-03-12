@@ -5,6 +5,17 @@
 .players {
   margin: auto;
 }
+
+.header-search {
+  background: $footinvest-blue;
+  color: $footinvest-main;
+  height: 100px;
+  position: sticky;
+  top: 70px;
+  z-index: 1;
+  border: 0.5px solid $footinvest-blue;
+}
+
 .search-bar {
   margin-left: 200px;
   margin-right: 200px;
@@ -47,4 +58,8 @@
 
 .btnn {
   margin-top: 26px;
+}
+
+.align {
+  margin-top: 27px;
 }

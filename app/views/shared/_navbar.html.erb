@@ -12,11 +12,21 @@
     <% if user_signed_in? %>
 
       <!-- Links when logged in -->
-      <p class="navbar-wagon-link"> <%= @balance %> € </p>
-      <%= link_to "feed", feed_path, class: "navbar-wagon-item navbar-wagon-link" %>
+
+      <% (controller_name == 'pages' && action_name == 'feed') ? color_class = 'green' : color_class = '' %>
+      <%= link_to "Feed", feed_path, class: "navbar-wagon-item navbar-wagon-link #{color_class}" %>
+
 <!--       <#%= link_to "dashboard", dashboard_path, class: "navbar-wagon-item navbar-wagon-link" %> -->
-      <%= link_to "my players", my_players_path, class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "market", players_path, class: "navbar-wagon-item navbar-wagon-link" %>
+
+      <% (controller_name == 'pages' && action_name == 'my_players') ? color_class = 'green' : color_class = '' %>
+      <%= link_to "My players", my_players_path,
+       class: "navbar-wagon-item navbar-wagon-link #{color_class}" %>
+
+
+      <% (controller_name == 'players' && action_name == 'index') ? color_class = 'green' : color_class = '' %>
+      <%= link_to "Market", players_path, class: "navbar-wagon-item navbar-wagon-link #{color_class}" %>
+
+      <p class="balance">€<%= @balance %></p>
 
       <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">
@@ -43,7 +53,7 @@
       </div>
     <% else %>
       <!-- Login link (when logged out) -->
-      <div class="btn-landing-blue">
+      <div class="btn-landing">
         <%= link_to t(".sign_up", default: "create account"), new_user_registration_path%>
       </div>
       <div class="btn-landing-white">

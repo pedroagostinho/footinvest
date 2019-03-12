@@ -1,6 +1,6 @@
 .container-stats {
   height: 100px;
-  background-color: #6C63FF;
+  background-color: #403D58;
   display: flex;
 }
 
@@ -17,11 +17,22 @@
   padding-left: 50px;
 }
 
+.bloco h3 {
+  color: #5C5C5C;
+}
+
+.bloco p {
+  color: #333333;
+}
+
 .divisor{
   text-align:center;
   color: white;
   padding-top: 10px;
 }
 
+.divisor h6 {
+  font-weight: lighter;
+}
 
 

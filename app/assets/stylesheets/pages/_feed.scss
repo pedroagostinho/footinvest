@@ -15,19 +15,26 @@
 
 // resultados
 .competition{
-  text-align:center;
-  background-color:#E5E5E5;
+  text-align: center;
+  background-color: #E5E5E5;
   border-bottom: 1px dotted #E5E5E5;
-  margin-left:10px;
-  margin-right:10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 5px;
+  border-radius: 5px;
 }
 
 .match {
-  display: flex;
   justify-content: space-around;
   display: grid;
   grid-template-columns: 2fr 1fr 2fr;
-  border-bottom: 1px dotted #E5E5E5;
+  border-radius: 8px;
+  padding: 5px;
+  margin: 5px;
+  border: 1px solid #E5E5E5;
+  p {
+    margin: 1.5px;
+  }
 }
 .club-name{
   margin-left: 5px;
@@ -44,14 +51,14 @@
 
 }
 .result{
- border: 1px solid $footinvest-main;
- width:50px;
- justify-content: space-around;
- text-align: center;
- color: white;
- background-color: $footinvest-main;
- font-size:14px;
-
+  border: 1px solid $footinvest-main;
+  border-radius: 5px;
+  width: 50px;
+  justify-content: space-around;
+  text-align: center;
+  color: white;
+  background-color: $footinvest-main;
+  font-size: 14px;
 }
 
 // NEWS
@@ -62,17 +69,7 @@
   position: relative;
   justify-content: space-around;
 }
-.news-trip {
-  overflow: hidden;
-  background: white;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  border-radius: 10px;
-}
-.news-trip > img {
-  height: 200px;
-  width: 100%;
-  object-fit: cover;
-}
+
 
 .news-product {
   overflow: hidden;
@@ -201,27 +198,71 @@
 
 #results {
   height: 100vh;
+  position: fixed;
+  width: 215px;
+  margin-top: 45px;
+  overflow: scroll;
+  z-index: -1;
 }
 
 .tops {
   flex-grow: 1;
+  margin-left: 220px;
+  margin-top: 70px;
 }
 .feed-cards {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+
   .card-trip {
     width: 18%;
+    max-height: 50%;
+    h3 {
+      font-size: 18px;
+    }
+    p {
+      font-size: 13px;
+    }
   }
+  img {
+    height: 170px;
+  }
+
 }
 @media screen and (max-width: 800px) {
   .feed-cards {
+    justify-content: space-around;
     .card-trip {
-    width: 100%;
+      width: 100%;
+      h3 {
+        font-size: 18px;
+      }
+      p {
+        font-size: 13px;
+      }
     }
   }
 }
-
-
+.fixed-coins {
+  position: fixed;
+  z-index:10;
+  background: white;
+}
+.newspaper {
+  padding-bottom: 20px;
+}
+.news-trip {
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 10px;
+  width: 18%;
+}
+.news-trip > img {
+  height: 300px;
+  width: 100%;
+  object-fit: cover;
+}
 
 

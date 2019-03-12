@@ -1,3 +1,8 @@
+<div class="header-search">
+  <div class="search-bar">
+    <%= render 'form' %>
+  </div>
+</div>
 <div class="container-market">
   <%#= form_tag players_path, remote: true, method: :get do %>
     <%#= text_field_tag :query,
@@ -6,13 +11,9 @@
       placeholder: "Find a player"
     %>
   <%# end %>
-  <div class="search-bar">
-    <%= render 'form' %>
-  </div>
-  <div class="players">
+  <div id="players-list">
     <%= render 'market' %>
   </div>
   <br>
   <br>
 </div>
-

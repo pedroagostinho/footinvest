@@ -4,14 +4,38 @@ class PlayersController < ApplicationController
 
   def index
     @players = []
+
+    @transactions = Token.joins(:transactions)
+                         .select('tokens.id,
+                                  tokens.player_id,
+                                  tokens.on_sale,
+                                  tokens.owner,
+                                  tokens.last_price,
+                                  transactions.date_time,
+                                  transactions.buying_user_id,
+                                  transactions.price')
+                         .order('transactions.date_time DESC,
+                                 tokens.player_id DESC')
+
+    @tokens = Token.all
+
+    sorted = Token.joins(:transactions).select('tokens.id, tokens.player_id, transactions.date_time, transactions.price').order('transactions.date_time DESC, tokens.player_id ASC')
+
+    @variation = Hash.new()
+
+    sorted.uniq(&:player_id).each do |t|
+      player_tokens = sorted.where(player_id: t.player_id)
+      @variation[t.player_id] = (((player_tokens.first.price - player_tokens.second.price) / player_tokens.second.price.to_f) * 100).round(2)
+    end
+
     if params[:query].present? and params[:tokens].present?
       @list = Player.global_search(params[:query])
       @list.each do |pl|
-        @players << pl if pl.tokens.where(on_sale: true).count >= params[:tokens].to_i
+        @players << pl if pl.tokens.where(on_sale: true).where.not(owner: current_user).count + pl.tokens.where(on_sale: true).where(owner: nil).count >= params[:tokens].to_i
       end
       respond_to do |format|
         format.html { redirect_to players_path }
-        format.js  # <-- will render `app/views/players/index.js.erb#.where.not(club_id: current_club.id)
+        format.js # <-- will render `app/views/players/index.js.erb#.where.not(club_id: current_club.id)
       end
 
     elsif params[:query].present?
@@ -19,23 +43,23 @@ class PlayersController < ApplicationController
       #@players = Player.where("name ILIKE ?", "%#{params[:name]}%")
       respond_to do |format|
         format.html { redirect_to players_path }
-        format.js  # <-- will render `app/views/players/index.js.erb#.where.not(club_id: current_club.id)
+        format.js # <-- will render `app/views/players/index.js.erb#.where.not(club_id: current_club.id)
       end
 
     elsif params[:tokens].present?
       Player.all.each do |pl|
-        @players << pl if pl.tokens.where(on_sale: true).count >= params[:tokens].to_i
+        @players << pl if pl.tokens.where(on_sale: true).where.not(owner: current_user).count + pl.tokens.where(on_sale: true).where(owner: nil).count >= params[:tokens].to_i
       end
 
       respond_to do |format|
         format.html { redirect_to players_path }
-        format.js  # <-- will render `app/views/players/index.js.erb#.where.not(club_id: current_club.id)
+        format.js # <-- will render `app/views/players/index.js.erb#.where.not(club_id: current_club.id)
       end
     else
       @players = Player.all #= Player.where.not(club_id: current_club.id, availability: false)
       respond_to do |format|
-        format.html { render 'players/index' }
-        format.js  # <-- idem
+        format.html { render 'players/_index' }
+        format.js # <-- idem
       end
     end
   end
@@ -46,12 +70,20 @@ class PlayersController < ApplicationController
     sorted = Token.joins(:transactions).select('tokens.id, tokens.player_id, transactions.date_time, transactions.price').order('transactions.date_time DESC, tokens.player_id ASC')
 
     player_tokens = sorted.where(player_id: @player.id)
-    @variation = (((player_tokens.first.price - player_tokens.second.price) / player_tokens.second.price.to_f) * 100).round(2)
+
+    if Token.where(player_id: @player.id).where.not(owner: nil).count == 0
+      @variation = 0
+    else
+      @variation = (((player_tokens.first.price - player_tokens.second.price) / player_tokens.second.price.to_f) * 100).round(2)
+    end
 
     tokens_with_own = Token.where(player_id: params[:id], on_sale: true)
+
+    tokens_with_own_all = Token.where(player_id: params[:id])
+
     @tokens = tokens_with_own.reject { |token| token.owner == current_user.id }
 
-    @token_last_price = tokens_with_own.order(last_price: :DESC).last
+    @token_last_price = tokens_with_own_all.order(last_price: :DESC).last
   end
 
   def buy

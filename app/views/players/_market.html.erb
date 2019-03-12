@@ -1,38 +1,141 @@
-
 <div class="row">
   <% @players.each do |player| %>
+
+    <!-- last price, minimum price and max price -->
+    <% prices = [] %>
+
+    <% @transactions.each do |transaction| %>
+      <% prices << transaction.price if transaction.player_id == player.id %>
+    <% end %>
+
+    <!-- form, goals and assists -->
+    <% form = [] %>
+    <% goals = [] %>
+    <% assists = [] %>
+
+    <% player.stats.each do |stat| %>
+      <% form << stat.form.downcase %>
+      <% goals << stat.goals %>
+      <% assists << stat.assists %>
+    <% end %>
+
+    <% if form.include?('high') %>
+      <% form = 'HGH' %>
+      <% cl = "green" %>
+      <% icon = "fas fa-arrow-alt-circle-up" %>
+    <% elsif form.include?('medium') %>
+      <% form = 'AVG' %>
+      <% cl = "yellow" %>
+      <% icon = "fas fa-arrow-alt-circle-right" %>
+    <% elsif form.include?('low') %>
+      <% form = 'LOW' %>
+      <% cl = "red" %>
+      <% icon = "fas fa-arrow-alt-circle-down" %>
+    <% else %>
+      <% form = '-' %>
+    <% end %>
+
+    <!-- tokens total value, total amount and average value -->
+    <% tokens_total_value = [] %>
+
+    <% @tokens.each do |token| %>
+      <% tokens_total_value << token.last_price if token.on_sale == true && token.player_id == player.id && (token.owner != current_user.id || token.owner == nil) %>
+
+    <% end %>
+
+
+    <% tokens_total_value = tokens_total_value.inject(0){|sum,x| sum + x } %>
+
+    <% token_total_amount = player.tokens.where(on_sale: true).where.not(owner: current_user).count + player.tokens.where(on_sale: true, owner: nil).count %>
+    <% if token_total_amount == 1 %>
+      <% quantity = "coin" %>
+    <% else %>
+      <% quantity = "coins" %>
+    <% end %>
+
+    <% if token_total_amount == 0 %>
+      <% token_average_value = 0 %>
+    <% else %>
+     <% token_average_value = tokens_total_value / token_total_amount %>
+    <% end %>
+
+    <!-- tokens on sale? -->
+    <% tokens_status = [] %>
+    <% player.tokens.where(owner: current_user.id).each do |token| %>
+      <% tokens_status << token.on_sale %>
+    <% end %>
+    <% tokens_status %>
+
+    <!-- last variation -->
+    <% last_variation = 0 %>
+    <% @variation.each do |player_id, variation| %>
+      <% last_variation = variation if player_id == player.id %>
+    <% end %>
+    <% if last_variation < 0 %>
+      <% cl = "red" %>
+    <% elsif last_variation > 0 %>
+      <% last_variation = "+#{last_variation}" %>
+      <% cl = "green" %>
+    <% end %>
+
     <div class="col-xs-12 col-sm-6 col-md-4">
       <%= link_to player_path(player) do %>
           <div class="card-trip">
             <%= image_tag(player.photo)%>
+
+            <div class="my-players-index">
+              <h3 id=<%= cl %>> <%= last_variation %> % </h3>
+            </div>
             <div class="car-trip-infos">
               <div id="player">
-                <div>
-                  <div>
-                    <h3> <em><%= player.name %></em> </h3>
+
+                  <div class="player-flex">
+                    <div class="player-info-left">
+                      <div>
+                        <h3> <%= player.name %> </h3>
+                      </div>
+                      <p> <strong> <%= player.club.name %> </strong> ( <%= player.position.downcase %> ) </p>
+                      <p> <%= goals.inject(0){|sum,x| sum + x } %> &nbsp; <i class="fas fa-futbol"></i> &nbsp; | &nbsp;
+                      <%= assists.inject(0){|sum,x| sum + x } %> &nbsp; <i class="fas fa-hands-helping"></i> </p>
+                    </div>
+
+                    <div class="player-info-right">
+                      <div>
+                        <h3> <%= tokens_total_value %> € &nbsp; <i class="fas fa-wallet"></i> </h3>
+                      </div>
+                      <p> <%= token_total_amount %> <%= quantity %> &nbsp; <i class="fas fa-coins"></i> ( <%= token_average_value %> € avg. ) </p>
+                      <!-- if -->
+                      <p> <%= prices.min %> €  &nbsp; <i class="fas fa-sort-down"></i> &nbsp; | &nbsp; <%= prices.max %> € <i class="fas fa-sort-up"></i> </p>
+                      <p>  </p>
+                    </div>
                   </div>
-                  <table style="width:100%">
-                    <tr>
-                      <td><p><%= player.club.name %></p></td>
-                      <td><p>Available tokens: <%= player.tokens.where(on_sale: true).count %> </p></td>
-                    </tr>
-                    <tr>
-                      <td><p><%= player.age %></p></td>
-                      <td><p><%= player.nationality %></p></td>
-                    </tr>
-                    <tr>
-                      <td><p><em><%= player.position %></em></p></td>
-                    </tr>
-                  </table>
-                </div>
 
               </div>
             </div>
           </div>
       <% end %>
+      <div class="buy-sell">
+
+        <% if token_total_amount == 0 %>
+          <%  %>
+        <% else %>
+          <%= link_to "buy coins", buy_player_path(player), class: "btn-buy-green"  %>
+        <% end %>
+
+
+          <!-- <button type="button" class="btn btn-buy-green" data-toggle="modal" data-target="#buyCoins"> buy coins </button> -->
+        <% if player.tokens.where(owner: current_user).count > 0 %>
+          <%= link_to "sell coins", sell_player_path(player), class: "btn-sell-red" %>
+        <% else %>
+          <%  %>
+        <% end %>
+
+
+
+
+      </div>
 <br>
 <br>
     </div>
   <% end %>
 </div>
-
