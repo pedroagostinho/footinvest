@@ -24,7 +24,12 @@ class PagesController < ApplicationController
 
     sorted.uniq(&:player_id).each do |t|
       player_tokens = sorted.where(player_id: t.player_id)
-      @variation[t.player_id] = (((player_tokens.first.price - player_tokens.second.price) / player_tokens.second.price.to_f) * 100).round(2)
+
+      if player_tokens.first.nil? || player_tokens.second.nil?
+        @variation[t.player_id] = 0
+      else
+        @variation[t.player_id] = (((player_tokens.first.price - player_tokens.second.price) / player_tokens.second.price.to_f) * 100).round(1)
+      end
     end
 
     @variation_sorted_by_value = @variation.sort_by {|_key, value| value}.to_h
@@ -44,16 +49,17 @@ class PagesController < ApplicationController
         @stock_ticker_up << @players.where(id: key)[0].name
         @stock_ticker_up << value
         @stock_ticker_up << "%"
+        @stock_ticker_up << "           "
       else
         @stock_ticker_down << @players.where(id: key)[0].name
         @stock_ticker_down << value
         @stock_ticker_down << "%"
+        @stock_ticker_down << "          "
       end
     end
 
-    @up = @stock_ticker_up.join(" ")
-    @down = @stock_ticker_down.join(" ")
-
+    @up = @stock_ticker_up.join(' ')
+    @down = @stock_ticker_down.join(' ')
    end
 
   def dashboard
@@ -81,7 +87,11 @@ class PagesController < ApplicationController
 
     sorted.uniq(&:player_id).each do |t|
       player_tokens = sorted.where(player_id: t.player_id)
-      @variation[t.player_id] = (((player_tokens.first.price - player_tokens.second.price) / player_tokens.second.price.to_f) * 100).round(2)
+      if player_tokens.first.nil? || player_tokens.second.nil?
+        @variation[t.player_id] = 0
+      else
+        @variation[t.player_id] = (((player_tokens.first.price - player_tokens.second.price) / player_tokens.second.price.to_f) * 100).round(1)
+      end
     end
 
 
@@ -101,11 +111,11 @@ class PagesController < ApplicationController
         @tokens_total_value << transaction.price if transaction.buying_user_id == transaction.owner && transaction.buying_user_id == current_user.id && transaction.player_id == player.id
       end
       v_player = @tokens_total_value.sum
-      @portfolio_percentage[player.name] = (v_player.to_f / t_v.to_f).round(2) * 100
+      @portfolio_percentage[player.name] = (v_player.to_f / t_v.to_f * 100).round(2)
     end
 
     @pie_chart = @portfolio_percentage.first(7).to_h
-    @pie_chart["Others"] = 100 - @pie_chart.sum { |k, v| v }
+    @pie_chart["Others"] = (100 - @pie_chart.sum { |k, v| v }).round(2)
   end
 end
 

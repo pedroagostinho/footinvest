@@ -24,8 +24,14 @@ class PlayersController < ApplicationController
     @variation = Hash.new()
 
     sorted.uniq(&:player_id).each do |t|
+
       player_tokens = sorted.where(player_id: t.player_id)
-      @variation[t.player_id] = (((player_tokens.first.price - player_tokens.second.price) / player_tokens.second.price.to_f) * 100).round(2)
+
+      if player_tokens.first.nil? || player_tokens.second.nil?
+        @variation[t.player_id] = 0
+      else
+        @variation[t.player_id] = (((player_tokens.first.price - player_tokens.second.price) / player_tokens.second.price.to_f) * 100).round(1)
+      end
     end
 
     if params[:query].present? and params[:tokens].present?
@@ -74,7 +80,7 @@ class PlayersController < ApplicationController
     if Token.where(player_id: @player.id).where.not(owner: nil).count == 0
       @variation = 0
     else
-      @variation = (((player_tokens.first.price - player_tokens.second.price) / player_tokens.second.price.to_f) * 100).round(2)
+      @variation = (((player_tokens.first.price - player_tokens.second.price) / player_tokens.second.price.to_f) * 100).round(1)
     end
 
     tokens_with_own = Token.where(player_id: params[:id], on_sale: true)
@@ -111,9 +117,13 @@ class PlayersController < ApplicationController
                       selling_user_id: token.owner)
       transaction.save
 
-      seller = User.find(token.owner)
-      seller.balance += token.last_price
-      seller.save
+      if token.owner.nil?
+        seller = nil
+      else
+        seller = User.find(token.owner)
+        seller.balance += token.last_price
+        seller.save
+      end
       # byebug
       token.update(on_sale: false)
       token.update(owner: current_user.id)
