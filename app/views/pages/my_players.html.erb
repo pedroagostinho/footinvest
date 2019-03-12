@@ -15,14 +15,21 @@
       <% total_value = [] %>
       <% total_amount = [] %>
       <% @my_players.each do |player| %>
-        <% tokens_total_value = player.tokens.where(owner: current_user).sum(:last_price) %>
-        <% total_value << tokens_total_value %>
+        <%# tokens_total_value = player.tokens.where(owner: current_user).sum(:last_price) %>
+        <%# total_value << tokens_total_value %>
+
 
         <% token_total_amount = player.tokens.where(owner: current_user).count %>
         <% total_amount << token_total_amount %>
       <% end %>
+
+      <% @transactions.each do |transaction| %>
+        <% total_value << transaction.price if transaction.buying_user_id == transaction.owner && transaction.buying_user_id == current_user.id %>
+      <% end %>
+
       <% total_value = total_value.inject(0){|sum,x| sum + x } %>
       <% total_amount = total_amount.inject(0){|sum,x| sum + x } %>
+
 
       <div class="col-xs-12 col-sm-6 col-md-3">
         <div class="info">
@@ -67,15 +74,16 @@
 </div>
 
 
-
 <div class="row">
   <% @my_players.each do |player| %>
 
     <!-- last price, minimum price and max price -->
     <% prices = [] %>
+    <% tokens_total_value = [] %>
 
     <% @transactions.each do |transaction| %>
       <% prices << transaction.price if transaction.player_id == player.id %>
+      <% tokens_total_value << transaction.price if transaction.buying_user_id == transaction.owner && transaction.buying_user_id == current_user.id && transaction.player_id == player.id %>
     <% end %>
 
     <!-- form, goals and assists -->
@@ -106,7 +114,7 @@
     <% end %>
 
     <!-- tokens total value, total amount and average value -->
-    <% tokens_total_value = player.tokens.where(owner: current_user).sum(:last_price) %>
+    <% tokens_total_value = tokens_total_value.inject(0){|sum,x| sum + x } %>
 
     <% token_total_amount = player.tokens.where(owner: current_user).count %>
     <% if token_total_amount == 1 %>

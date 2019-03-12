@@ -65,7 +65,9 @@ class PagesController < ApplicationController
     @transactions = Token.joins(:transactions)
                          .select('tokens.id,
                                   tokens.player_id,
+                                  tokens.owner,
                                   transactions.date_time,
+                                  transactions.buying_user_id,
                                   transactions.price')
                          .order('transactions.date_time DESC,
                                  tokens.player_id DESC')
