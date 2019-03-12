@@ -90,3 +90,65 @@
     color: white;
   }
 }
+
+.btn-footer-filled {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  background: white;
+  border-radius: 40px;
+  font-style: normal;
+  font-weight: bold;
+  line-height: normal;
+  font-size: 14px;
+  color: white;
+  padding: 15px 35px;
+  margin-bottom: 0px;
+  margin-right: 104px;
+  margin-left: 80px;
+  opacity: 0.9;
+  &:hover {
+    opacity: 1;
+  }
+  a {
+    color: #21CD9A;
+  }
+}
+
+.btn-footer-transparent {
+  border-radius: 40px;
+  font-style: normal;
+  font-weight: bold;
+  line-height: normal;
+  font-size: 14px;
+  padding: 15px 35px;
+  margin-bottom: 0px;
+  margin-right: 104px;
+  margin-left: 80px;
+  border: 1px solid #21CD9A;
+  opacity: 0.9;
+  &:hover {
+    opacity: 1;
+  }
+  a {
+    color: #21CD9A;
+  }
+}
+
+.btn-footer-learn-more {
+  border-radius: 40px;
+  font-style: normal;
+  font-weight: bold;
+  line-height: normal;
+  font-size: 14px;
+  padding: 15px 35px;
+  margin-bottom: 0px;
+  margin-right: 72px;
+  margin-left: 80px;
+  border: 1px solid #6C63FF;
+  opacity: 0.9;
+  &:hover {
+    opacity: 1;
+  }
+  a {
+    color: white;
+  }
+}

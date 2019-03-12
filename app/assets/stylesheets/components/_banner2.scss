@@ -1,4 +1,4 @@
-.banner {
+.banner2 {
   height: calc(100vh - 70px);
   padding-bottom: calc(70px + 50px + 37px);
 
@@ -28,37 +28,12 @@
     color: #3F3D56;
   }
 
-  &-images {
-    position: relative;
+  img {
+    object-fit: contain;
     height: 100%;
-  }
-
-  &-image {
-    position: absolute;
-
-    &-main {
-      object-fit: contain;
-      height: 100%;
-      width: 100%;
-      transform: scale(1.8) rotate(-80deg);
-      left: 25%;
-    }
-
-    &-1 {
-      top: -87px;
-      left: 60px;
-    }
-
-    &-11 {
-      left: -80%;
-      bottom: -70px;
-
-    }
-
-    &-111 {
-      left: -50%;
-      bottom: -70px;
-    }
+    width: 100%;
+    transform: scale(1.6);
+    margin-left: -42px;
   }
 }
 
