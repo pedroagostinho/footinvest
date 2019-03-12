@@ -74,39 +74,41 @@
 
 <div class="player-container">
 
-  <div class = "personal-details">
+  <div class="row">
 
-      <div class = "">
-        <h4>Nationality</h4>
-        <p><%= @player.nationality %></p>
-      </div>
-      <div class = "">
-        <h4>Position</h4>
-        <p><%= @player.position %> </p>
-      </div>
+    <div class="col-xs-6 col-sm-3">
       <div class = "">
         <h4>Age</h2>
         <p><%= @player.age %></p>
+      </div>
+      <div class = "">
+        <h4>Nationality</h4>
+        <p><%= @player.nationality %></p>
       </div>
       <div class = "">
         <h4>Club</h4>
         <p><%= @player.club.name%></p>
       </div>
       <div class = "">
+        <h4>Position</h4>
+        <p><%= @player.position %> </p>
+      </div>
+      <div class = "">
         <h4>Social</h4>
         <a href="<%= @player.social_url %>", target="_blank"> <p><i class="fab fa-instagram fa-lg"></i></p></a>
       </div>
+    </div>
 
+  <div class="col-xs-6 col-sm-3">
+    <%= image_tag('http://cdn.onlinewebfonts.com/svg/img_22782.png') %>
   </div>
 
-  <div class="personal-stats">
-
+  <div class="col-xs-6">
     <% @player.stats.each do |stat| %>
-
     <table class="table table-striped">
       <thead>
-        <tr>
-          <th scope="col">#</th>
+        <tr class="green-row">
+          <th scope="col"></th>
           <th scope="col">Competition</th>
           <th scope="col">Games</th>
           <th scope="col">Goals</th>
@@ -127,8 +129,9 @@
         </tr>
       </tbody>
     </table>
-
     <% end %>
+  </div>
+
 
   </div>
 

@@ -21,4 +21,3 @@ if (feed || my_player ) {
 
 // for Google Charts
 // just include https://www.gstatic.com/charts/loader.js in your views
-
