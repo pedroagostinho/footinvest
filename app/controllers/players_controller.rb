@@ -16,6 +16,9 @@ class PlayersController < ApplicationController
                                   transactions.price')
                          .order('transactions.date_time DESC,
                                  tokens.player_id DESC')
+
+    @tokens = Token.all
+
     sorted = Token.joins(:transactions).select('tokens.id, tokens.player_id, transactions.date_time, transactions.price').order('transactions.date_time DESC, tokens.player_id ASC')
 
     @variation = Hash.new()
@@ -28,7 +31,7 @@ class PlayersController < ApplicationController
     if params[:query].present? and params[:tokens].present?
       @list = Player.global_search(params[:query])
       @list.each do |pl|
-        @players << pl if pl.tokens.where(on_sale: true).count >= params[:tokens].to_i
+        @players << pl if pl.tokens.where(on_sale: true).where.not(owner: current_user).count + pl.tokens.where(on_sale: true).where(owner: nil).count >= params[:tokens].to_i
       end
       respond_to do |format|
         format.html { redirect_to players_path }
@@ -45,7 +48,7 @@ class PlayersController < ApplicationController
 
     elsif params[:tokens].present?
       Player.all.each do |pl|
-        @players << pl if pl.tokens.where(on_sale: true).count >= params[:tokens].to_i
+        @players << pl if pl.tokens.where(on_sale: true).where.not(owner: current_user).count + pl.tokens.where(on_sale: true).where(owner: nil).count >= params[:tokens].to_i
       end
 
       respond_to do |format|

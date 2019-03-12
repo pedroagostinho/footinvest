@@ -1,11 +1,11 @@
 <%= simple_form_for players_path, method: :get, remote: true do |f| %>
 <div class="search">
-  <%= f.input :search, input_html: { name: 'query', placeholder: 'Name, Age, Club or Position.' }%>
+  <%= f.input :search, input_html: { name: 'query', placeholder: 'player info ( name, club, position )' } %>
   <%#= f.input :position, collection: [ "Goalkeeper", "Defender", "Midfielder", "Forward"] , %>
   <%#= f.input :nationality %>
   <%#= f.input :age %>
   <%#= f.input :tokens, as: :range, input_html: { name: 'tokens', min: '0', max: '10', step: '1'  } %>
-  <%= f.input :tokens, input_html: { name: 'tokens', placeholder: 'Available tokens?' } %>
-  <%= f.button :submit, 'Spot a Star', class: ' btn btn-landing-blue' %>
+  <%= f.input :coins, input_html: { name: 'tokens', placeholder: 'available coins ( min )' } %>
+  <%= f.button :submit, 'Spot a Star', class: 'align btn-landing-purple' %>
 </div>
 <% end %>
