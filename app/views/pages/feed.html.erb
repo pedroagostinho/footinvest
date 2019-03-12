@@ -1,6 +1,6 @@
 <!-- ****************RESULTS****************++ -->
 
-  <div>
+  <div class="fixed-coins">
     <div class="marquee3k" data-speed="1" data-reverse="bool" data-pausable="bool">
             <p class = "stock_up"> <%= @up %> </p>
     </div>
@@ -11,37 +11,37 @@
 
 <div class="main-container">
     <div id="results">
-
+    <div class="result-sty"></div>
       <h3 class="title">RESULTS</h3>
-      <h4 class="competition"><%= @results1[0].competition.name %></h4>  <br>
+      <h4 class="competition"><%= @results1[0].competition.name %></h4>
       <% @results1.each do |result| %>
         <div class = "match">
-          <p class="home club-name"><%= result.home_club_name %></p>
+          <p class="home1 club-name"><%= result.home_club_name %></p>
           <p class= "result"><%= result.home_club_goals %> - <%=result.away_club_goals %> </p>
           <p class="away club-name"><%= result.away_club_name %></p>
         </div>
-        <br>
       <% end %>
 
-      <h4 class="competition"><%= @results2[0].competition.name %></h4>  <br>
+      <h4 class="competition"><%= @results2[0].competition.name %></h4>
       <% @results2.each do |result| %>
         <div class = "match">
-          <p class="home club-name"><%= result.home_club_name %></p>
+          <p class="home1 club-name"><%= result.home_club_name %></p>
           <p class= "result"><%= result.home_club_goals %> - <%=result.away_club_goals %> </p>
           <p class="away club-name"><%= result.away_club_name %></p>
         </div>
-        <br>
+
       <% end %>
 
-      <h4 class="competition"><%= @results3[0].competition.name %></h4>  <br>
+      <h4 class="competition"><%= @results3[0].competition.name %></h4>
       <% @results3.each do |result| %>
         <div class = "match">
-          <p class="home club-name"><%= result.home_club_name %></p>
+          <p class="home1 club-name"><%= result.home_club_name %></p>
           <p class= "result"><%= result.home_club_goals %> - <%=result.away_club_goals %> </p>
           <p class="away club-name"><%= result.away_club_name %></p>
         </div>
-        <br>
+
       <% end %>
+      </div>
     </div>
 
    <!-- ****************+NEWS****************++ -->
@@ -68,51 +68,50 @@
       <div  class="feed-cards">
         <% @top_winners.each do |key, value| %>
           <%#= link_to player_path(@players.where(id: key)[0]) do %>
-
             <div class="card-trip">
-              <%= image_tag(@players.where(id: key)[0].photo)%>
-              <div class="card-trip-infos">
-                <div class="player-info-left">
-                  <h3><%= @players.where(id: key)[0].name %></h3>
-                  <p> <strong> <%= @players.where(id: key)[0].club.name %> </strong> ( <%= @players.where(id: key)[0].position.downcase %> ) </p>
+              <%= image_tag(@players.where(id: key)[0].photo) %>
+              <%= link_to player_path(@players.where(id: key)[0]) do %>
+                <div class="card-trip-infos">
+                  <div class="player-info-left">
+                    <h3><%= @players.where(id: key)[0].name %></h3>
+                    <p> <strong> <%= @players.where(id: key)[0].club.name %> </strong> ( <%= @players.where(id: key)[0].position.downcase %> ) </p>
+                  </div>
+                  <div class="player-info-right">
+                    <p id="green"> <strong><%= value %>%</strong> </p>
+                  </div>
                 </div>
-                <div class="player-info-right">
-                  <p id="green"><%= value %>%</p>
-                </div>
-              </div>
+              <% end %>
             </div>
           <%# end %>
         <% end %>
       </div>
 
-
-    <div>
       <h3 class="title">TOP LOSERS</h3>
       <div class="feed-cards">
         <% @top_losers.each do |key, value| %>
 
           <div class="card-trip">
-            <%= image_tag(@players.where(id: key)[0].photo, crop: :fill)%>
-            <div class="card-trip-infos">
-              <div class="player-info-left">
-                <h3><%= @players.where(id: key)[0].name %></h3>
-                <p> <strong> <%= @players.where(id: key)[0].club.name %> </strong> ( <%= @players.where(id: key)[0].position.downcase %> ) </p>
+            <%= image_tag(@players.where(id: key)[0].photo)%>
+            <%= link_to player_path(@players.where(id: key)[0]) do %>
+              <div class="card-trip-infos">
+                <div class="player-info-left">
+                  <h3><%= @players.where(id: key)[0].name %></h3>
+                  <p> <strong> <%= @players.where(id: key)[0].club.name %> </strong> ( <%= @players.where(id: key)[0].position.downcase %> ) </p>
+                </div>
+                <p id="red"> <strong><%= value %>%</strong></p>
               </div>
-              <p id="red"><%= value %>%</p>
-            </div>
+            <% end %>
           </div>
-          <br>
-          <br>
 
       <% end %>
       </div>
-    </div>
+
 
     <div class="newspaper">
       <h3 class="title">NEWS</h3>
       <div class="feed-cards">
         <% @img_array.each do |i|  %>
-            <div class="card-trip">
+            <div class="news-trip">
               <img src=" <%= i %> ">
             </div>
         <% end %>
