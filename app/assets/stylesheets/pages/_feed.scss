@@ -201,6 +201,7 @@
 
 #results {
   height: 100vh;
+  position: relative;
 }
 
 .tops {
@@ -221,7 +222,12 @@
     }
   }
 }
-
+.fixed-coins {
+  position: fixed;
+}
+.newspaper {
+  padding-bottom: 20px;
+}
 
 
 

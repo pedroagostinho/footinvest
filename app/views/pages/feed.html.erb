@@ -1,17 +1,18 @@
-<div class="marquee3k" data-speed="1" data-reverse="bool" data-pausable="bool">
-        <p class = "stock_up"> <%= @up %> </p>
-</div>
-<div class="marquee3k" data-speed="1.25" data-reverse="bool" data-pausable="bool">
-        <p class = "stock_down"> <%= @down %> </p>
-</div>
-
 <!-- ****************RESULTS****************++ -->
 
-<div class="main-container">
+  <div>
+    <div class="marquee3k" data-speed="1" data-reverse="bool" data-pausable="bool">
+            <p class = "stock_up"> <%= @up %> </p>
+    </div>
+    <div class="marquee3k" data-speed="1.25" data-reverse="bool" data-pausable="bool">
+            <p class = "stock_down"> <%= @down %> </p>
+    </div>
+  </div>
 
+<div class="main-container">
     <div id="results">
 
-      <h4 class="title">RESULTS</h4>
+      <h3 class="title">RESULTS</h3>
       <h4 class="competition"><%= @results1[0].competition.name %></h4>  <br>
       <% @results1.each do |result| %>
         <div class = "match">
@@ -62,10 +63,11 @@
 
    <!-- ****************+TOP WINNERS / LOSERS ****************++ -->
   <div class="tops">
-    <div>
-      <h4 class="title">TOP WINNERS</h4>
+
+      <h3 class="title">TOP WINNERS</h3>
       <div  class="feed-cards">
         <% @top_winners.each do |key, value| %>
+          <%#= link_to player_path(@players.where(id: key)[0]) do %>
 
             <div class="card-trip">
               <%= image_tag(@players.where(id: key)[0].photo)%>
@@ -79,14 +81,13 @@
                 </div>
               </div>
             </div>
-
-
+          <%# end %>
         <% end %>
       </div>
-    </div>
+
 
     <div>
-      <h4 class="title">TOP LOSERS</h4>
+      <h3 class="title">TOP LOSERS</h3>
       <div class="feed-cards">
         <% @top_losers.each do |key, value| %>
 
@@ -107,8 +108,8 @@
       </div>
     </div>
 
-    <div>
-      <h4 class="title">NEWS</h4>
+    <div class="newspaper">
+      <h3 class="title">NEWS</h3>
       <div class="feed-cards">
         <% @img_array.each do |i|  %>
             <div class="card-trip">
