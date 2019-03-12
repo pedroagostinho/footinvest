@@ -78,6 +78,10 @@ class PlayersController < ApplicationController
                       buying_user_id: current_user.id,
                       selling_user_id: token.owner)
       transaction.save
+
+      seller = User.find(token.owner)
+      seller.balance += token.last_price
+      seller.save
       # byebug
       token.update(on_sale: false)
       token.update(owner: current_user.id)
@@ -88,9 +92,9 @@ class PlayersController < ApplicationController
     total_amount = total_amount.inject(0) { |sum, x| sum + x }
 
     current_user.balance = @balance - total_amount
+    current_user.save
 
-    # byebug
-    if current_transactions + @tokens_to_buy.count == Transaction.count
+    if (current_transactions + @tokens_to_buy.count) == Transaction.count
       redirect_to my_players_path
     else
       render :buy
