@@ -62,67 +62,61 @@
 
    <!-- ****************+TOP WINNERS / LOSERS ****************++ -->
   <div class="tops">
-
-      <div>
-        <h4 class="title">TOP WINNERS</h4>
-        <div  class="feed-cards">
-          <% @top_winners.each do |key, value| %>
-
-              <div class="card-trip">
-                <%= image_tag(@players.where(id: key)[0].photo)%>
-                <div class="card-trip-infos">
-                  <div class="player-info-left">
-                    <h3><%= @players.where(id: key)[0].name %></h3>
-                    <p> <strong> <%= @players.where(id: key)[0].club.name %> </strong> ( <%= @players.where(id: key)[0].position.downcase %> ) </p>
-                  </div>
-                  <div class="player-info-right">
-                    <p id="green"><%= value %>%</p>
-                  </div>
-                </div>
-              </div>
-
-
-          <% end %>
-        </div>
-      </div>
-
-      <div>
-        <h4 class="title">TOP LOSERS</h4>
-        <div class="feed-cards">
-          <% @top_losers.each do |key, value| %>
+    <div>
+      <h4 class="title">TOP WINNERS</h4>
+      <div  class="feed-cards">
+        <% @top_winners.each do |key, value| %>
 
             <div class="card-trip">
-              <%= image_tag(@players.where(id: key)[0].photo, crop: :fill)%>
+              <%= image_tag(@players.where(id: key)[0].photo)%>
               <div class="card-trip-infos">
                 <div class="player-info-left">
                   <h3><%= @players.where(id: key)[0].name %></h3>
                   <p> <strong> <%= @players.where(id: key)[0].club.name %> </strong> ( <%= @players.where(id: key)[0].position.downcase %> ) </p>
                 </div>
-                <p id="red"><%= value %>%</p>
+                <div class="player-info-right">
+                  <p id="green"><%= value %>%</p>
+                </div>
               </div>
             </div>
-            <br>
-            <br>
+
 
         <% end %>
-        </div>
       </div>
+    </div>
 
-      <div>
-      <h4 class="title">NEWS</h4>
-        <div class="feed-cards">
-          <% @img_array.each do |i|  %>
+    <div>
+      <h4 class="title">TOP LOSERS</h4>
+      <div class="feed-cards">
+        <% @top_losers.each do |key, value| %>
 
-              <div class="card-trip">
-                <img src=" <%= i %> ">
+          <div class="card-trip">
+            <%= image_tag(@players.where(id: key)[0].photo, crop: :fill)%>
+            <div class="card-trip-infos">
+              <div class="player-info-left">
+                <h3><%= @players.where(id: key)[0].name %></h3>
+                <p> <strong> <%= @players.where(id: key)[0].club.name %> </strong> ( <%= @players.where(id: key)[0].position.downcase %> ) </p>
               </div>
+              <p id="red"><%= value %>%</p>
+            </div>
+          </div>
+          <br>
+          <br>
 
-          <% end %>
-
-        </div>
-
+      <% end %>
       </div>
+    </div>
 
+    <div>
+      <h4 class="title">NEWS</h4>
+      <div class="feed-cards">
+        <% @img_array.each do |i|  %>
+            <div class="card-trip">
+              <img src=" <%= i %> ">
+            </div>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
 

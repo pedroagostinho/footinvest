@@ -68,6 +68,7 @@ class PlayersController < ApplicationController
     @tokens_to_buy = @tokens.first(nr_tokens)
 
     total_amount = []
+    current_transactions = Transaction.count
 
     @tokens_to_buy.each do |token|
 
@@ -76,9 +77,8 @@ class PlayersController < ApplicationController
                       token_id: token.id,
                       buying_user_id: current_user.id,
                       selling_user_id: token.owner)
-      # byebug
       transaction.save
-
+      # byebug
       token.update(on_sale: false)
       token.update(owner: current_user.id)
 
@@ -89,14 +89,12 @@ class PlayersController < ApplicationController
 
     current_user.balance = @balance - total_amount
 
-    redirect_to my_players_path
-
-    # if Transaction.new.save
-    #   redirect_to player_path(@player)
-    # else
-    #   render :buy
-    # end
-
+    # byebug
+    if current_transactions + @tokens_to_buy.count == Transaction.count
+      redirect_to my_players_path
+    else
+      render :buy
+    end
   end
 
   def sell
@@ -111,27 +109,10 @@ class PlayersController < ApplicationController
 
     @tokens_to_sell = @tokens.first(nr_tokens)
 
-    total_amount = []
-
-    @tokens_to_buy.each do |token|
-
-      transaction = Transaction.new(date_time: DateTime.now,
-                      price: token.last_price,
-                      token_id: token.id,
-                      buying_user_id: current_user.id,
-                      selling_user_id: token.owner)
-      # byebug
-      transaction.save
-
-      token.update(on_sale: false)
-      token.update(owner: current_user.id)
-
-      total_amount << token.last_price
+    @tokens_to_sell.each do |token|
+      token.update(on_sale: true)
+      token.update(last_price: price)
     end
-
-    total_amount = total_amount.inject(0) { |sum, x| sum + x }
-
-    current_user.balance = @balance - total_amount
 
     redirect_to my_players_path
   end
@@ -140,8 +121,3 @@ class PlayersController < ApplicationController
     @player = Player.find(params[:id])
   end
 end
-
-
-
-
-

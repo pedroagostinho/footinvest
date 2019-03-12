@@ -10,9 +10,10 @@ class PagesController < ApplicationController
   end
 
   def feed
-    @results1 = Result.where(competition_id: 1).order(date_time: :desc).take(10)
-    @results2 = Result.where(competition_id: 2).order(date_time: :desc).take(10)
-    @results3 = Result.where(competition_id: 3).order(date_time: :desc).take(10)
+
+    @results1 = Competition.first.latest_results
+    @results2 = Competition.second.latest_results
+    @results3 = Competition.third.latest_results
 
     @news = New.order(date_time: :desc).take(5)
     @players = Player.all
@@ -63,7 +64,9 @@ class PagesController < ApplicationController
     @transactions = Token.joins(:transactions)
                          .select('tokens.id,
                                   tokens.player_id,
+                                  tokens.owner,
                                   transactions.date_time,
+                                  transactions.buying_user_id,
                                   transactions.price')
                          .order('transactions.date_time DESC,
                                  tokens.player_id DESC')
