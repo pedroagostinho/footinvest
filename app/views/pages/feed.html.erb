@@ -7,119 +7,118 @@
 
 <!-- ****************RESULTS****************++ -->
 
-<div id="no-padding-top" class="row">
-  <div class="col-xs-3 left-cont">
+<div class="main-container">
 
-    <h4 class="title">RESULTS</h4>
-    <h4 class="competition"><%= @results1[0].competition.name %></h4>  <br>
-    <% @results1.each do |result| %>
-      <div class = "match">
-        <p class="home1 club-name"><%= result.home_club_name %></p>
-        <p class= "result"><%= result.home_club_goals %> - <%=result.away_club_goals %> </p>
-        <p class="away club-name"><%= result.away_club_name %></p>
-      </div>
-      <br>
-    <% end %>
+    <div id="results">
 
-    <h4 class="competition"><%= @results2[0].competition.name %></h4>  <br>
-    <% @results2.each do |result| %>
-      <div class = "match">
-        <p class="home1 club-name"><%= result.home_club_name %></p>
-        <p class= "result"><%= result.home_club_goals %> - <%=result.away_club_goals %> </p>
-        <p class="away club-name"><%= result.away_club_name %></p>
-      </div>
-      <br>
-    <% end %>
-
-    <h4 class="competition"><%= @results3[0].competition.name %></h4>  <br>
-    <% @results3.each do |result| %>
-      <div class = "match">
-        <p class="home1 club-name"><%= result.home_club_name %></p>
-        <p class= "result"><%= result.home_club_goals %> - <%=result.away_club_goals %> </p>
-        <p class="away club-name"><%= result.away_club_name %></p>
-      </div>
-      <br>
-    <% end %>
-  </div>
-
- <!-- ****************+NEWS****************++ -->
-
-<!--   <div class="col-xs-7">
-    <h4 class="title top">NEWS</h4>
-    <%# @news.each do |new| %>
-      <div class = "news news-product">
-        <%#= image_tag(new.photo, height: '70', width: '100', crop: :fill)%>
-        <div class="news-product-infos">
-          <h2> <%#= new.tag %> </h2>  <br>
-          <h4><%#= new. title %></h4>  <br>
-          <p><%#= new.summary %> All the breaking news and latest views from today's eight Premier League manager news conferences.</p>
-          <br>
+      <h4 class="title">RESULTS</h4>
+      <h4 class="competition"><%= @results1[0].competition.name %></h4>  <br>
+      <% @results1.each do |result| %>
+        <div class = "match">
+          <p class="home club-name"><%= result.home_club_name %></p>
+          <p class= "result"><%= result.home_club_goals %> - <%=result.away_club_goals %> </p>
+          <p class="away club-name"><%= result.away_club_name %></p>
         </div>
-    </div>
-    <%# end %>
-  </div> -->
+        <br>
+      <% end %>
 
- <!-- ****************+TOP WINNERS / LOSERS ****************++ -->
-    <div class="top">
-      <div class="col-xs-9">
-        <h4 class="title">TOP WINNERS</h4>
-        <div class="feed-cards">
-          <% @top_winners.each do |key, value| %>
-            <div class = "col-xs-4">
-              <div class="card-trip">
-                <%= image_tag(@players.where(id: key)[0].photo)%>
-                <div class="card-trip-infos">
-                  <h6><%= @players.where(id: key)[0].name %></h6>
-                  <p><%= value %>%</p>
+      <h4 class="competition"><%= @results2[0].competition.name %></h4>  <br>
+      <% @results2.each do |result| %>
+        <div class = "match">
+          <p class="home club-name"><%= result.home_club_name %></p>
+          <p class= "result"><%= result.home_club_goals %> - <%=result.away_club_goals %> </p>
+          <p class="away club-name"><%= result.away_club_name %></p>
+        </div>
+        <br>
+      <% end %>
+
+      <h4 class="competition"><%= @results3[0].competition.name %></h4>  <br>
+      <% @results3.each do |result| %>
+        <div class = "match">
+          <p class="home club-name"><%= result.home_club_name %></p>
+          <p class= "result"><%= result.home_club_goals %> - <%=result.away_club_goals %> </p>
+          <p class="away club-name"><%= result.away_club_name %></p>
+        </div>
+        <br>
+      <% end %>
+    </div>
+
+   <!-- ****************+NEWS****************++ -->
+
+    <!--   <div class="col-xs-7">
+      <h4 class="title top">NEWS</h4>
+      <%# @news.each do |new| %>
+        <div class = "news news-product">
+          <%#= image_tag(new.photo, height: '70', width: '100', crop: :fill)%>
+          <div class="news-product-infos">
+            <h2> <%#= new.tag %> </h2>  <br>
+            <h4><%#= new. title %></h4>  <br>
+            <p><%#= new.summary %> All the breaking news and latest views from today's eight Premier League manager news conferences.</p>
+            <br>
+          </div>
+      </div>
+      <%# end %>
+    </div> -->
+
+   <!-- ****************+TOP WINNERS / LOSERS ****************++ -->
+  <div class="tops">
+    <div>
+      <h4 class="title">TOP WINNERS</h4>
+      <div  class="feed-cards">
+        <% @top_winners.each do |key, value| %>
+
+            <div class="card-trip">
+              <%= image_tag(@players.where(id: key)[0].photo)%>
+              <div class="card-trip-infos">
+                <div class="player-info-left">
+                  <h3><%= @players.where(id: key)[0].name %></h3>
+                  <p> <strong> <%= @players.where(id: key)[0].club.name %> </strong> ( <%= @players.where(id: key)[0].position.downcase %> ) </p>
+                </div>
+                <div class="player-info-right">
+                  <p id="green"><%= value %>%</p>
                 </div>
               </div>
             </div>
-          <% end %>
-        </div>
-      </div>
-      <div class="col-xs-9">
-        <h4 class="title">TOP LOSERS</h4>
-        <div class="feed-cards">
-          <% @top_losers.each do |key, value| %>
-          <div class="col-xs-4">
-            <div class="card-trip">
-              <%= image_tag(@players.where(id: key)[0].photo, crop: :fill)%>
-              <div class="card-trip-infos">
-                <h6><%= @players.where(id: key)[0].name %></h6>
-                <p><%= value %>%</p>
-              </div>
-            </div>
-          </div>
+
+
         <% end %>
-        </div>
       </div>
     </div>
 
+    <div>
+      <h4 class="title">TOP LOSERS</h4>
+      <div class="feed-cards">
+        <% @top_losers.each do |key, value| %>
 
-
-  <div class="col-xs-9">
-    <h4 class="title">NEWS</h4>
-    <div class="news">
-      <% @img_array.each do |i|  %>
-          <div class="news-trip">
-            <img src=" <%= i %> ">
+          <div class="card-trip">
+            <%= image_tag(@players.where(id: key)[0].photo, crop: :fill)%>
+            <div class="card-trip-infos">
+              <div class="player-info-left">
+                <h3><%= @players.where(id: key)[0].name %></h3>
+                <p> <strong> <%= @players.where(id: key)[0].club.name %> </strong> ( <%= @players.where(id: key)[0].position.downcase %> ) </p>
+              </div>
+              <p id="red"><%= value %>%</p>
+            </div>
           </div>
-      <% end %>
+          <br>
+          <br>
 
-      <div class="col-xs-4">
-        <div class="news-trip">
-          <img src="https://cdn.record.pt/images/2019-03/img_467x599$2019_03_10_02_22_49_1515553.jpg" alt="Capa Record" height="300" width="280">
-        </div>
+      <% end %>
       </div>
-      <div class="col-xs-4">
-        <div class="news-trip">
-          <img src="https://static.globalnoticias.pt/oj/image.aspx?brand=OJ&type=generate&guid=b10365be-8e08-42e5-b219-14dda3d4b829&w=390&h=492&t=20190310003153" alt="Capa O Jogo" height="300" width="280">
-        </div>
+    </div>
+
+    <div>
+      <h4 class="title">NEWS</h4>
+      <div class="feed-cards">
+        <% @img_array.each do |i|  %>
+            <div class="card-trip">
+              <img src=" <%= i %> ">
+            </div>
+        <% end %>
       </div>
     </div>
   </div>
-
 </div>
 
-<img src="<%= @img_array.first  %>" alt="">
+<!-- <img src="<%= @img_array.first  %>" alt=""> -->
 

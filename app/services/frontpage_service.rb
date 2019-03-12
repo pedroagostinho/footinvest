@@ -18,7 +18,7 @@ class FrontpageService
       @img_array << "https://#{element.css('picture img').attr('data-src').value[2..-1]}"
       # puts element.css('picture')[0]['data-original-src']
     end
-    @img_array
+    @img_array[1..5]
   end
 end
 

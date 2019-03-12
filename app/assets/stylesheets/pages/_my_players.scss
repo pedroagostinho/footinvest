@@ -91,13 +91,20 @@
   position: absolute;
   top: 10px;
   left: 10px;
-  background: white;
-  padding: 10px;
+  background: yellow;
   border-radius: 10px;
   h3 {
     color: $footinvest-black;
     font-size: 16px;
   }
+}
+.diagonal-marquee {
+  transform: rotate(-45deg);
+}
+.marquee3k__copy {
+  padding-right: 1px;
+  box-sizing: border-box;
+  margin-left: -200px;
 }
 
 .index {
