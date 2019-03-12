@@ -1,7 +1,7 @@
 // app/views/players/index.js.erb
 // Here you generate *JavaScript* that would be executed in the browser
 function refreshForm(innerHTML) {
-  const playersDiv = document.getElementsByClassName('players')[0];
+  const playersDiv = document.getElementById('players-list');
   playersDiv.innerHTML = innerHTML;
 }
 
