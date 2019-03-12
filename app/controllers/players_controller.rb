@@ -67,12 +67,20 @@ class PlayersController < ApplicationController
     sorted = Token.joins(:transactions).select('tokens.id, tokens.player_id, transactions.date_time, transactions.price').order('transactions.date_time DESC, tokens.player_id ASC')
 
     player_tokens = sorted.where(player_id: @player.id)
-    @variation = (((player_tokens.first.price - player_tokens.second.price) / player_tokens.second.price.to_f) * 100).round(2)
+
+    if Token.where(player_id: @player.id).where.not(owner: nil).count == 0
+      @variation = 0
+    else
+      @variation = (((player_tokens.first.price - player_tokens.second.price) / player_tokens.second.price.to_f) * 100).round(2)
+    end
 
     tokens_with_own = Token.where(player_id: params[:id], on_sale: true)
+
+    tokens_with_own_all = Token.where(player_id: params[:id])
+
     @tokens = tokens_with_own.reject { |token| token.owner == current_user.id }
 
-    @token_last_price = tokens_with_own.order(last_price: :DESC).last
+    @token_last_price = tokens_with_own_all.order(last_price: :DESC).last
   end
 
   def buy
