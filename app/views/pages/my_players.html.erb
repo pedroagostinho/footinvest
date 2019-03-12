@@ -62,11 +62,15 @@
   <div id="no-padding-top" class="row">
 
     <div class="col-xs-12">
-
       <div class="header-charts">
-        <h1> chart </h1>
-      </div>
+          <div class="" style="height: 395px;">
+             <div class="chart-market-value">
+                <%= line_chart @portfolio.pluck(:date_time, :value),title: "portfolio value", xtitle: "days", ytitle: "portfolio value€", colors: ["#25C588"], width: "50%", height: "300px" %>
+                <%= pie_chart (@pie_chart),  legend: false, title: "players percentage" , width: "50%", height: "300px", colors: ["#25C588", "#22B47C", "#1FA270","#1B9063","#187E57","#156C4B","#115A3E","#0E4832"] %>
+              </div>
 
+          </div>
+      </div>
     </div>
 
   </div>
