@@ -7,13 +7,13 @@
 }
 
 .header-search {
-  background: #4B4962;
-  color: white;
+  background: $footinvest-blue;
+  color: $footinvest-main;
   height: 100px;
   position: sticky;
   top: 70px;
   z-index: 1;
-  border: 0.5px solid #4B4962;
+  border: 0.5px solid $footinvest-blue;
 }
 
 .search-bar {

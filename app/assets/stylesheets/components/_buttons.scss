@@ -45,25 +45,25 @@
 
 .btn-landing-purple {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
-  background: white;
+  background: $footinvest-main;
   border-radius: 40px;
   font-style: normal;
   font-weight: bold;
   line-height: normal;
   font-size: 14px;
-  color: #4B4962;
+  color: white;
   height: 39px;
   padding: 0px 35px;
   margin-bottom: 0px;
   margin-right: 10px;
   margin-left: 30px;
-  border: 1px solid #4B4962;
+  border: 1px solid $footinvest-main;
   opacity: 0.9;
   &:hover {
     opacity: 1;
   }
   a {
-    color: #4B4962;
+    color: $footinvest-blue;
   }
 }
 
