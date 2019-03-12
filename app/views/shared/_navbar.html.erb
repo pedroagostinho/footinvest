@@ -12,8 +12,6 @@
     <% if user_signed_in? %>
 
       <!-- Links when logged in -->
-      <p class="navbar-wagon-link"> <%= @balance %> € </p>
-
 
       <% (controller_name == 'pages' && action_name == 'feed') ? color_class = 'green' : color_class = '' %>
       <%= link_to "Feed", feed_path, class: "navbar-wagon-item navbar-wagon-link #{color_class}" %>
@@ -27,6 +25,8 @@
 
       <% (controller_name == 'players' && action_name == 'index') ? color_class = 'green' : color_class = '' %>
       <%= link_to "Market", players_path, class: "navbar-wagon-item navbar-wagon-link #{color_class}" %>
+
+      <p class="balance">€<%= @balance %></p>
 
       <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">
