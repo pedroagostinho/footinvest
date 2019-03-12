@@ -207,14 +207,20 @@
   flex-grow: 1;
 }
 .feed-cards {
-  justify-content: space-between;
-  // display: flex;
-  width: auto;
-  margin-bottom: 30px;
-  display: inline;
-
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  .card-trip {
+    width: 18%;
+  }
 }
-
+@media screen and (max-width: 800px) {
+  .feed-cards {
+    .card-trip {
+    width: 100%;
+    }
+  }
+}
 
 
 

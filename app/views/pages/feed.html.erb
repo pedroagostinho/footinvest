@@ -63,12 +63,12 @@
    <!-- ****************+TOP WINNERS / LOSERS ****************++ -->
   <div class="tops">
 
-      <div class="row">
+      <div>
         <h4 class="title">TOP WINNERS</h4>
         <div  class="feed-cards">
           <% @top_winners.each do |key, value| %>
-            <div class="col-xs-12 col-sm-6 col-md-4">
-              <div class="card-trip width">
+
+              <div class="card-trip">
                 <%= image_tag(@players.where(id: key)[0].photo)%>
                 <div class="card-trip-infos">
                   <div class="player-info-left">
@@ -80,19 +80,17 @@
                   </div>
                 </div>
               </div>
-              <br>
-              <br>
-            </div>
+
+
           <% end %>
         </div>
       </div>
 
-
-      <div class="row">
+      <div>
         <h4 class="title">TOP LOSERS</h4>
         <div class="feed-cards">
           <% @top_losers.each do |key, value| %>
-          <div class="col-xs-12 col-sm-6 col-md-4">
+
             <div class="card-trip">
               <%= image_tag(@players.where(id: key)[0].photo, crop: :fill)%>
               <div class="card-trip-infos">
@@ -105,22 +103,20 @@
             </div>
             <br>
             <br>
-          </div>
+
         <% end %>
         </div>
       </div>
 
-
-      <div class="row">
+      <div>
       <h4 class="title">NEWS</h4>
         <div class="feed-cards">
           <% @img_array.each do |i|  %>
-            <div class="col-xs-12 col-sm-6 col-md-4">
-              <div class="news-trip">
+
+              <div class="card-trip">
                 <img src=" <%= i %> ">
               </div>
-              <br>
-            </div>
+
           <% end %>
 
         </div>
@@ -128,13 +124,6 @@
       </div>
 
   </div>
-
-</div>
-
-
-
-<!-- </div> -->
-<div>
 </div>
 
 <!-- <img src="<%= @img_array.first  %>" alt=""> -->
