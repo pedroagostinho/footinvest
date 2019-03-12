@@ -61,6 +61,7 @@ class PagesController < ApplicationController
 
   def my_players
     # @my_tokens = Token.where(owner: current_user)
+    @portfolio = Portfolio.where(user_id: current_user)
     @transactions = Token.joins(:transactions)
                          .select('tokens.id,
                                   tokens.player_id,
@@ -82,5 +83,33 @@ class PagesController < ApplicationController
       player_tokens = sorted.where(player_id: t.player_id)
       @variation[t.player_id] = (((player_tokens.first.price - player_tokens.second.price) / player_tokens.second.price.to_f) * 100).round(2)
     end
+
+
+    @portfolio_percentage = Hash.new()
+    total_value = []
+
+    @transactions.each do |transaction|
+      total_value << transaction.price if transaction.buying_user_id == transaction.owner && transaction.buying_user_id == current_user.id
+    end
+      t_v = total_value.sum
+      v_player = 0
+
+    @my_players.each do |player|
+      @tokens_total_value = []
+
+      @transactions.each do |transaction|
+        @tokens_total_value << transaction.price if transaction.buying_user_id == transaction.owner && transaction.buying_user_id == current_user.id && transaction.player_id == player.id
+      end
+      v_player = @tokens_total_value.sum
+      @portfolio_percentage[player.name] = (v_player.to_f / t_v.to_f).round(2) * 100
+    end
+
+    @pie_chart = @portfolio_percentage.first(7).to_h
+    @pie_chart["Others"] = 100 - @pie_chart.sum { |k, v| v }
   end
 end
+
+
+
+
+

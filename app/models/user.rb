@@ -6,6 +6,6 @@ class User < ApplicationRecord
 
   has_many :buying_users, class_name: "User", foreign_key: :buying_user_id
   has_many :selling_users, class_name: "User", foreign_key: :selling_user_id
-
+  has_many :portfolios
   validates :first_name, :last_name, presence: true
 end

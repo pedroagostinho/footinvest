@@ -142,6 +142,14 @@ CSV.foreach('./db/transactions.csv', CSV_OPTIONS) do |row|
   transaction.save
 end
 
+CSV.foreach('./db/portfolios.csv', CSV_OPTIONS) do |row|
+  portfolio = Portfolio.new(
+    value: row[0],
+    user_id: row[1],
+    date_time: row[2],
+  )
+  portfolio.save
+end
 
 
 
