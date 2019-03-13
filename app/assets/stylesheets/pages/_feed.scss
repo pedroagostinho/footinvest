@@ -127,7 +127,6 @@
     width: 50%;
     height: 20px;
   }
-
 }
 
 .playersfeed-product {
@@ -170,6 +169,7 @@
 .playersfeed-product .playersfeed-product-infos {
   padding: 10px;
 }
+
 .left-cont {
   border: 1px solid $footinvest-main;
   border-radius: 5px;
@@ -184,13 +184,14 @@
   color: $footinvest-black;
   background-color:#FED9DA;
 }
+
 .cont-height {
   height: 10px;
 }
+
 .right-side {
   margin: 0px;
 }
-
 
 .main-container {
   display: flex;
@@ -217,6 +218,7 @@
   margin-left: 220px;
   margin-top: 88px;
 }
+
 .feed-cards {
   display: flex;
   justify-content: space-around;
@@ -235,8 +237,8 @@
   img {
     height: 120px;
   }
-
 }
+
 @media screen and (max-width: 800px) {
   .feed-cards {
     justify-content: space-around;
@@ -251,15 +253,18 @@
     }
   }
 }
+
 .fixed-coins {
   position: fixed;
   z-index:1;
   background: white;
   height: 70px;
 }
+
 .newspaper {
   padding-bottom: 20px;
 }
+
 .news-trip {
   overflow: hidden;
   background: white;
@@ -267,6 +272,7 @@
   border-radius: 10px;
   width: 18%;
 }
+
 .news-trip > img {
   height: 300px;
   width: 100%;
