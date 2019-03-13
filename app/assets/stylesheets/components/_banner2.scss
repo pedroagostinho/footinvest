@@ -1,3 +1,4 @@
+
 .banner2 {
   height: calc(100vh - 70px);
   padding-bottom: calc(70px + 50px + 37px);
@@ -23,26 +24,16 @@
     color: #3F3D56;
   }
 
+.banner-images2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   img {
-    object-fit: contain;
-    height: 100%;
     width: 100%;
-    transform: scale(1.6);
-    margin-left: -42px;
   }
 }
 
-.container {
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-left: 0px;
-  margin-right: 0px;
-}
-
-.banner-image {
-  z-index: -1;
-}
-
-.bloco2{
+.bloco2 {
   text-align:left;
 }

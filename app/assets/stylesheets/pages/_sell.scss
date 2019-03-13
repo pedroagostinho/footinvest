@@ -1,26 +1,28 @@
 .tokens {
-  background: #9DF3DC;
+  background: $footinvest-blue;
   height: calc(100vh - 70px);
 }
 
 .sell-info {
   align-items: center;
-  width: 1000px;
+  width: 555px;
   background: white;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   margin-bottom: 30px;
   display: inline-block;
-  margin-top: 100px;
+  margin-top: 70px;
   padding: 0px;
   h3 {
     text-align: center;
     color: $footinvest-black;
     font-weight: bold;
     font-size: 24px;
+    padding: 0 20px;
   }
   p {
-
+    color: $footinvest-black;
+    font-weight: lighter;
   }
   img {
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);

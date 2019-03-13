@@ -2,6 +2,7 @@
   height: 100px;
   background-color: #403D58;
   display: flex;
+  color: $footinvest-main;
 }
 
 .flex-item {
@@ -18,21 +19,35 @@
 }
 
 .bloco h3 {
-  color: #5C5C5C;
+  color: $footinvest-blue;
+  font-size: 32px;
 }
 
 .bloco p {
   color: #333333;
 }
 
+.bloco i {
+  color: $footinvest-main;
+}
+
+.padding {
+  padding: 0px 85px;
+  color: $footinvest-blue;
+  font-size: 32px;
+  text-align: center;
+}
+
 .divisor{
   text-align:center;
   color: white;
   padding-top: 10px;
+
+  h6 {
+    font-weight: lighter;
+  }
+
 }
 
-.divisor h6 {
-  font-weight: lighter;
-}
 
 

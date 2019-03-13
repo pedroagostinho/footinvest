@@ -49,17 +49,17 @@ class PagesController < ApplicationController
         @stock_ticker_up << @players.where(id: key)[0].name
         @stock_ticker_up << value
         @stock_ticker_up << "%"
-        @stock_ticker_up << "           "
+        #@stock_ticker_up << "           "
       else
         @stock_ticker_down << @players.where(id: key)[0].name
         @stock_ticker_down << value
         @stock_ticker_down << "%"
-        @stock_ticker_down << "          "
+        #@stock_ticker_down << "          "
       end
     end
-
-    @up = @stock_ticker_up.join(' ')
-    @down = @stock_ticker_down.join(' ')
+#byebug
+    @up = @stock_ticker_up.join(' ').gsub!("% ", "%                                                      ")
+    @down = @stock_ticker_down.join(' ').gsub!("% ", "%                                                     ")
    end
 
   def dashboard
@@ -117,9 +117,11 @@ class PagesController < ApplicationController
     @pie_chart = @portfolio_percentage.first(7).to_h
     @pie_chart["Others"] = (100 - @pie_chart.sum { |k, v| v }).round(2)
   end
+
+  def my_transactions
+
+    @my_transactions = Transaction.where(buying_user_id: current_user.id)
+                                  .or(Transaction.where(selling_user_id: current_user.id))
+                                  .order('date_time DESC')
+  end
 end
-
-
-
-
-
