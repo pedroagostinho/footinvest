@@ -100,10 +100,20 @@
 .diagonal-marquee {
   transform: rotate(-45deg);
 }
+
+
 .marquee3k__copy {
   padding-right: 1px;
   box-sizing: border-box;
   margin-left: -200px;
+}
+
+.my-players {
+  .marquee3k__copy {
+    padding-right: 1px;
+    box-sizing: border-box;
+    margin-left: -200px;
+  }
 }
 
 .my-players-index {

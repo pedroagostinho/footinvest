@@ -180,11 +180,13 @@
 .stock_up{
   color: $footinvest-black;
   background-color:#8EF4D3;
-}
+  padding-right: 250px !important;
 
+}
 .stock_down{
   color: $footinvest-black;
   background-color:#FED9DA;
+  padding-right: 250px !important;
 }
 
 .cont-height {
@@ -280,5 +282,4 @@
   width: 100%;
   object-fit: cover;
 }
-
 

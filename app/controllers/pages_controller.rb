@@ -57,7 +57,7 @@ class PagesController < ApplicationController
         #@stock_ticker_down << "          "
       end
     end
-#byebug
+    #byebug
     @up = @stock_ticker_up.join(' ').gsub!("% ", "%                                                      ")
     @down = @stock_ticker_down.join(' ').gsub!("% ", "%                                                     ")
    end
