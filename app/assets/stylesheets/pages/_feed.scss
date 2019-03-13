@@ -11,7 +11,8 @@
 .title{
   text-align: center;
   font-weight: bold;
-  color: $footinvest-main;
+  color: $footinvest-black;
+  font-size: 24px;
 }
 
 // resultados
@@ -23,6 +24,7 @@
   margin-right: 10px;
   padding: 5px;
   border-radius: 5px;
+  font-size: 16px;
 }
 
 .match {
@@ -57,8 +59,7 @@
   width: 50px;
   justify-content: space-around;
   text-align: center;
-  color: white;
-  background-color: $footinvest-main;
+  color: $footinvest-main;
   font-size: 14px;
 }
 
@@ -140,13 +141,11 @@
 }
 
 .playersfeed-product h2 {
-
   font-size: 16px;
   font-weight: bold;
   margin: 0;
 }
 .playersfeed-product h3 {
-
   font-size: 14px;
   margin: 0;
 }
@@ -207,6 +206,10 @@
   z-index: -1;
   background-color: $footinvest-blue;
   color: $footinvest-main;
+
+  h3 {
+    color: $footinvest-main;
+  }
 }
 
 .tops {
@@ -250,7 +253,7 @@
 }
 .fixed-coins {
   position: fixed;
-  z-index:10;
+  z-index:1;
   background: white;
   height: 70px;
 }
