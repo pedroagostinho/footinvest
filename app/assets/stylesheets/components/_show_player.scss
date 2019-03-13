@@ -3,7 +3,8 @@
   display: flex;
   justify-content: center;
   background-color: white;
-  margin-top: -70px
+  padding-top: 250px;
+  padding-bottom: 50px;
 }
 
 .card-product {
@@ -38,6 +39,7 @@
   font-weight: bold;
   margin-left:100px;
   margin: 0;
+  text-align:center;
 }
 
 .card-product p {
@@ -200,7 +202,8 @@
 
 .header2 {
   background: $footinvest-blue;
-  height: calc(70vh - 70px);
+  margin-bottom: -170px;
+
 }
 
 
