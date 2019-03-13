@@ -218,7 +218,7 @@
 .tops {
   flex-grow: 1;
   margin-left: 220px;
-  margin-top: 70px;
+  margin-top: 165px;
 }
 
 .feed-cards {
@@ -258,6 +258,7 @@
 
 .fixed-coins {
   position: fixed;
+  top: 70px;
   z-index:1;
   background: white;
   height: 70px;

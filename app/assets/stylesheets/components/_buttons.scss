@@ -12,7 +12,7 @@
   margin-right: 16px;
   border: 1px solid $footinvest-main;
   opacity: 0.9;
-  &:hover {
+  &:hover, &:focus {
     opacity: 1;
   }
   a {
@@ -33,7 +33,7 @@
   margin-right: 10px;
   border: 1px solid $footinvest-main;
   opacity: 0.9;
-  &:hover {
+  &:hover, &:focus {
     opacity: 1;
   }
   a {
@@ -57,7 +57,7 @@
   margin-left: 30px;
   border: 1px solid $footinvest-main;
   opacity: 0.9;
-  &:hover {
+  &:hover, &:focus {
     opacity: 1;
   }
   a {
@@ -80,9 +80,10 @@
   margin-right: 0px;
   border: 1px solid $footinvest-main;
   opacity: 0.9;
-  &:hover {
+  &:hover, &:focus {
     opacity: 1;
     color: white;
+    text-decoration: none;
   }
   a {
     color: white;
@@ -104,9 +105,10 @@
   margin-right: 0px;
   border: 1px solid #FF006B;
   opacity: 0.9;
-  &:hover {
+  &:hover, &:focus {
     opacity: 1;
     color: white;
+    text-decoration: none;
   }
   a {
     color: white;
@@ -125,7 +127,7 @@
   padding: 15px 35px;
   width: 175px;
 
-  &:hover {
+  &:hover, &:focus {
     opacity: 1;
   }
   a {
@@ -143,7 +145,7 @@
   width: 175px;
   border: 1px solid #21CD9A;
 
-  &:hover {
+  &:hover, &:focus {
     opacity: 1;
   }
   a {
@@ -163,7 +165,7 @@
   margin-left: 80px;
   border: 1px solid #6C63FF;
   opacity: 0.9;
-  &:hover {
+  &:hover, &:focus {
     opacity: 1;
   }
   a {
