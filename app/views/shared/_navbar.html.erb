@@ -22,6 +22,10 @@
       <%= link_to "My players", my_players_path,
        class: "navbar-wagon-item navbar-wagon-link #{color_class}" %>
 
+      <% (controller_name == 'pages' && action_name == 'my_transactions') ? color_class = 'green' : color_class = '' %>
+      <%= link_to "My transactions", my_transactions_path,
+       class: "navbar-wagon-item navbar-wagon-link #{color_class}" %>
+
 
       <% (controller_name == 'players' && action_name == 'index') ? color_class = 'green' : color_class = '' %>
       <%= link_to "Market", players_path, class: "navbar-wagon-item navbar-wagon-link #{color_class}" %>
@@ -31,20 +35,20 @@
         <div class="dropdown">
           <%= image_tag "undraw_profile_pic_ic5t.svg", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-            <li><p>balance: <%= @balance %></p></li>
+            <li><p><i class="fas fa-credit-card"></i> &nbsp; <%= @balance %> €</p></li>
             <li>
               <%= link_to "#" do %>
-                <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
+                <i class="fa fa-user"></i> &nbsp; <%= t(".profile", default: "Profile") %>
               <% end %>
             </li>
             <li>
               <%= link_to "#" do %>
-                <i class="fa fa-cog"></i>  <%= t(".settings", default: "Settings") %>
+                <i class="fa fa-cog"></i> &nbsp; <%= t(".settings", default: "Settings") %>
               <% end %>
             </li>
             <li>
               <%= link_to destroy_user_session_path, method: :delete do %>
-                <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+                <i class="fa fa-sign-out"></i> &nbsp; <%= t(".sign_out", default: "Log out") %>
               <% end %>
             </li>
           </ul>
