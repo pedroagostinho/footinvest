@@ -11,9 +11,10 @@
 
 .info {
   background: $footinvest-blue;
-  border: 1px solid $footinvest-main;
   border-radius: 10px;
   margin-bottom: 30px;
+  border: 1px solid;
+  border-color: $footinvest-main;
   h1 {
     text-align: center;
     color: $footinvest-main;

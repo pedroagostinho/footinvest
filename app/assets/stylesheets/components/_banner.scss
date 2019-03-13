@@ -1,16 +1,9 @@
 .banner {
+  width: 100%;
   height: calc(100vh - 70px);
   padding-bottom: calc(70px + 50px + 37px);
 
-  .row {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    margin-left: 55px;
-  }
-
   h1 {
-    margin-bottom: 2rem;
     font-style: normal;
     font-weight: bold;
     line-height: normal;
@@ -20,59 +13,24 @@
   }
 
   h2 {
-    margin-bottom: 2rem;
     font-weight: lighter;
     line-height: normal;
     font-size: 40px;
     letter-spacing: -0.02em; // root font size (width do "M")
     color: #3F3D56;
   }
+}
 
-  &-images {
-    position: relative;
-    height: 100%;
-  }
+.banner-images {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  &-image {
-    position: absolute;
-
-    &-main {
-      object-fit: contain;
-      height: 100%;
-      width: 100%;
-      transform: scale(1.8) rotate(-80deg);
-      left: 25%;
-    }
-
-    &-1 {
-      top: -87px;
-      left: 60px;
-    }
-
-    &-11 {
-      left: -80%;
-      bottom: -70px;
-
-    }
-
-    &-111 {
-      left: -50%;
-      bottom: -70px;
-    }
+  img {
+    width: 100%;
   }
 }
 
-.container {
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-left: 0px;
-  margin-right: 0px;
-}
-
-.banner-image {
-  z-index: -1;
-}
-
-.bloco2{
+.bloco{
   text-align:left;
 }
