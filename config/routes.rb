@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'feed', to: "pages#feed"
   get 'dashboard', to: "pages#dashboard"
   get 'my_players', to: "pages#my_players"
+  get 'my_transactions', to: "pages#my_transactions"
 
   get '/feed' => 'pages#feed', as: :user_root # creates user_root_path
 
