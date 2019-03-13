@@ -117,9 +117,11 @@ class PagesController < ApplicationController
     @pie_chart = @portfolio_percentage.first(7).to_h
     @pie_chart["Others"] = (100 - @pie_chart.sum { |k, v| v }).round(2)
   end
+
+  def my_transactions
+
+    @my_transactions = Transaction.where(buying_user_id: current_user.id)
+                                  .or(Transaction.where(selling_user_id: current_user.id))
+                                  .order('date_time DESC')
+  end
 end
-
-
-
-
-

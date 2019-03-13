@@ -1,3 +1,30 @@
+
+.banner2 {
+  height: calc(100vh - 70px);
+  padding-bottom: calc(70px + 50px + 37px);
+
+
+
+  h1 {
+    margin-bottom: 2rem;
+    font-style: normal;
+    font-weight: bold;
+    line-height: normal;
+    font-size: 45px;
+    letter-spacing: -0.04em; // root font size (width do "M")
+    color: #3F3D56;
+  }
+
+  h2 {
+    margin-bottom: 2rem;
+    font-weight: lighter;
+    line-height: normal;
+    font-size: 40px;
+    letter-spacing: -0.02em; // root font size (width do "M")
+    color: #3F3D56;
+  }
+}
+
 .banner-images2 {
   display: flex;
   justify-content: center;

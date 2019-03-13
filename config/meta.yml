@@ -1,0 +1,5 @@
+meta_product_name: "FootInvest"
+meta_title: "FootInvest - Spot a Star!!"
+meta_description: "Become a real football investor and make money, transparently"
+meta_image: "cover.jpg" # should exist in `app/assets/images/`
+# twitter_account: "@product_twitter_account"   # required for Twitter Cards

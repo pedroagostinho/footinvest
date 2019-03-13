@@ -8,9 +8,14 @@ class ApplicationController < ActionController::Base
   def user_balance
     @balance = User.find(current_user.id).balance if current_user.present?
   end
+
   def divisor
     @user_count = User.count
     @player_count = Player.count
     @total_value = Transaction.sum(:price)
+  end
+
+  def default_url_options
+  { host: ENV["HOST"] || "localhost:3000" }
   end
 end

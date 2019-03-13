@@ -9,10 +9,12 @@
     <% else %>
       <h3>How many coins from <%= @player.name %> would you like to buy?</h3>
 
+      <br>
+
       <% sum = 0 %>
       <% @tokens.each_with_index do |token, index| %>
         <% sum = sum + token.last_price %>
-        <p> <%= index  +1 %> &nbsp; <i class="fas fa-angle-right"></i> &nbsp; price: <%= sum %> € </p>
+        <p> <%= index  +1 %> for <span style="font-weight: bolder"> <%= sum %> € </span> </p>
       <% end %>
 
       <div class="form">

@@ -12,8 +12,10 @@
 // Your CSS partials
 @import "layouts/index";
 @import "components/index";
+@import "components/margin";
 @import "pages/index";
 @import "pages/my_players";
+@import "pages/my_transactions";
 @import "pages/buy";
 @import "pages/sell";
 @import "pages/sign_in";

@@ -1,0 +1,78 @@
+<div class="header-transactions">
+
+  <div id="no-padding-bottom" class="row">
+
+    <div class="header-info">
+
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <div class="info">
+          <h1> <i class="fas fa-futbol"></i> </h1>
+          <h1> <%= @my_transactions.count %> </h1>
+          <p> transactions performed </p>
+        </div>
+      </div>
+
+      <% amounts = [] %>
+      <% all_transactions = [] %>
+      <% @my_transactions.each do |transaction| %>
+        <% if transaction.buying_user_id == current_user.id %>
+          <% amount = transaction.price %>
+        <% elsif transaction.selling_user_id == current_user.id %>
+          <% amount = (transaction.price) * -1 %>
+        <% end %>
+        <% amounts << amount %>
+        <% all_transactions << transaction.price %>
+      <% end %>
+
+      <% amounts = amounts.inject(0){|sum,x| sum + x } %>
+      <% all_transactions = all_transactions.inject(0){|sum,x| sum + x } %>
+
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <div class="info">
+          <h1> <i class="fas fa-wallet"></i> </h1>
+          <h1> <%= amounts %> € </h1>
+          <p> portfolio value </p>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <div class="info">
+          <h1> <i class="fas fa-coins"></i> </h1>
+          <h1> <%= @my_transactions.count / 2 %> </h1>
+          <p> coins transacted </p>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <div class="info">
+          <h1> <i class="fas fa-money-bill-alt"></i> </h1>
+          <h1> <%= all_transactions / @my_transactions.count %> € </h1>
+          <p> average transaction value </p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<div class="transactions">
+  <table style="border-spacing: 20px; border-collapse: separate;">
+    <tr class="date">
+      <th>Date</th>
+      <th>Transaction</th>
+    </tr>
+    <% @my_transactions.each do |transaction| %>
+    <tr>
+      <td> <%= transaction.date_time.strftime("%d-%m-%Y") %> </td>
+      <% if transaction.buying_user_id == current_user.id %>
+      <td> <span style="color: #21CD9A"> Bought </span> a <%= transaction.token.player.name %> coin for <span style="font-weight: bolder"> <%= transaction.price %>€ </span> </td>
+      <% elsif transaction.selling_user_id == current_user.id %>
+      <td> <span style="color: #FF006B"> Sold </span> a <%= transaction.token.player.name %> coin for <span style="font-weight: bolder"> <%= transaction.price %>€ </span> </td>
+      <% else %>
+      <td> No transactions to see here... move along! </td>
+      <% end %>
+    </tr>
+    <% end %>
+  </table>
+</div>
