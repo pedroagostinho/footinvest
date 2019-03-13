@@ -7,11 +7,16 @@
   .rails-default-error-page {
     /*background-color: #EFEFEF;*/
     background-image: url("images/SergioRamos.jpg");
-    background-size:     cover;
-    color: #2E2F30;
+    background-size: cover;
+
+    color: white;
     text-align: center;
     font-family: arial, sans-serif;
     margin: 0;
+  }
+  .rails-default-error-page > img {
+    opacity: 0.8;
+    filter: alpha(opacity=50); /* For IE8 and earlier */
   }
 
   .rails-default-error-page div.dialog {
@@ -21,19 +26,19 @@
   }
 
   .rails-default-error-page div.dialog > div {
-    border: 1px solid #CCC;
+   /* border: 1px solid #CCC;
     border-right-color: #999;
     border-left-color: #999;
     border-bottom-color: #BBB;
     border-top: #B00100 solid 4px;
     border-top-left-radius: 9px;
-    border-top-right-radius: 9px;
+    border-top-right-radius: 9px;*/
     padding: 7px 12% 0;
     box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
   }
 
   .rails-default-error-page h1 {
-    font-size: 100%;
+    font-size: 32px;
     color: white;
     line-height: 1.5em;
   }
@@ -42,13 +47,13 @@
     margin: 0 0 1em;
     padding: 1em;
     /*background-color: #F7F7F7;*/
-    border: 1px solid #CCC;
+    /*border: 1px solid #CCC;
     border-right-color: #999;
     border-left-color: #999;
     border-bottom-color: #999;
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
-    border-top-color: #DADADA;
+    border-top-color: #DADADA;*/
     color: white;
     box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
   }
@@ -62,7 +67,7 @@
       <h1>Are you lost? like Ramos' penalty kick?</h1>
       <p>You may have mistyped the address or the page may have moved.</p>
     </div>
-    <p>If you are the application owner check the logs for more information.</p>
+    <p></p>
   </div>
 </body>
 </html>
