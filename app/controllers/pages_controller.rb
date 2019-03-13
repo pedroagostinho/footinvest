@@ -60,14 +60,10 @@ class PagesController < ApplicationController
 #byebug
     @up = @stock_ticker_up.join(' ').gsub!("% ", "%                                                      ")
     @down = @stock_ticker_down.join(' ').gsub!("% ", "%                                                     ")
-   end
-
-  def dashboard
   end
 
   def my_players
     # @my_tokens = Token.where(owner: current_user)
-    @portfolio = Portfolio.where(user_id: current_user)
     @transactions = Token.joins(:transactions)
                          .select('tokens.id,
                                   tokens.player_id,
@@ -77,6 +73,24 @@ class PagesController < ApplicationController
                                   transactions.price')
                          .order('transactions.date_time DESC,
                                  tokens.player_id DESC')
+
+    @my_transactions = Transaction.where(buying_user_id: current_user.id)
+                                  .or(Transaction.where(selling_user_id: current_user.id))
+                                  .order('date_time ASC')
+    values = []
+    @my_transactions.each do |transaction|
+      if transaction.buying_user_id == current_user.id
+        values << transaction.price
+      elsif transaction.selling_user_id == current_user.id
+        values << (transaction.price) * -1
+      end
+      @portfolio_values = values.each_with_object([]){|e, a| a.push(a.last.to_i + e)}
+    end
+    @portfolio = Hash.new()
+    @my_transactions.each_with_index do |t, i|
+      @portfolio[t.date_time] = @portfolio_values[i]
+    end
+    @portfolio
 
     @my_players = Player.joins(:tokens)
                         .where(tokens: { owner: current_user })
