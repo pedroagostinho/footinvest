@@ -49,17 +49,17 @@ class PagesController < ApplicationController
         @stock_ticker_up << @players.where(id: key)[0].name
         @stock_ticker_up << value
         @stock_ticker_up << "%"
-        @stock_ticker_up << "           "
+        #@stock_ticker_up << "           "
       else
         @stock_ticker_down << @players.where(id: key)[0].name
         @stock_ticker_down << value
         @stock_ticker_down << "%"
-        @stock_ticker_down << "          "
+        #@stock_ticker_down << "          "
       end
     end
-
-    @up = @stock_ticker_up.join(' ')
-    @down = @stock_ticker_down.join(' ')
+#byebug
+    @up = @stock_ticker_up.join(' ').gsub!("% ", "%                                                      ")
+    @down = @stock_ticker_down.join(' ').gsub!("% ", "%                                                     ")
    end
 
   def dashboard
