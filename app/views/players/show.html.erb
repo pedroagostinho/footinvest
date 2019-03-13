@@ -51,24 +51,22 @@
 
   </div>
 
-  <div class = "card-product">
 
+  <div class = "card-product">
     <div class="avatar">
         <%= image_tag(@player.photo) %>
     </div>
 
   </div>
-
-  <div class="player-name">
-    <h3><%= @player.name %> </h3>
-  </div>
+</div>
+<div class="player-name row">
+      <h3><%= @player.name %> </h3>
+    </div>
 
 
 
 <div class="player-container">
-
   <div class="row">
-
     <div class="col-xs-2">
       <div class = "">
         <h4>Age</h2>
@@ -92,66 +90,70 @@
       </div>
     </div>
 
-  <div class="col-xs-3">
-    <div class="field">
-      <% if @player.position == "Forward"  %>
-        <%= image_tag('field_ataque.png') %>
-      <% elsif @player.position == "Goalkeeper"%>
-        <%= image_tag('field_guarda_redes.png') %>
-      <% elsif @player.position == "Midfielder" %>
-        <%= image_tag('field_meio.png') %>
-      <% elsif @player.position == "Defender"%>
-        <%= image_tag('field_defesa.png') %>
+    <div class="col-xs-3">
+      <div class="field">
+          <% if @player.position == "Forward"  %>
+            <%= image_tag('field_ataque.png') %>
+          <% elsif @player.position == "Goalkeeper"%>
+            <%= image_tag('field_guarda_redes.png') %>
+          <% elsif @player.position == "Midfielder" %>
+            <%= image_tag('field_meio.png') %>
+          <% elsif @player.position == "Defender"%>
+            <%= image_tag('field_defesa.png') %>
+          <% end %>
+      </div>
+    </div>
+
+    <div class="col-xs-7">
+      <% @player.stats.each do |stat| %>
+      <table class="table table-striped">
+        <thead>
+          <tr class="green-row">
+            <th scope="col"></th>
+            <th scope="col">Competition</th>
+            <th scope="col">Games</th>
+            <th scope="col">Goals</th>
+            <th scope="col">Assists</th>
+            <th scope="col">Yellow Card</th>
+            <th scope="col">Red Card</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row"></th>
+            <td><%= stat.competition.name %></td>
+            <td><%= stat.games %></td>
+            <td><%= stat.goals %></td>
+            <td><%= stat.assists %></td>
+            <td><%= stat.yellow_card %></td>
+            <td><%= stat.red_card %></td>
+          </tr>
+       </tbody>
+      </table>
       <% end %>
     </div>
   </div>
-
-  <div class="col-xs-7">
-    <% @player.stats.each do |stat| %>
-    <table class="table table-striped">
-      <thead>
-        <tr class="green-row">
-          <th scope="col"></th>
-          <th scope="col">Competition</th>
-          <th scope="col">Games</th>
-          <th scope="col">Goals</th>
-          <th scope="col">Assists</th>
-          <th scope="col">Yellow Card</th>
-          <th scope="col">Red Card</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row"></th>
-          <td><%= stat.competition.name %></td>
-          <td><%= stat.games %></td>
-          <td><%= stat.goals %></td>
-          <td><%= stat.assists %></td>
-          <td><%= stat.yellow_card %></td>
-          <td><%= stat.red_card %></td>
-        </tr>
-      </tbody>
-    </table>
-    <% end %>
-  </div>
-
-
-  </div>
-
-      </div>
-        <div class="col">
-          <div class="card-product-stats" style="height: 395px;">
-              <div class="chart-market-value">
-                <%= line_chart @player.market_values.pluck(:date_time, :market_value), xtitle: "X’s", ytitle: "Y’s", colors: ["$footinvest-main"] %>
-              </div>
-
-              <div class="chart-last-price">
-                <%= line_chart @player.transactions.pluck(:date_time, :price), xtitle: "X’s", ytitle: "Y’s", colors: ["$footinvest-main"] %>
-              </div>
-          </div>
-      </div>
-    </div>
-
 </div>
+
+<div class="col-xs-12">
+        <div class="header-charts2">
+          <div class="" style="height: 395px;">
+            <div class="chart-market-value2">
+              <%= line_chart @player.market_values.pluck(:date_time, :market_value), xtitle: "days", ytitle: "market value€", colors: ["#25C588"], width: "50%", height: "300px" %>
+              <%= line_chart @player.transactions.pluck(:date_time, :price), xtitle: "days", ytitle: "transaction value€", colors: ["#25C588"], width: "50%", height: "300px" %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
 
 
