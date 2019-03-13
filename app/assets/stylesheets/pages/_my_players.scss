@@ -1,6 +1,6 @@
 .header {
   height: calc(100vh - 70px);
-  background: #403D58;
+  background: $footinvest-blue;
 }
 
 .header-info {
@@ -10,10 +10,11 @@
 }
 
 .info {
-  background: white;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  background: $footinvest-blue;
   border-radius: 10px;
   margin-bottom: 30px;
+  border: 1px solid;
+  border-color: $footinvest-main;
   h1 {
     text-align: center;
     color: $footinvest-main;
@@ -21,6 +22,7 @@
   }
   p {
     font-weight: lighter;
+    color:white;
   }
   i {
     position: absolute;

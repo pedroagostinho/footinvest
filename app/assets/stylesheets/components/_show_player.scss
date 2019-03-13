@@ -2,6 +2,8 @@
   margin: auto;
   display: flex;
   justify-content: center;
+  background-color: white;
+  margin-top: -70px
 }
 
 .card-product {
@@ -15,6 +17,7 @@
 
 .avatar {
   width: 300px;
+  align-items: center;
 }
 
 .avatar img{
@@ -27,6 +30,7 @@
   margin-left: auto;
   margin-right: auto;
   object-fit: cover;
+  align-items: center;
 }
 
 .card-product h2 {
@@ -76,6 +80,8 @@
   color: #6B6F74;
   font-weight: lighter;
   text-align: center;
+  margin-top: 100px;
+
 }
 
 .card-product-stats {
@@ -193,8 +199,10 @@
 }
 
 .header2 {
-  background: #43405B;
+  background: $footinvest-blue;
+  height: calc(70vh - 70px);
 }
+
 
 .green-row {
   color: $footinvest-main;
@@ -207,6 +215,51 @@
   opacity: 0.5;
 }
 
-.row {
-  padding: 0;
+
+// **********************************CHARTS***************************************************
+
+.header-charts2 {
+  background: white;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  margin-bottom: 30px;
+  margin-top: 50px;
+  height: 400px;
+  h1 {
+    text-align: center;
+  }
 }
+
+
+
+.chart-market-value2{
+  display: flex;
+  padding-top: 60px;
+  padding-left: 10px;
+  padding-right:10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
