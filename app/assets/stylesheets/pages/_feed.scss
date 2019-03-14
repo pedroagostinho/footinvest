@@ -243,21 +243,6 @@
   }
 }
 
-@media screen and (max-width: 800px) {
-  .feed-cards {
-    justify-content: space-around;
-    .card-trip {
-      width: 100%;
-      h3 {
-        font-size: 18px;
-      }
-      p {
-        font-size: 13px;
-      }
-    }
-  }
-}
-
 .fixed-coins {
   position: fixed;
   top: 70px;
@@ -283,3 +268,23 @@
   object-fit: cover;
 }
 
+@media screen and (max-width: 800px) {
+  .feed-cards {
+    justify-content: space-around;
+    .card-trip {
+      width: 100%;
+      h3 {
+        font-size: 18px;
+      }
+      p {
+        font-size: 13px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .newspaper {
+    display: none;
+  }
+}
