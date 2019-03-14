@@ -14,6 +14,6 @@ class User < ApplicationRecord
   private
 
   def set_balance
-    self.balance = 1000
+    self.balance = 200
   end
 end
