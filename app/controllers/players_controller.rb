@@ -77,7 +77,7 @@ class PlayersController < ApplicationController
 
     player_tokens = sorted.where(player_id: @player.id)
 
-    if Token.where(player_id: @player.id).where.not(owner: nil).count == 0
+    if Token.where(player_id: @player.id).where.not(owner: nil).count <= 1
       @variation = 0
     else
       @variation = (((player_tokens.first.price - player_tokens.second.price) / player_tokens.second.price.to_f) * 100).round(1)
