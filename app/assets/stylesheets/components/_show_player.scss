@@ -5,6 +5,9 @@
   background-color: white;
   padding-top: 250px;
   padding-bottom: 50px;
+  p {
+    margin-top: 1px;
+  }
 }
 
 .card-product {
@@ -70,6 +73,10 @@
 .info p{
   text-align: center;
   align-items: center;
+}
+
+.social i {
+  color: $footinvest-blue;
 }
 
 .player-container h4 {
