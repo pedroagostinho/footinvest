@@ -20,7 +20,7 @@
 
 .bloco h3 {
   color: $footinvest-blue;
-  font-size: 32px;
+  font-size: 31px;
 }
 
 .bloco p {
@@ -43,8 +43,13 @@
   color: white;
   padding-top: 10px;
 
+  h1 {
+    font-size: 34px;
+  }
+
   h6 {
     font-weight: lighter;
+    margin-top: -10px;
   }
 }
 
