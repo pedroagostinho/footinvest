@@ -49,3 +49,24 @@
 .mx-auto h3 {
   margin-right: 27px;
 }
+
+@media only screen and (max-width: 480px) {
+  .mx-auto {
+    h3 {
+      font-size: 25px;
+      margin-left: -38px;
+    }
+
+    h4 {
+      display: none;
+    }
+
+    p {
+      display: none;
+    }
+
+    hr {
+      display: none;
+    }
+  }
+}
