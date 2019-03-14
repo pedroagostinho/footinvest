@@ -98,6 +98,8 @@ class PlayersController < ApplicationController
   end
 
   def purchase
+    total_amount = []
+
     nr_tokens = params[:player][:tokens].to_i
 
     tokens_with_own = Token.where(player_id: params[:id], on_sale: true).order('last_price ASC')
@@ -105,41 +107,44 @@ class PlayersController < ApplicationController
 
     @tokens_to_buy = @tokens.first(nr_tokens)
 
-    total_amount = []
-    current_transactions = Transaction.count
-
     @tokens_to_buy.each do |token|
-
-      transaction = Transaction.new(date_time: DateTime.now,
-                      price: token.last_price,
-                      token_id: token.id,
-                      buying_user_id: current_user.id,
-                      selling_user_id: token.owner)
-      transaction.save
-
-      if token.owner.nil?
-        seller = nil
-      else
-        seller = User.find(token.owner)
-        seller.balance += token.last_price
-        seller.save
-      end
-      # byebug
-      token.update(on_sale: false)
-      token.update(owner: current_user.id)
-
       total_amount << token.last_price
     end
-
     total_amount = total_amount.inject(0) { |sum, x| sum + x }
 
-    current_user.balance = @balance - total_amount
-    current_user.save
-
-    if (current_transactions + @tokens_to_buy.count) == Transaction.count
-      redirect_to my_players_path
-    else
+    if current_user.balance < total_amount
       render :buy
+    else
+      current_transactions = Transaction.count
+
+      @tokens_to_buy.each do |token|
+        transaction = Transaction.new(
+          date_time: DateTime.now,
+          price: token.last_price,
+          token_id: token.id,
+          buying_user_id: current_user.id,
+          selling_user_id: token.owner)
+        transaction.save
+
+        if token.owner.nil?
+          seller = nil
+        else
+          seller = User.find(token.owner)
+          seller.balance += token.last_price
+          seller.save
+        end
+        token.update(on_sale: false)
+        token.update(owner: current_user.id)
+      end
+
+      current_user.balance = @balance - total_amount
+      current_user.save
+
+      if (current_transactions + @tokens_to_buy.count) == Transaction.count
+        redirect_to my_players_path
+      else
+        render :buy
+      end
     end
   end
 
