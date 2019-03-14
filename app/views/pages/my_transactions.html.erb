@@ -1,3 +1,10 @@
+<% if @my_transactions.count == 0 %>
+  <div class="margin-top alert-no-coins">
+    <h3> There are no transactions recorded... Check the market and buy some football stars! </h3>
+  </div>
+<% else %>
+
+
 <div class="header-transactions">
 
   <div id="no-padding-bottom" class="row">
@@ -76,3 +83,4 @@
     <% end %>
   </table>
 </div>
+<% end %>

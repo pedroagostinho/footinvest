@@ -1,9 +1,16 @@
+<% if @my_players.count == 0 %>
+  <div class="margin-top alert-no-players">
+    <h3> There are no players on your portfolio... Check the market and buy some football stars! </h3>
+  </div>
+<% else %>
 <div class="header">
 
   <div id="no-padding-bottom" class="row">
     <div class="margin-top">
 
     </div>
+
+
     <div class="header-info">
 
       <div class="col-xs-12 col-sm-6 col-md-3">
@@ -219,3 +226,5 @@
 <div class="margin-top">
 
     </div>
+
+<% end %>
