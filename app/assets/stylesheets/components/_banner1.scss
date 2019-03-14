@@ -46,8 +46,16 @@
   h6 {
     font-weight: lighter;
   }
-
 }
 
+@media only screen and (max-width: 480px) {
+  .bloco h3 {
+    font-size: 20px;
+  }
+
+  .bloco p {
+    font-size: 14px;
+  }
+}
 
 
