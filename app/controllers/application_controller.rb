@@ -5,7 +5,12 @@ class ApplicationController < ActionController::Base
   before_action :divisor
 
   def user_balance
-    @balance = User.find(current_user.id).balance if current_user.present?
+    if current_user.nil?
+      @balance = 0
+    elsif current_user != nil
+      @balance = User.find(current_user.id).balance
+    end
+
     if @balance.negative?
       @balance = 0
     else
