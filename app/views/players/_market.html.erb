@@ -119,15 +119,15 @@
         <% if token_total_amount == 0 %>
           <%  %>
         <% else %>
-          <%= link_to "buy coins", buy_player_path(player), class: "btn-buy-green"  %>
+          <%= link_to "Buy Coins", buy_player_path(player), class: "btn-buy-green"  %>
         <% end %>
 
 
           <!-- <button type="button" class="btn btn-buy-green" data-toggle="modal" data-target="#buyCoins"> buy coins </button> -->
-        <% if player.tokens.where(owner: current_user).count > 0 %>
-          <%= link_to "sell coins", sell_player_path(player), class: "btn-sell-red" %>
-        <% else %>
+        <% if player.tokens.where(owner: current_user.id, on_sale: false).count == 0 %>
           <%  %>
+        <% else %>
+          <%= link_to "Sell Coins", sell_player_path(player), class: "btn-sell-red" %>
         <% end %>
 
 
