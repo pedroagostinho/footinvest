@@ -79,6 +79,7 @@
     <% end %>
 
     <div class="col-xs-12 col-sm-6 col-md-4">
+
       <%= link_to player_path(player) do %>
           <div class="card-trip">
             <%= image_tag(player.photo)%>
@@ -114,28 +115,34 @@
             </div>
           </div>
       <% end %>
+
       <div class="buy-sell">
 
         <% if token_total_amount == 0 %>
-          <%  %>
+          <div style="height: 47px;">
+
+          </div>
         <% else %>
-          <%= link_to "buy coins", buy_player_path(player), class: "btn-buy-green"  %>
+          <%= link_to "Buy Coins", buy_player_path(player), class: "btn-buy-green"  %>
         <% end %>
 
 
           <!-- <button type="button" class="btn btn-buy-green" data-toggle="modal" data-target="#buyCoins"> buy coins </button> -->
-        <% if player.tokens.where(owner: current_user).count > 0 %>
-          <%= link_to "sell coins", sell_player_path(player), class: "btn-sell-red" %>
+        <% if player.tokens.where(owner: current_user.id, on_sale: false).count == 0 %>
+          <div style="height: 47px;">
+
+          </div>
         <% else %>
-          <%  %>
+          <%= link_to "Sell Coins", sell_player_path(player), class: "btn-sell-red" %>
         <% end %>
 
-
-
-
       </div>
-<br>
-<br>
+
+
+      <br>
+      <br>
+
     </div>
+
   <% end %>
 </div>
