@@ -43,6 +43,7 @@
   margin-left:100px;
   margin: 0;
   text-align:center;
+  padding-top: 15px;
 }
 
 .card-product p {
@@ -213,7 +214,6 @@
 
 }
 
-
 .green-row {
   color: $footinvest-main;
   font-family: $footinvest-font;
@@ -256,6 +256,25 @@
   display: flex;
   justify-content: center;
   margin-top: 10px;
+}
+
+@media only screen and (max-width: 480px) {
+  .table {
+    display: none;
+  }
+
+  .header-charts2 {
+    display: none;
+  }
+
+  .row img {
+    display: none;
+  }
+
+  .player-container {
+    padding-top: 141px;
+    margin-left: -53px;
+  }
 }
 
 

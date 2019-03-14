@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: linear-gradient(-225deg, rgba(0,0,0,0.9) 5%, rgba(107, 185, 240,0.6) 80%), url('https://img.fifa.com/image/upload//cppwd4tzn7ssunitmlkv.jpg');
+  background-image: linear-gradient(-225deg, rgba(0,0,0,0.9) 5%, rgba(107, 185, 240,0.6) 80%), url('https://www.theglobeandmail.com/resizer/Zvgcs175l9JfcBZv93kLCSJzso4=/3500x0/filters:quality(80)/arc-anglerfish-tgam-prod-tgam.s3.amazonaws.com/public/HJ2KP5YDFJNFZMDW3N3HNFG4KA.JPG');
 }
 
 .banner h1 {
@@ -15,6 +15,7 @@
   font-size: 45px;
   letter-spacing: -0.04em; // root font size (width do "M")
   color: #21CD9A;
+  text-shadow: 2px 2px 8px #000000;
 }
 
 .banner h2 {
@@ -23,6 +24,7 @@
   font-size: 40px;
   letter-spacing: -0.02em; // root font size (width do "M")
   color: #21CD9A;
+  text-shadow: 2px 2px 8px #000000;
 }
 
 .banner-content {
@@ -40,5 +42,9 @@
   .banner h2 {
   font-size: 30px;
   letter-spacing: -0.02em; // root font size (width do "M")
+  }
+
+  .banner {
+  background-image: linear-gradient(-225deg, rgba(0,0,0,0.9) 5%, rgba(107, 185, 240,0.6) 80%), url('http://www1.pictures.zimbio.com/gi/Cristiano+Ronaldo+Juventus+v+Real+Madrid+UEFA+_v2DjGJeKXMl.jpg');
   }
 }
