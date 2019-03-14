@@ -131,16 +131,16 @@ CSV.foreach('./db/tokens.csv', CSV_OPTIONS) do |row|
   token.save
 end
 
-CSV.foreach('./db/transactions.csv', CSV_OPTIONS) do |row|
-  transaction = Transaction.new(
-    date_time: row[0],
-    price: row[1],
-    token_id: row[2],
-    buying_user_id: row[3],
-    selling_user_id: row[4]
-    )
-  transaction.save
-end
+# CSV.foreach('./db/transactions.csv', CSV_OPTIONS) do |row|
+#   transaction = Transaction.new(
+#     date_time: row[0],
+#     price: row[1],
+#     token_id: row[2],
+#     buying_user_id: row[3],
+#     selling_user_id: row[4]
+#     )
+#   transaction.save
+# end
 
 CSV.foreach('./db/portfolios.csv', CSV_OPTIONS) do |row|
   portfolio = Portfolio.new(
