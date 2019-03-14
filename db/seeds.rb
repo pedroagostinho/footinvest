@@ -30,7 +30,7 @@ CSV.foreach('./db/users.csv', CSV_OPTIONS) do |row|
     birthday: row[4],
     first_name: row[5],
     last_name: row[6],
-    balance: rand(100..1000)
+    balance: 1000
     )
   user.save
 end

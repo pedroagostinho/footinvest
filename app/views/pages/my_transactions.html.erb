@@ -57,14 +57,14 @@
 </div>
 
 <div class="transactions">
-  <table class="table-striped" style="border-spacing: 20px; border-collapse: separate;">
+  <table class="" style="border-spacing: 20px; border-collapse: separate;">
     <tr class="date">
       <th>Date</th>
       <th>Transaction</th>
     </tr>
     <% @my_transactions.each do |transaction| %>
     <tr>
-      <td> <%= transaction.date_time.strftime("%d-%m-%Y") %> </td>
+      <td> <%= transaction.date_time.strftime("%d-%m-%Y") %> ( <%= time_ago_in_words(transaction.date_time) %> ) </td>
       <% if transaction.buying_user_id == current_user.id %>
       <td> <span style="color: #21CD9A"> Bought </span> a <%= transaction.token.player.name %> coin for <span style="font-weight: bolder"> <%= transaction.price %>€ </span> </td>
       <% elsif transaction.selling_user_id == current_user.id %>
