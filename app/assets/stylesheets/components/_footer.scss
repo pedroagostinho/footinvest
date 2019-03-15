@@ -16,17 +16,17 @@
   }
 }
 
-.mx-auto h4 {
-  opacity: 0.5;
-}
-
-.mx-auto p {
-  font-size: 15px;
-}
-
 .mx-auto {
+  h4 {
+    opacity: 0.5;
+  }
+  p {
+    font-size: 15px;
+    color: $footinvest-main;
+  }
   h3 {
     margin-top: 8px;
+    margin-right: 27px;
   }
   hr {
     width: 90px;
@@ -44,10 +44,6 @@
 
 .btn-footer-transparent a {
   padding: 27px;
-}
-
-.mx-auto h3 {
-  margin-right: 27px;
 }
 
 @media only screen and (max-width: 480px) {
