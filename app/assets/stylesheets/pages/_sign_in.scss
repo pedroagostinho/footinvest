@@ -1,3 +1,13 @@
 .shared-links {
   text-align: center;
+  a {
+    color: $footinvest-main;
+    opacity: 0.8;
+    &:hover, &:focus {
+      text-decoration: none;
+      color: $footinvest-main;
+      opacity: 1;
+    }
+  }
 }
+

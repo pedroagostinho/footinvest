@@ -14,6 +14,7 @@
   opacity: 0.9;
   &:hover, &:focus {
     opacity: 1;
+    color: white;
   }
   a {
     color: white;
@@ -35,6 +36,7 @@
   opacity: 0.9;
   &:hover, &:focus {
     opacity: 1;
+    color: $footinvest-main;
   }
   a {
     color: $footinvest-main;

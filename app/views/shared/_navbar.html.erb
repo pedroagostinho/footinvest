@@ -56,12 +56,11 @@
       </div>
     <% else %>
       <!-- Login link (when logged out) -->
-      <div class="btn-landing">
-        <%= link_to t(".sign_up", default: "Create Account"), new_user_registration_path%>
-      </div>
-      <div class="btn-landing-white">
-        <%= link_to t(".sign_in", default: "Sign In"), new_user_session_path%>
-      </div>
+
+        <%= link_to t(".sign_up", default: "Create Account"), new_user_registration_path, { class:"btn-landing" } %>
+
+        <%= link_to t(".sign_in", default: "Sign In"), new_user_session_path, { class:"btn-landing-white" } %>
+
     <% end %>
   </div>
 
